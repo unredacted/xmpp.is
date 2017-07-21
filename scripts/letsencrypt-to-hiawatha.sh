@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script is executed from the systemd Let's Encrypt renewal service to ensure the updated certs are in place and converted to Hiawatha's format
+# This script is executed from the systemd Let's Encrypt renewal service to ensure the updated certs are in place and converted to Hiawatha format
 
 # xmpp.is
 cat /etc/letsencrypt/live/xmpp.is/privkey.pem /etc/letsencrypt/live/xmpp.is/fullchain.pem > /etc/hiawatha/ssl/xmpp.is.pem
