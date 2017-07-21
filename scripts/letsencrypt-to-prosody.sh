@@ -1,16 +1,17 @@
 #!/bin/bash
 
-DIR=( "xmpp.is" "xmpp.co" "xmpp.cx" "xmpp.xyz" )
+DIR1="xmpp.is"
+DIR2="xmpp.co"
+DIR3="xmpp.cx"
+DIR4="xmpp.xyz"
+LE_DIR="/etc/letsencrypt/live/"
 CERTS="/etc/prosody/certs/"
 PROSODY="/etc/prosody/"
 
-   find "/etc/letsencrypt/live/${DIR}" -name "*.pem" | while read -r file
-
-do
-
-   cp "${file}" "/etc/prosody/certs/${DIR}/"
-
-done
+   cp -rfL "${LE_DIR}${DIR1}/" "${CERTS}"
+   cp -rfL "${LE_DIR}${DIR2}/" "${CERTS}"
+   cp -rfL "${LE_DIR}${DIR3}/" "${CERTS}"
+   cp -rfL "${LE_DIR}${DIR4}/" "${CERTS}"
 
    chown -R prosody:prosody "${PROSODY}"
    chmod -R 700 "${CERTS}"
