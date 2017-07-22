@@ -4,7 +4,7 @@ daemonize = true;
 
 use_libevent = true;
 
-reload_modules = { "tls", "blocking", "s2s_log_certs", "limit_auth", "smacks", "carbons", "csi", "throttle_presence", "filter_chatstates", "limits" }
+reload_modules = { "tls", "blocking", "s2s_log_certs", "limit_auth", "smacks", "carbons", "csi", "filter_chatstates", "limits" }
 
 modules_enabled = {
 
@@ -29,6 +29,7 @@ modules_enabled = {
 		"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 		"announce"; -- Send announcement to all online users
 		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+                "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 
 	-- Downloaded Enabled Modules --
 
@@ -50,7 +51,6 @@ modules_enabled = {
 		--"watchregistrations"; -- Alert admins of registrations
 		--"motd"; -- Send a message to users when they log in
 		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
-		--"admin_telnet"; -- Opens telnet console interface on localhost port 5582
 		--"http_files"; -- Serve static files from a directory over HTTP
 
 };
@@ -65,8 +65,8 @@ log = {
 }
 
         ssl = {
-           certificate = "/etc/prosody/certs/xmpp.is.crt";
-           key = "/etc/prosody/certs/xmpp.is.key";
+           certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
+           key = "/etc/prosody/certs/xmpp.is/privkey.pem";
 }
 
         https_ssl = {
