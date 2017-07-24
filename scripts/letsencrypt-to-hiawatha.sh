@@ -9,3 +9,6 @@ cat /etc/letsencrypt/live/xmpp.xyz/privkey.pem /etc/letsencrypt/live/xmpp.xyz/fu
 
 # webstats.xmpp.is
 cat /etc/letsencrypt/live/webstats.xmpp.is/privkey.pem /etc/letsencrypt/live/webstats.xmpp.is/fullchain.pem > /etc/hiawatha/ssl/webstats.xmpp.is.pem
+
+# Restart Hiawatha
+service hiawatha restart
