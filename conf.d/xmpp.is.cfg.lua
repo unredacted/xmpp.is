@@ -2,19 +2,18 @@ VirtualHost "xmpp.is"
 http_host = "http.xmpp.is"
 modules_enabled = { "onions", "http", "register_web" };
 reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
-admins = { "n6kged4v45ht57c@xmpp.is" }
 
-  enabled = true
-  allow_registration = false;
+        enabled = true
+        allow_registration = false;
 	min_seconds_between_registrations = 300
 
 	c2s_require_encryption = true
 	s2s_secure_auth = false
 
 	authentication = "internal_hashed"
-  storage = "internal"
+        storage = "internal"
 
-	   ssl = {
+	ssl = {
 	   certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
 	   key = "/etc/prosody/certs/xmpp.is/privkey.pem";
 }
