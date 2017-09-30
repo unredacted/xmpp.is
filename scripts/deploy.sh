@@ -8,36 +8,88 @@ wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
 
 echo
 
+echo "Adding the official Tor repository"
+echo deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main | tee -a /etc/apt/sources.list
+gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+
+echo
+
+echo "Adding Hiawatha repository"
+echo deb http://mirror.tuxhelp.org/debian/ squeeze main | tee -a /etc/apt/sources.list
+apt-key adv --recv-keys --keyserver keys.gnupg.net 79AF54A9
+
+echo
+
 echo "Running apt update"
 apt update
 
 echo
 
-echo "Installing Prosody and dependencies"
-apt install prosody lua-zlib lua-bitop
+echo "Installing tools I like :)"
+apt install -y htop dstat nload iftop nmap iotop haveged
+
+echo
+
+echo "Installing Prosody"
+apt install -y prosody lua-zlib lua-bitop
+
+echo
+
+echo "Installing Tor"
+apt install -y tor deb.torproject.org-keyring
+
+echo
+
+echo "Installing Hiawatha"
+apt install -y hiawatha
+
+echo
+
+echo "Installing certbot"
+apt install -y certbot
 
 echo
 
 echo "Installing dependencies for config & module pulling"
-apt install git mercurial
+apt install -y git mercurial
 
 echo
 
 echo "Setting up Prosody directories"
 mkdir /etc/prosody/certs
-mkdir /etc/prosody/modules
 
 echo
 
-echo "Pulling git repo"
-cd /etc/prosody && git clone https://github.com/lunarthegrey/xmpp.is
+echo "Pulling git repos & modules"
+
+# Prosody configs
+git clone https://github.com/lunarthegrey/xmpp.is /etc/prosody
+
+# Prosody web registration theme
+git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
+
+# Email password reset module
+git clone https://github.com/lunarthegrey/mod_email_pass_reset /etc/prosody/modules/mod_email_pass_reset
+
+# Official Prosody modules
+hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/official
 
 echo
+
+echo "Setting up SSL certificates"
+service hiawatha stop
+certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d http.xmpp.is -d upload.xmpp.is
+certbot certonly --standalone --rsa-key-size 4096 -d xmpp.co -d www.xmpp.co -d http.xmpp.co -d upload.xmpp.co
+certbot certonly --standalone --rsa-key-size 4096 -d xmpp.cx -d www.xmpp.is -d http.xmpp.cx -d upload.xmpp.cx
+certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d http.xmpp.xyz -d upload.xmpp.xyz
 
 echo "Forcing permissions"
 bash /etc/prosody/scripts/force-owner-and-group.sh
 
 echo
 
-echo "Restarting Prosody"
+echo "Restarting services"
 service prosody restart
+service hiawatha start
+service tor restart
