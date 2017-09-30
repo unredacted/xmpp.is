@@ -63,7 +63,7 @@ mkdir /etc/prosody/certs
 
 echo
 
-echo "Pulling git repos & modules"
+echo "Pulling configs and modules"
 
 # Prosody configs & scripts
 git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
@@ -72,15 +72,26 @@ git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
 git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
 
 # Email password reset module
-git clone https://github.com/lunarthegrey/mod_email_pass_reset /etc/prosody/modules/mod_email_pass_reset
+git clone https://github.com/lunarthegrey/mod_email_pass_reset /etc/prosody/modules/git-modules/mod_email_pass_reset
 
 # Official Prosody modules
-hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/official
+hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/prosody-modules
+
+echo
+
+echo "rsyncing configs"
+
+# rsync Prosody configs
+rsync -av /home/git/xmpp.is/prosody/ /etc/prosody/
+
+# rsync Hiawatha config
+rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
 
 echo
 
 echo "Setting up SSL certificates"
 service hiawatha stop
+# certbot certonly --standalone --rsa-key-size 2048 -d test.xmpp.is
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d http.xmpp.is -d upload.xmpp.is
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.co -d www.xmpp.co -d http.xmpp.co -d upload.xmpp.co
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.cx -d www.xmpp.is -d http.xmpp.cx -d upload.xmpp.cx
@@ -89,7 +100,7 @@ certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d
 echo
 
 echo "Forcing permissions"
-bash /etc/prosody/scripts/force-owner-and-group.sh
+bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
 
 echo
 
