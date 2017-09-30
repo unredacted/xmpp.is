@@ -2,6 +2,8 @@
 
 # Deploys XMPP.is on a new server
 
+echo
+
 echo "Adding the official Prosody repository"
 echo deb http://packages.prosody.im/debian $(lsb_release -sc) main | tee -a /etc/apt/sources.list
 wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
@@ -27,7 +29,7 @@ apt update
 echo
 
 echo "Installing tools I like :)"
-apt install -y htop dstat nload iftop nmap iotop haveged
+apt install -y htop dstat nload iftop nmap iotop haveged rsync
 
 echo
 
@@ -63,8 +65,8 @@ echo
 
 echo "Pulling git repos & modules"
 
-# Prosody configs
-git clone https://github.com/lunarthegrey/xmpp.is /etc/prosody
+# Prosody configs & scripts
+git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
 
 # Prosody web registration theme
 git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
@@ -83,6 +85,8 @@ certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d h
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.co -d www.xmpp.co -d http.xmpp.co -d upload.xmpp.co
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.cx -d www.xmpp.is -d http.xmpp.cx -d upload.xmpp.cx
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d http.xmpp.xyz -d upload.xmpp.xyz
+
+echo
 
 echo "Forcing permissions"
 bash /etc/prosody/scripts/force-owner-and-group.sh
