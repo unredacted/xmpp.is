@@ -89,7 +89,7 @@ rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
 
 echo
 
-echo "Setting up SSL certificates"
+echo "Issuing initial SSL/TLS certificates"
 service hiawatha stop
 # certbot certonly --standalone --rsa-key-size 2048 -d test.xmpp.is
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d http.xmpp.is -d upload.xmpp.is
@@ -99,7 +99,9 @@ certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d
 
 echo
 
-echo "Forcing permissions"
+echo "Executing final scripts"
+bash /home/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
+bash /home/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
 bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
 
 echo
