@@ -81,11 +81,14 @@ echo
 
 echo "rsyncing configs"
 
-# rsync Prosody configs
+# Prosody config
 rsync -av /home/git/xmpp.is/prosody/ /etc/prosody/
 
-# rsync Hiawatha config
+# Hiawatha config
 rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
+
+# Tor config
+rsync -av /home/git/xmpp.is/tor/ /etc/tor/
 
 echo
 
