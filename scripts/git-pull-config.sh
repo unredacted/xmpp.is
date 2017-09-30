@@ -1,4 +1,4 @@
 #!/bin/bash
-# Script downloads latest configs from https://github.com/lunarthegrey/xmpp.is
+# Script downloads the latest https://github.com/lunarthegrey/xmpp.is
 
-cd /etc/prosody && git pull
+cd /home/git/xmpp.is && git pull
