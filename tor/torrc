@@ -1,0 +1,6 @@
+DataDirectory /var/lib/tor
+
+HiddenServiceDir /var/lib/tor/prosody_hidden_service/
+HiddenServicePort 5222 127.0.0.1:5222
+HiddenServicePort 5269 127.0.0.1:5269
+HiddenServicePort 80 127.0.0.1:80
