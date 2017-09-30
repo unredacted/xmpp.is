@@ -40,4 +40,4 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
         name = "XMPP.is MUC"
         restrict_room_creation = "local"
         
-        -- Private stuff injected below after git pull --
+-- Private stuff injected below after git pull --
