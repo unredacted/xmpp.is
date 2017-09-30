@@ -4,6 +4,7 @@ modules_enabled = { "onions", "http", "register_web" };
 reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 
         enabled = true
+
         allow_registration = false;
 	min_seconds_between_registrations = 300
 
@@ -16,6 +17,11 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 	ssl = {
 	   certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
 	   key = "/etc/prosody/certs/xmpp.is/privkey.pem";
+}
+
+        https_ssl = {
+           certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
+           key = "/etc/prosody/certs/xmpp.is/privkey.pem";
 }
 
         http_ports = { 5280 }
