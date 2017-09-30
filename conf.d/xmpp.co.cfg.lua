@@ -4,6 +4,7 @@ modules_enabled = { "http", "register_web" };
 reload_modules = { "tls", "http", "register_web", "http_upload" };
 
 	enabled = true
+
         allow_registration = false;
 	min_seconds_between_registrations = 300
 
