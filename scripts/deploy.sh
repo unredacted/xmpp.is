@@ -72,7 +72,7 @@ git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
 git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
 
 # Email password reset module
-git clone https://github.com/lunarthegrey/mod_email_pass_reset /etc/prosody/modules/git-modules/mod_email_pass_reset
+git clone https://github.com/lunarthegrey/mod_email_pass_reset_english /etc/prosody/modules/git-modules/mod_email_pass_reset_english
 
 # Official Prosody modules
 hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/prosody-modules
