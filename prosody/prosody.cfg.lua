@@ -2,7 +2,7 @@ daemonize = true;
 
 use_libevent = true;
 
-reload_modules = { "tls", "blocking", "s2s_log_certs", "limit_auth", "smacks", "carbons", "csi", "filter_chatstates", "limits" }
+reload_modules = { "tls", "blocking", "s2s_log_certs", "limit_auth", "smacks", "carbons", "csi", "filter_chatstates", "limits", "email_pass_reset_english", "default_vcard" }
 
 modules_enabled = {
 
@@ -16,7 +16,7 @@ modules_enabled = {
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 		"private"; -- Private XML storage (for room bookmarks, etc.)
 		"vcard"; -- Allow users to set vCards
-    "privacy"; -- Enable mod_privacy
+                "privacy"; -- Enable mod_privacy
 		"compression"; -- Stream compression (requires the lua-zlib package installed)
 		"version"; -- Replies to server version requests
 		"uptime"; -- Report how long server has been running
@@ -27,7 +27,9 @@ modules_enabled = {
 		"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 		"announce"; -- Send announcement to all online users
 		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-    "admin_telnet"; -- Opens telnet console interface on localhost port 5582
+                "admin_telnet"; -- Opens telnet console interface on localhost port 5582
+		"welcome"; -- Welcome users who register accounts
+
 
 	-- Downloaded Enabled Modules --
 
@@ -40,17 +42,16 @@ modules_enabled = {
 		"csi";
 		"filter_chatstates";
 		"limits";
-		-- "email_pass_reset";
+		"email_pass_reset_english";
+		"default_vcard"
 
 	-- Disabled --
 
 		--"groups"; -- Shared roster support
-		--"welcome"; -- Welcome users who register accounts
 		--"watchregistrations"; -- Alert admins of registrations
 		--"motd"; -- Send a message to users when they log in
 		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		--"http_files"; -- Serve static files from a directory over HTTP
-
 };
 
 pidfile = "/var/run/prosody/prosody.pid"
@@ -71,6 +72,8 @@ log = {
            certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
            key = "/etc/prosody/certs/xmpp.is/privkey.pem";
 }
+
+welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
 s2s_log_certs_persist = true
 
