@@ -12,3 +12,18 @@ cd /etc/prosody/register-templates/Prosody-Web-Registration-Theme && git pull
 cd /etc/prosody/modules/prosody-modules && hg pull && hg update
 
 echo
+
+echo "rsyncing configs"
+
+# Prosody config
+rsync -av /home/git/xmpp.is/prosody/ /etc/prosody/
+
+# Hiawatha config
+rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
+
+# Tor config
+rsync -av /home/git/xmpp.is/tor/ /etc/tor/
+
+echo
+
+echo "Latest configs pushed! Restart or reload services to apply changes"
