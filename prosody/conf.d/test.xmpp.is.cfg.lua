@@ -6,17 +6,17 @@ reload_modules = { "tls", "http", "register_web", "http_upload" };
         enabled = true
 
         allow_registration = false;
-	      min_seconds_between_registrations = 300
+	min_seconds_between_registrations = 300
 
-	      c2s_require_encryption = true
-	      s2s_secure_auth = false
+	c2s_require_encryption = true
+        s2s_secure_auth = false
 
-	      authentication = "internal_hashed"
+	authentication = "internal_hashed"
         storage = "internal"
 
-	ssl = {
-	   certificate = "/etc/prosody/certs/test.xmpp.is/fullchain.pem";
-	   key = "/etc/prosody/certs/test.xmpp.is/privkey.pem";
+   ssl = {
+      certificate = "/etc/prosody/certs/test.xmpp.is/fullchain.pem";
+      key = "/etc/prosody/certs/test.xmpp.is/privkey.pem";
 }
 
    https_ssl = {
