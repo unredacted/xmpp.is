@@ -14,14 +14,14 @@ reload_modules = { "tls", "http", "register_web", "http_upload" };
 	authentication = "internal_hashed"
         storage = "internal"
 
-   ssl = {
-      certificate = "/etc/prosody/certs/test.xmpp.is/fullchain.pem";
-      key = "/etc/prosody/certs/test.xmpp.is/privkey.pem";
+        ssl = {
+           certificate = "/etc/prosody/certs/test.xmpp.is/fullchain.pem";
+           key = "/etc/prosody/certs/test.xmpp.is/privkey.pem";
 }
 
-   https_ssl = {
-      certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
-      key = "/etc/prosody/certs/xmpp.is/privkey.pem";
+        https_ssl = {
+           certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
+           key = "/etc/prosody/certs/xmpp.is/privkey.pem";
 }
 
         http_ports = { 5280 }
