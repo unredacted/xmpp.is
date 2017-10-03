@@ -4,6 +4,10 @@
 
 echo
 
+apt install dirmngr
+
+echo
+
 echo "Adding the official Prosody repository"
 echo deb http://packages.prosody.im/debian $(lsb_release -sc) main | tee -a /etc/apt/sources.list
 wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
@@ -34,7 +38,7 @@ apt install -y htop dstat nload iftop nmap iotop haveged rsync
 echo
 
 echo "Installing Prosody"
-apt install -y prosody lua-zlib lua-bitop
+apt install -y prosody lua-zlib lua-bitop lua-event
 
 echo
 
