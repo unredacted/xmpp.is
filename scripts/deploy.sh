@@ -1,10 +1,10 @@
-#!/bin/sh
-
+#!/bin/bash
 # Deploys XMPP.is on a new server
 
 echo
 
-apt install dirmngr
+echo "Installing tools I like or need :)"
+apt install -y htop dstat nload iftop nmap iotop haveged rsync dirmngr apt-transport-https
 
 echo
 
@@ -15,25 +15,20 @@ wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
 echo
 
 echo "Adding the official Tor repository"
-echo deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main | tee -a /etc/apt/sources.list
+echo deb https://deb.torproject.org/torproject.org $(lsb_release -sc) main | tee -a /etc/apt/sources.list
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
 echo
 
 echo "Adding Hiawatha repository"
-echo deb http://mirror.tuxhelp.org/debian/ squeeze main | tee -a /etc/apt/sources.list
+echo deb https://mirror.tuxhelp.org/debian/ squeeze main | tee -a /etc/apt/sources.list
 apt-key adv --recv-keys --keyserver keys.gnupg.net 79AF54A9
 
 echo
 
 echo "Running apt update"
 apt update
-
-echo
-
-echo "Installing tools I like :)"
-apt install -y htop dstat nload iftop nmap iotop haveged rsync
 
 echo
 
@@ -52,7 +47,7 @@ apt install -y hiawatha
 
 echo
 
-echo "Installing certbot"
+echo "Installing Certbot"
 apt install -y certbot
 
 echo
@@ -62,12 +57,15 @@ apt install -y git mercurial
 
 echo
 
-echo "Setting up Prosody directories"
+echo "Making directories"
 mkdir /etc/prosody/certs
+mkdir /etc/hiawahta/ssl
 
 echo
 
 echo "Pulling configs and modules"
+
+echo
 
 # Prosody configs & scripts
 git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
@@ -84,6 +82,8 @@ hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/prosody-mod
 echo
 
 echo "rsyncing configs"
+
+echo
 
 # Prosody config
 rsync -av /home/git/xmpp.is/prosody/ /etc/prosody/
@@ -106,10 +106,17 @@ certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d
 
 echo
 
+echo "Applying open file limits"
+echo prosody hard nofile 999999 | tee -a /etc/security/limits.conf
+echo prosody soft nofile 999999 | tee -a /etc/security/limits.conf
+echo "DefaultLimitNOFILE=999999" | tee -a /etc/systemd/system.conf
+echo "MAXFDS=999999" | tee -a /etc/default/prosody
+
 echo "Executing final scripts"
 bash /home/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
 bash /home/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
 bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
+crontab /home/git/xmpp.is/system/crontab
 
 echo
 
@@ -117,3 +124,7 @@ echo "Restarting services"
 service prosody restart
 service hiawatha start
 service tor restart
+
+echo
+
+echo "Deploy finished, server must be rebooted now"
