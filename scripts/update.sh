@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script that pulls the latest files from repos
+# Script that pulls the latest files from repos and applies changes
 
 echo
 
@@ -23,6 +23,9 @@ rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
 
 # Tor config
 rsync -av /home/git/xmpp.is/tor/ /etc/tor/
+
+# Crontab
+crontab /home/git/xmpp.is/system/crontab
 
 echo
 
