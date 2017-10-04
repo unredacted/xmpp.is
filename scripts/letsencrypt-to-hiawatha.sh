@@ -13,8 +13,5 @@ cat "${LE_DIR}${DIR2}"/privkey.pem "${LE_DIR}${DIR2}"/fullchain.pem > "${HIAWATH
 cat "${LE_DIR}${DIR3}"/privkey.pem "${LE_DIR}${DIR3}"/fullchain.pem > "${HIAWATHA_CERTS}${DIR3}".pem
 cat "${LE_DIR}${DIR4}"/privkey.pem "${LE_DIR}${DIR4}"/fullchain.pem > "${HIAWATHA_CERTS}${DIR4}".pem
 
-# webstats.xmpp.is
-cat /etc/letsencrypt/live/webstats.xmpp.is/privkey.pem /etc/letsencrypt/live/webstats.xmpp.is/fullchain.pem > /etc/hiawatha/ssl/webstats.xmpp.is.pem
-
 # Restart Hiawatha
 service hiawatha restart
