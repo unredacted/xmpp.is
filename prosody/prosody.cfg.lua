@@ -46,11 +46,11 @@ modules_disabled = {
 	
 	-- Disabled --
 
-		--"groups"; -- Shared roster support
-		--"watchregistrations"; -- Alert admins of registrations
-		--"motd"; -- Send a message to users when they log in
-		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
-		--"http_files"; -- Serve static files from a directory over HTTP
+		"groups"; -- Shared roster support
+		"watchregistrations"; -- Alert admins of registrations
+		"motd"; -- Send a message to users when they log in
+		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
+		"http_files"; -- Serve static files from a directory over HTTP
 		"offline";
 };
 
