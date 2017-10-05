@@ -2,7 +2,7 @@ daemonize = true;
 
 use_libevent = true;
 
---reload_modules = { "tls", "blocking", "s2s_log_certs", "limit_auth", "smacks", "carbons", "csi", "filter_chatstates", "limits", "email_pass_reset_english", "default_vcard" }
+reload_modules = { "tls", "limit_auth", "smacks", "carbons", "csi", "filter_chatstates", "limits", "email_pass_reset_english", "default_vcard" }
 
 modules_enabled = {
 
@@ -16,8 +16,6 @@ modules_enabled = {
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 		"private"; -- Private XML storage (for room bookmarks, etc.)
 		"vcard"; -- Allow users to set vCards
-                --"privacy"; -- Enable mod_privacy
-		--"compression"; -- Stream compression (requires the lua-zlib package installed)
 		"version"; -- Replies to server version requests
 		"uptime"; -- Report how long server has been running
 		"time"; -- Let others know the time here on this server
@@ -29,21 +27,19 @@ modules_enabled = {
 		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
                 "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 		"welcome"; -- Welcome users who register accounts
-
+		"blocklist"; -- New module replacing mod_privacy
 
 	-- Downloaded Enabled Modules --
 
-		--"blocking";
-		--"s2s_log_certs";
-		--"reload_modules";		
-		--"limit_auth";
-		--"smacks";
-		--"carbons";
-		--"csi";
-		--"filter_chatstates";
-		--"limits";
-		--"email_pass_reset_english";
-		--"default_vcard"
+		"reload_modules";		
+		"limit_auth";
+		"smacks";
+		"carbons";
+		"csi";
+		"filter_chatstates";
+		"limits";
+		"email_pass_reset_english";
+		"default_vcard"
 
 	-- Disabled --
 
@@ -52,11 +48,12 @@ modules_enabled = {
 		--"motd"; -- Send a message to users when they log in
 		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		--"http_files"; -- Serve static files from a directory over HTTP
+		"offline";
 };
 
 pidfile = "/var/run/prosody/prosody.pid"
 
-plugin_paths = { "/usr/lib/prosody/downloaded-modules" }
+plugin_paths = { "/etc/prosody/modules" }
 
 log = {
 	info = "/dev/null";
@@ -75,32 +72,32 @@ log = {
 
 welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
-s2s_log_certs_persist = true
-
---limits = {
---  c2s = {
---    rate = "10kb/s";
---    burst = "5s";
---  };
---  s2sin = {
---    rate = "10kb/s";
---    burst = "5s";
---  };
---  s2sout = {
---    rate = "10kb/s";
- --   burst = "5s";
---  };
---}
+limits = {
+  c2s = {
+    rate = "2kb/s";
+    burst = "3s";
+  };
+  s2sin = {
+    rate = "2kb/s";
+    burst = "3s";
+  };
+  s2sout = {
+    rate = "2kb/s";
+    burst = "3s";
+  };
+}
 
 -- mod_limit_auth --
---limit_auth_period = 30
---limit_auth_max = 5
+limit_auth_period = 30
+limit_auth_max = 5
 
 -- mod_smacks --
---smacks_hibernation_time = 300
---smacks_enabled_s2s = false
---smacks_max_unacked_stanzas = 0
---smacks_max_ack_delay = 60
+smacks_hibernation_time = 300
+smacks_enabled_s2s = false
+smacks_max_unacked_stanzas = 0
+smacks_max_ack_delay = 60
+smacks_max_hibernated_sessions = 10
+smacks_max_old_sessions = 10
 
 Include "conf.d/*.cfg.lua"
 
