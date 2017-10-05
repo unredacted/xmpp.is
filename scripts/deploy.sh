@@ -33,7 +33,7 @@ apt update
 echo
 
 echo "Installing Prosody"
-apt install -y prosody lua-zlib lua-bitop lua-event
+apt install -y prosody lua-zlib lua-bitop lua-event lua-socket lua-sec
 
 echo
 
