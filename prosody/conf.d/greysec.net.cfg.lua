@@ -11,6 +11,6 @@ admins = { "lunar@greysec.net", "insider@greysec.net" }
         storage = "internal"
 
 	ssl = {
-		certificate = "/etc/prosody/certs/greysec.net.crt";
-		key = "/etc/prosody/certs/greysec.net.key";
+		certificate = "/etc/prosody/certs/greysec.net/greysec.net.crt";
+		key = "/etc/prosody/certs/greysec.net/greysec.net.key";
 }
