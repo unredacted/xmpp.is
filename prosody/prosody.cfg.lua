@@ -81,12 +81,12 @@ limits = {
     burst = "5s";
   };
   s2sin = {
-    rate = "5kb/s";
-    burst = "2s";
+    rate = "1kb/s";
+    burst = "1s";
   };
   s2sout = {
-    rate = "5kb/s";
-    burst = "2s";
+    rate = "1kb/s";
+    burst = "1s";
   };
 }
 
