@@ -40,7 +40,10 @@ modules_enabled = {
 		"limits";
 		"email_pass_reset_english";
 		"default_vcard"
-
+};
+	
+modules_disabled = {
+	
 	-- Disabled --
 
 		--"groups"; -- Shared roster support
