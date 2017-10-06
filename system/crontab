@@ -1,5 +1,0 @@
-* * * * * bash /home/git/xmpp.is/scripts/delete-prosody-offline-messages.sh
-
-@hourly bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
-
-@daily bash /home/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
