@@ -77,7 +77,7 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 
 limits = {
   c2s = {
-    rate = "5kb/s";
+    rate = "10kb/s";
     burst = "5s";
   };
   s2sin = {
