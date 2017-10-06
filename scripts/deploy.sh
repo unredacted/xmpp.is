@@ -72,14 +72,14 @@ echo
 # Prosody configs & scripts
 git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
 
-# Prosody web registration theme
-git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
+# Official Prosody modules
+hg clone https://hg.prosody.im/prosody-modules/ /var/lib/prosody/modules
 
 # Email password reset module
-git clone https://github.com/lunarthegrey/mod_email_pass_reset_english /etc/prosody/modules/git-modules/mod_email_pass_reset_english
+git clone https://github.com/lunarthegrey/mod_email_pass_reset_english /var/lib/prosody/modules/mod_email_pass_reset_english
 
-# Official Prosody modules
-hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/prosody-modules
+# Prosody web registration theme
+git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
 
 echo
 
