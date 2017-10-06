@@ -81,24 +81,6 @@ hg clone https://hg.prosody.im/prosody-modules/ /etc/prosody/modules/prosody-mod
 
 echo
 
-echo "rsyncing configs"
-
-echo
-
-# Prosody config
-rsync -av /home/git/xmpp.is/etc/prosody/ /etc/prosody/
-
-# Hiawatha config
-rsync -av /home/git/xmpp.is/etc/hiawatha/ /etc/hiawatha/
-
-# Tor config
-rsync -av /home/git/xmpp.is/etc/tor/ /etc/tor/
-
-# Web directories
-rsync -av /home/git/xmpp.is/var/www/ /var/www/
-
-echo
-
 echo "Issuing initial SSL/TLS certificates"
 service hiawatha stop
 # certbot certonly --standalone --rsa-key-size 2048 -d test.xmpp.is
