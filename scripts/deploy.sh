@@ -123,11 +123,12 @@ echo "net.ipv4.tcp_congestion_control=bbr" | tee -a /etc/sysctl.conf
 
 echo
 
-echo "Executing final scripts"
+echo "Executing final steps"
 bash /home/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
 bash /home/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
 bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
-crontab /home/git/xmpp.is/system/crontab
+crontab /home/git/xmpp.is/system/cron/root
+cp /home/git/xmpp.is/system/cron/certbot /etc/cron.d/certbot
 
 echo
 
