@@ -60,6 +60,8 @@ echo
 echo "Making directories"
 mkdir /etc/prosody/certs
 mkdir /etc/hiawahta/ssl
+mkdir /var/www/xmpp.is
+mkdir /var/www/transparency.xmpp.is
 
 echo
 
@@ -84,7 +86,7 @@ echo
 echo "Issuing initial SSL/TLS certificates"
 service hiawatha stop
 # certbot certonly --standalone --rsa-key-size 2048 -d test.xmpp.is
-certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d http.xmpp.is -d upload.xmpp.is -d transparency.xmpp.is
+certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d transparency.xmpp.is -d http.xmpp.is -d upload.xmpp.is
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.co -d www.xmpp.co -d http.xmpp.co -d upload.xmpp.co
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.cx -d www.xmpp.is -d http.xmpp.cx -d upload.xmpp.cx
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d http.xmpp.xyz -d upload.xmpp.xyz
@@ -108,9 +110,9 @@ echo
 echo "Executing final steps"
 bash /home/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
 bash /home/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
+bash /home/git/xmpp.is/scripts/cert-fingerprint.sh
+bash /home/git/xmpp.is/scripts/sync.sh
 bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
-crontab /home/git/xmpp.is/system/cron/root
-cp /home/git/xmpp.is/system/cron/certbot /etc/cron.d/certbot
 
 echo
 
