@@ -16,16 +16,16 @@ echo
 echo "Pushing new configs and files"
 
 # Prosody config
-rsync -av /home/git/xmpp.is/prosody/ /etc/prosody/
+rsync -av /home/git/xmpp.is/etc/prosody/ /etc/prosody/
 
 # Hiawatha config
-rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
+rsync -av /home/git/xmpp.is/etc/hiawatha/ /etc/hiawatha/
 
 # Tor config
-rsync -av /home/git/xmpp.is/tor/ /etc/tor/
+rsync -av /home/git/xmpp.is/etc/tor/ /etc/tor/
 
 # Webroot
-rsync -av /home/git/xmpp.is/www/ /var/www/
+rsync -av /home/git/xmpp.is/var/www/ /var/www/
 
 # Cron
 crontab /home/git/xmpp.is/system/crontab
