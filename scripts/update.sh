@@ -27,7 +27,7 @@ rsync -av /home/git/xmpp.is/tor/ /etc/tor/
 # Webroot
 rsync -av /home/git/xmpp.is/www/ /var/www/
 
-# Crontab
+# Cron
 crontab /home/git/xmpp.is/system/crontab
 cp /home/git/xmpp.is/system/cron/certbot /etc/cron.d/certbot
 
