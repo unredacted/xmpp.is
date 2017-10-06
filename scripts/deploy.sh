@@ -4,7 +4,7 @@
 echo
 
 echo "Installing packages I like or need :)"
-apt install -y htop dstat nload iftop nmap iotop haveged rsync dirmngr apt-transport-https
+apt install -y htop dstat nload iftop nmap iotop haveged rsync dirmngr apt-transport-https dialog
 
 echo
 
@@ -59,7 +59,7 @@ echo
 
 echo "Making directories"
 mkdir /etc/prosody/certs
-mkdir /etc/hiawahta/ssl
+mkdir /etc/hiawatha/ssl
 mkdir /var/www/xmpp.is
 mkdir /var/www/transparency.xmpp.is
 
