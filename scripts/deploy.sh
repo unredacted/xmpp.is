@@ -3,7 +3,7 @@
 
 echo
 
-echo "Installing tools I like or need :)"
+echo "Installing packages I like or need :)"
 apt install -y htop dstat nload iftop nmap iotop haveged rsync dirmngr apt-transport-https
 
 echo
@@ -93,6 +93,9 @@ rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
 
 # Tor config
 rsync -av /home/git/xmpp.is/tor/ /etc/tor/
+
+# Web directories
+rsync -av /home/git/xmpp.is/www/ /var/www/
 
 echo
 
