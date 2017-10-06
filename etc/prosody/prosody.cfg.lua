@@ -56,7 +56,7 @@ modules_disabled = {
 
 pidfile = "/var/run/prosody/prosody.pid"
 
-plugin_paths = { "/etc/prosody/modules/prosody-modules", "/etc/prosody/modules/git-modules" }
+plugin_paths = { "/etc/prosody/modules/prosody-modules" }
 
 log = {
 	info = "/dev/null";
