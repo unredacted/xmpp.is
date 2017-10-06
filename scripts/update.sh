@@ -13,7 +13,7 @@ cd /etc/prosody/modules/prosody-modules && hg pull && hg update
 
 echo
 
-echo "rsyncing configs"
+echo "Pushing new configs and files"
 
 # Prosody config
 rsync -av /home/git/xmpp.is/prosody/ /etc/prosody/
@@ -24,8 +24,12 @@ rsync -av /home/git/xmpp.is/hiawatha/ /etc/hiawatha/
 # Tor config
 rsync -av /home/git/xmpp.is/tor/ /etc/tor/
 
+# Webroot
+rsync -av /home/git/xmpp.is/www/ /var/www/
+
 # Crontab
 crontab /home/git/xmpp.is/system/crontab
+cp /home/git/xmpp.is/system/cron/certbot /etc/cron.d/certbot
 
 echo
 
