@@ -1,3 +1,4 @@
 * * * * * bash /home/git/xmpp.is/scripts/delete-prosody-offline-messages.sh
 
 @hourly bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
+@hourly bash /home/git/xmpp.is/scripts/cert-fingerprint.sh
