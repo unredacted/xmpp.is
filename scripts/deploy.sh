@@ -4,18 +4,18 @@
 echo
 
 echo "Installing packages I like or need :)"
-apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano
+apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release
 
 echo
 
 echo "Adding the official Prosody repository"
-echo deb http://packages.prosody.im/debian stretch main | tee -a /etc/apt/sources.list
+echo deb http://packages.prosody.im/debian $(lsb_release -sc) main | tee -a /etc/apt/sources.list
 wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
 
 echo
 
 echo "Adding the official Tor repository"
-echo deb https://deb.torproject.org/torproject.org stretch main | tee -a /etc/apt/sources.list
+echo deb https://deb.torproject.org/torproject.org $(lsb_release -sc) main | tee -a /etc/apt/sources.list
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
