@@ -13,8 +13,8 @@ reload_modules = { "tls", "onions" };
         storage = "internal"
 
 	ssl = {
-	   certificate = "/etc/prosody/certs/xmpp.is/fullchain.pem";
-	   key = "/etc/prosody/certs/xmpp.is/privkey.pem";
+	   certificate = "/etc/prosody/certs/y2qmqomqpszzryei.onion/cert.pem";
+	   key = "/etc/prosody/certs/y2qmqomqpszzryei.onion/key.pem";
 }
         
   onions_tor_all =  true 
