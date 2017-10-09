@@ -33,7 +33,7 @@ reload_modules = { "tls", "http", "register_web", "http_upload" };
 	register_web_template = "/etc/prosody/register-templates/Prosody-Web-Registration-Theme"
 
         Component "upload.xmpp.co" "http_upload"
-        http_upload_file_size_limit = 52428800
+        http_upload_file_size_limit = 10485760
         http_upload_expire_after = 60 * 60 * 24 * 7
 
         Component "muc.xmpp.is" "muc"
