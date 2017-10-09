@@ -2,7 +2,7 @@ daemonize = true;
 
 use_libevent = true;
 
-reload_modules = { "tls", "limit_auth", "smacks", "carbons", "csi", "filter_chatstates", "limits", "default_vcard" }
+reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard" }
 
 modules_enabled = {
 
@@ -28,13 +28,13 @@ modules_enabled = {
                 "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 		"welcome"; -- Welcome users who register accounts
 		"blocklist"; -- New module replacing mod_privacy
+		"carbons"; -- Officially included in Prosody now
 
 	-- Downloaded Enabled Modules --
 
 		"reload_modules";		
 		"limit_auth";
 		"smacks";
-		"carbons";
 		"csi";
 		"filter_chatstates";
 		"limits";
