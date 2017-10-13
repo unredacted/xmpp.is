@@ -12,6 +12,9 @@ rsync -av /home/git/xmpp.is/etc/tor/ /etc/tor/
 # Webroot
 rsync -av /home/git/xmpp.is/var/www/ /var/www/
 
+# Mercurial
+rsync -av /home/git/xmpp.is/etc/mercurial/ /etc/mercurial/
+
 # Cron
 crontab /home/git/xmpp.is/var/spool/cron/crontabs/root
 cp /home/git/xmpp.is/etc/cron.d/certbot /etc/cron.d/certbot
