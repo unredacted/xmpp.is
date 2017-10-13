@@ -1,0 +1,5 @@
+# system-wide mercurial configuration file
+# See hgrc(5) for more information
+[trusted]
+users = root, prosody
+groups = prosody
