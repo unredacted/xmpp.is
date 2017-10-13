@@ -19,4 +19,10 @@ bash /home/git/xmpp.is/scripts/sync.sh
 
 echo
 
+echo "Forcing permissions"
+
+bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
+
+echo
+
 echo "Latest configs pushed! Restart or reload services to apply changes"
