@@ -12,7 +12,7 @@ PROSODY_DIR="/etc/prosody/certs"
 OUTPUT_DIR="/var/www/transparency.xmpp.is"
 
 # Empty old file
-echo > /var/www/transparency.xmpp.is/fingerprints.txt
+echo -n "" > /var/www/transparency.xmpp.is/fingerprints.txt
 
 # Update with current time
 echo Certificate fingerprints since `date` | tee -a "${OUTPUT_DIR}"/fingerprints.txt
