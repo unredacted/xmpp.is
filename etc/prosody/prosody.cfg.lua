@@ -38,7 +38,7 @@ modules_enabled = {
 		"csi";
 		"filter_chatstates";
 		"limits";
-		--"email_pass_reset_english";
+		"email_pass_reset_english";
 		"default_vcard"
 };
 	
