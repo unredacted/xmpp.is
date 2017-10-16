@@ -1,7 +1,7 @@
 VirtualHost "xmpp.xyz"
 http_host = "http.xmpp.xyz"
-modules_enabled = { "http", "register_web" };
-reload_modules = { "tls", "http", "register_web", "http_upload" };
+modules_enabled = { "onions", "http", "register_web" };
+reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 
 	enabled = true
 
