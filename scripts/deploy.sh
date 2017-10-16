@@ -70,16 +70,16 @@ echo "Pulling configs and modules"
 echo
 
 # Prosody configs & scripts
-git clone https://github.com/lunarthegrey/xmpp.is /home/git/xmpp.is
+git clone https://github.com/crypto-world/xmpp.is /home/git/xmpp.is
 
 # Official Prosody modules
 hg clone https://hg.prosody.im/prosody-modules/ /var/lib/prosody/modules
 
 # Email password reset module
-git clone https://github.com/lunarthegrey/mod_email_pass_reset_english /var/lib/prosody/modules/mod_email_pass_reset_english
+git clone https://github.com/crypto-world/mod_email_pass_reset_english /home/git/mod_email_pass_reset_english
 
 # Prosody web registration theme
-git clone https://github.com/lunarthegrey/Prosody-Web-Registration-Theme /etc/prosody/register-templates/Prosody-Web-Registration-Theme
+git clone https://github.com/crypto-world/prosody-web-registration-theme /home/git/prosody-web-registration-theme
 
 echo
 
