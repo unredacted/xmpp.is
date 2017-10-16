@@ -30,7 +30,7 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
         https_ports = { 5281 }
         https_interfaces = { "*" }
 
-        register_web_template = "/etc/prosody/register-templates/Prosody-Web-Registration-Theme"
+        register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
 
         Component "upload.xmpp.is" "http_upload"
         http_upload_file_size_limit = 10485760
