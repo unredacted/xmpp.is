@@ -19,6 +19,12 @@ bash /home/git/xmpp.is/scripts/sync.sh
 
 echo
 
+echo "Inserting Prosody secrets"
+
+bash /root/scripts/prosody-secrets.sh
+
+echo
+
 echo "Forcing permissions"
 
 bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
