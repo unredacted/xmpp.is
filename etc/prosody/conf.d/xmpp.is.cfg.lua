@@ -1,7 +1,7 @@
 VirtualHost "xmpp.is"
 http_host = "http.xmpp.is"
-modules_enabled = { "onions", "http", "register_web" };
-reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
+modules_enabled = { "onions", "http", "register_web", "email_pass_reset_english" };
+reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_english", "http_upload" };
 
         enabled = true
 
