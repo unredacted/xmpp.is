@@ -45,4 +45,4 @@ reload_modules = { "tls", "onions" };
   ["patchcord.be"] = "xsydhi3dnbjuatpz.onion";
 }
 
--- Private stuff injected below after git pull --
+--INSERT_SECRETS--
