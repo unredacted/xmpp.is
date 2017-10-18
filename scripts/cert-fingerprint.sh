@@ -6,6 +6,7 @@ S1="xmpp.is"
 S2="xmpp.co"
 S3="xmpp.cx"
 S4="xmpp.xyz"
+S5="xmpp.fi"
 HS1="y2qmqomqpszzryei.onion"
 LE_DIR="/etc/letsencrypt/live"
 PROSODY_DIR="/etc/prosody/certs"
@@ -40,6 +41,12 @@ echo | tee -a "${OUTPUT_DIR}"/fingerprints.txt
 echo "XMPP.xyz Fingerprints" | tee -a "${OUTPUT_DIR}"/fingerprints.txt
 openssl x509 -in "${LE_DIR}/${S4}"/cert.pem -noout -sha1 -fingerprint >> "${OUTPUT_DIR}"/fingerprints.txt
 openssl x509 -in "${LE_DIR}/${S4}"/cert.pem -noout -sha256 -fingerprint >> "${OUTPUT_DIR}"/fingerprints.txt
+
+echo | tee -a "${OUTPUT_DIR}"/fingerprints.txt
+
+echo "XMPP.fi Fingerprints" | tee -a "${OUTPUT_DIR}"/fingerprints.txt
+openssl x509 -in "${LE_DIR}/${S5}"/cert.pem -noout -sha1 -fingerprint >> "${OUTPUT_DIR}"/fingerprints.txt
+openssl x509 -in "${LE_DIR}/${S5}"/cert.pem -noout -sha256 -fingerprint >> "${OUTPUT_DIR}"/fingerprints.txt
 
 echo | tee -a "${OUTPUT_DIR}"/fingerprints.txt
 
