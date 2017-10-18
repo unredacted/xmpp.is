@@ -1,2 +1,3 @@
-# xmpp.is
-Scripts and configs I use for XMPP.is
+# XMPP.is
+
+Scripts and configs used for XMPP.is server
