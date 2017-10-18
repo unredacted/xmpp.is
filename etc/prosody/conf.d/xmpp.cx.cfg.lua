@@ -39,5 +39,5 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
         http_upload_expire_after = 60 * 60 * 24 * 7
 
         Component "muc.xmpp.cx" "muc"
-        name = "XMPP.is MUC"
+        name = "XMPP.cx MUC"
         restrict_room_creation = "local"
