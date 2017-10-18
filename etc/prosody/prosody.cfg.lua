@@ -104,4 +104,4 @@ smacks_max_old_sessions = 10
 
 Include "conf.d/*.cfg.lua"
 
--- Private stuff injected below after git pull --
+--INSERT_SECRETS--
