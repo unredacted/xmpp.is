@@ -90,6 +90,7 @@ certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d t
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.co -d www.xmpp.co -d http.xmpp.co -d upload.xmpp.co
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.cx -d www.xmpp.is -d http.xmpp.cx -d upload.xmpp.cx
 certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d http.xmpp.xyz -d upload.xmpp.xyz
+certbot certonly --standalone --rsa-key-size 4096 -d xmpp.fi -d www.xmpp.fi -d http.xmpp.fi -d upload.xmpp.fi
 
 echo
 
