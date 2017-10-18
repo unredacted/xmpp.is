@@ -32,12 +32,12 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 
 	register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
 
+	--INSERT_SECRETS--
+
         Component "upload.xmpp.co" "http_upload"
         http_upload_file_size_limit = 10485760
         http_upload_expire_after = 60 * 60 * 24 * 7
 
-        Component "muc.xmpp.is" "muc"
-        name = "XMPP.is MUC"
+        Component "muc.xmpp.co" "muc"
+        name = "XMPP.co MUC"
         restrict_room_creation = "local"
-        
--- Private stuff injected below after git pull --
