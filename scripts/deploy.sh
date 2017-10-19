@@ -98,6 +98,7 @@ echo "Applying open file limits"
 echo "prosody hard nofile 999999" | tee -a /etc/security/limits.conf
 echo "prosody soft nofile 999999" | tee -a /etc/security/limits.conf
 echo "DefaultLimitNOFILE=999999" | tee -a /etc/systemd/system.conf
+echo "fs.file-max = 999999" | tee -a /etc/sysctl.conf
 echo "MAXFDS=999999" | tee -a /etc/default/prosody
 
 echo
