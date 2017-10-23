@@ -1,4 +1,11 @@
+# Delete offline messages that are too large
 * * * * * bash /home/git/xmpp.is/scripts/delete-prosody-offline-messages.sh
 
+# Force permissions
 @hourly bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
+
+# Update certificate fingerprints: https://transparency.xmpp.is/fingerprints.txt
 @hourly bash /home/git/xmpp.is/scripts/cert-fingerprint.sh
+
+# Hourly Duplicity Backup
+@hourly bash /root/scripts/b2-duplicity.sh
