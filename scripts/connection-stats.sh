@@ -10,4 +10,4 @@ sed -i 's/clients/C2S connections/g' "${TMP_OUTPUT}"
 sed -i '/connections/i \
 Currently serving:' "${TMP_OUTPUT}"
 
-"${TMP_OUTPUT}" > "${OUTPUT}"
+cp "${TMP_OUTPUT}" "${OUTPUT}"
