@@ -1,7 +1,7 @@
 # Delete offline messages that are too large
 * * * * * bash /home/git/xmpp.is/scripts/delete-prosody-offline-messages.sh
 
-# Update connection stats https://transparency.xmpp.is/connections.txt
+# Update connection stats https://transparency.xmpp.is/connection-stats.txt
 * * * * * bash /home/git/xmpp.is/scripts/connection-stats.sh
 
 # Force permissions
