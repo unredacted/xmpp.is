@@ -11,46 +11,44 @@ LE_DIR="/etc/letsencrypt/live"
 PROSODY_DIR="/etc/prosody/certs"
 TEMP_OUTPUT_FILE="/tmp/fingerprints.txt"
 OUTPUT_FILE="/var/www/transparency.xmpp.is/fingerprints.txt"
-SPACE="echo | tee -a"
-
-# Empty old file
-# echo -n "" > /var/www/transparency.xmpp.is/fingerprints.txt
 
 # Update with current time
 echo Certificate fingerprints since `date` | tee -a "${TEMP_OUTPUT_FILE}"
 
-"${SPACE}" "${TEMP_OUTPUT_FILE}"
+echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "XMPP.is Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S1}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S1}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
-"${SPACE}" "${TEMP_OUTPUT_FILE}"
+echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "XMPP.co Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S2}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S2}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
-"${SPACE}" "${TEMP_OUTPUT_FILE}"
+echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "XMPP.cx Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S3}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S3}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
-"${SPACE}" "${TEMP_OUTPUT_FILE}"
+echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "XMPP.xyz Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S4}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S4}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
-"${SPACE}" "${TEMP_OUTPUT_FILE}"
+echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "XMPP.fi Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S5}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}/${S5}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
-"${SPACE}" "${TEMP_OUTPUT_FILE}"
+echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "y2qmqomqpszzryei.onion Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
+
+cp "${TEMP_OUTPUT_FILE}" "${OUTPUT_FILE}"
