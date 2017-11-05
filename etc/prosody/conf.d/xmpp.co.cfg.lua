@@ -7,6 +7,7 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 
         allow_registration = false;
 	min_seconds_between_registrations = 300
+        welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
 	c2s_require_encryption = true
 	s2s_secure_auth = false
