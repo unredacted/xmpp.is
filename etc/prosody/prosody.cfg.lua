@@ -90,6 +90,7 @@ limits = {
 }
 
 -- mod_limit_auth --
+limit_auth_tarpit_delay = 10
 limit_auth_period = 30
 limit_auth_max = 5
 
