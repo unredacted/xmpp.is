@@ -27,6 +27,12 @@ apt-key adv --recv-keys --keyserver keys.gnupg.net 79AF54A9
 
 echo
 
+echo "Adding GoAccess repository"
+echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/goaccess.list
+wget -O - https://deb.goaccess.io/gnugpg.key | apt-key add -
+
+echo
+
 echo "Running apt update"
 apt update
 
@@ -47,6 +53,11 @@ apt install -y hiawatha
 
 echo
 
+echo "Installing GoAccess"
+apt install -y goaccess
+
+echo
+
 echo "Installing Certbot"
 apt install -y certbot
 
@@ -58,10 +69,10 @@ apt install -y git mercurial
 echo
 
 echo "Making directories"
-mkdir /etc/prosody/certs
-mkdir /etc/hiawatha/ssl
-mkdir /var/www/xmpp.is
-mkdir /var/www/transparency.xmpp.is
+mkdir -p /etc/prosody/certs
+mkdir -p /etc/hiawatha/ssl
+mkdir -p /var/www/xmpp.is
+mkdir -p /var/www/transparency.xmpp.is
 
 echo
 
