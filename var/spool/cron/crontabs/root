@@ -10,5 +10,8 @@
 # Update certificate fingerprints: https://transparency.xmpp.is/fingerprints.txt
 @hourly bash /home/git/xmpp.is/scripts/cert-fingerprint.sh
 
+# Hourly GoAccess stats update
+@hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html
+
 # Hourly Borg Backup
 @hourly bash /root/scripts/borgbackup.sh
