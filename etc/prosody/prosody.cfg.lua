@@ -76,7 +76,7 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 
 limits = {
   c2s = {
-    rate = "5kb/s";
+    rate = "2kb/s";
     burst = "5s";
   };
   s2sin = {
@@ -90,7 +90,6 @@ limits = {
 }
 
 -- mod_limit_auth --
-limit_auth_tarpit_delay = 10
 limit_auth_period = 30
 limit_auth_max = 5
 
