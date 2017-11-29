@@ -1,6 +1,6 @@
 MAILTO=admin@lunar.systems
 
-# Delete offline messages that are too large
+# Delete offline messages that are too large (to prevent storage DoS)
 * * * * * bash /home/git/xmpp.is/scripts/delete-prosody-offline-messages.sh > /dev/null 2>&1
 
 # Update connection stats: https://transparency.xmpp.is/connection-stats.txt
@@ -9,8 +9,11 @@ MAILTO=admin@lunar.systems
 # Force permissions
 @hourly bash /home/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
 
+# Cleanup mod_http_upload files that didn't delete for some reason
+@hourly find /var/lib/prosody/http_upload/ -mindepth 1 -mtime +14 -delete > /dev/null 2>&1
+
 # Hourly GoAccess stats update
 @hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html > /dev/null 2>&1
 
 # Hourly Borg Backup
-@hourly bash /root/scripts/borgbackup.sh
+@hourly bash /root/scripts/borgbackup.sh >> /var/log/borg.log
