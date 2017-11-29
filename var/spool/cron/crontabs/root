@@ -16,4 +16,4 @@ MAILTO=admin@lunar.systems
 @hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html > /dev/null 2>&1
 
 # Hourly Borg Backup
-@hourly bash /root/scripts/borgbackup.sh >> /var/log/borg.log
+@hourly bash /root/scripts/borgbackup.sh >> /var/log/borg.log 2>&1
