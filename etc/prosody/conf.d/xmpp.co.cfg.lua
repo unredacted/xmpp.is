@@ -36,8 +36,9 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 	--INSERT_SECRETS--
 
         Component "upload.xmpp.co" "http_upload"
-        http_upload_file_size_limit = 10485760
         http_upload_expire_after = 60 * 60 * 24 * 7
+        http_upload_file_size_limit = 10000000
+	http_upload_quota = 1000000000
 
         Component "muc.xmpp.co" "muc"
         name = "XMPP.co MUC"
