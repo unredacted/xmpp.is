@@ -1,7 +1,7 @@
 MAILTO=admin@lunar.systems
 
 # Delete offline messages that are too large (to prevent storage DoS)
-* * * * * bash /home/git/xmpp.is/scripts/delete-prosody-offline-messages.sh > /dev/null 2>&1
+* * * * * bash /home/git/xmpp.is/scripts/cleanup-prosody-offline-messages.sh > /dev/null 2>&1
 
 # Update connection stats: https://transparency.xmpp.is/connection-stats.txt
 * * * * * bash /home/git/xmpp.is/scripts/connection-stats.sh > /dev/null 2>&1
