@@ -50,7 +50,7 @@ modules_disabled = {
 		"motd"; -- Send a message to users when they log in
 		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		"http_files"; -- Serve static files from a directory over HTTP
-		"offline";
+		-- "offline";
 };
 
 pidfile = "/var/run/prosody/prosody.pid"
@@ -76,16 +76,16 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 
 limits = {
   c2s = {
-    rate = "2kb/s";
-    burst = "5s";
+    rate = "1kb/s";
+    burst = "1s";
   };
   s2sin = {
     rate = "1kb/s";
-    burst = "5s";
+    burst = "1s";
   };
   s2sout = {
     rate = "1kb/s";
-    burst = "5s";
+    burst = "1s";
   };
 }
 
