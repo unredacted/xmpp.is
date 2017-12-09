@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This script is used to find and delete offline messages larger than 1MB to prevent storage DoS
 
 find /var/lib/prosody/xmpp%2eis/offline -name "*.list" -size +1M -delete
