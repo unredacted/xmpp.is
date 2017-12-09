@@ -1,5 +1,6 @@
 #!/bin/bash
 # This script telnets into localhost port 5582 and grabs the number of C2S sessions
+
 TMP_OUTPUT="/tmp/connection-stats.txt"
 OUTPUT="/var/www/transparency.xmpp.is/connection-stats.txt"
 
