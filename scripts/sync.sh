@@ -1,4 +1,5 @@
 #!/bin/bash
+# Script that syncs all updated files to their corresponding directories
 
 # Prosody config
 rsync -av /home/git/xmpp.is/etc/prosody/ /etc/prosody/
