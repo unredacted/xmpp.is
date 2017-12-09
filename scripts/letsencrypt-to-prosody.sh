@@ -1,4 +1,5 @@
 #!/bin/bash
+# Scripts that copies over all new certificates to Prosody and sets correct permissions
 
 DIR1="xmpp.is"
 DIR2="xmpp.co"
