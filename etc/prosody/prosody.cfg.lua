@@ -38,8 +38,8 @@ modules_enabled = {
 		"csi";
 		"filter_chatstates";
 		"limits";
-		"default_vcard"
-		"cloud_notify"
+		"default_vcard";
+		"cloud_notify";
 };
 	
 modules_disabled = {
