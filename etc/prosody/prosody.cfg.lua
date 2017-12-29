@@ -2,7 +2,7 @@ daemonize = true;
 
 use_libevent = true;
 
-reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard" }
+reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify" }
 
 modules_enabled = {
 
@@ -39,6 +39,7 @@ modules_enabled = {
 		"filter_chatstates";
 		"limits";
 		"default_vcard"
+		"cloud_notify"
 };
 	
 modules_disabled = {
