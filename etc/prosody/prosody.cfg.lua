@@ -105,9 +105,6 @@ smacks_max_old_sessions = 10
 
 --mod_block_registrations--
 block_registrations_users = { "admin", "root", "xmpp", "lunar" }
-block_registrations_matching = {
-"master$" -- matches anything ending with master: postmaster, hostmaster, webmaster, etc.
-}
 block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
 
 Include "conf.d/*.cfg.lua"
