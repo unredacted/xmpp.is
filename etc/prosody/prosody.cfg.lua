@@ -2,7 +2,7 @@ daemonize = true;
 
 use_libevent = true;
 
-reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify" }
+reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations" }
 
 modules_enabled = {
 
@@ -40,6 +40,7 @@ modules_enabled = {
 		"limits";
 		"default_vcard";
 		"cloud_notify";
+		"block_registrations";
 };
 	
 modules_disabled = {
@@ -101,6 +102,13 @@ smacks_max_unacked_stanzas = 0
 smacks_max_ack_delay = 60
 smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
+
+--mod_block_registrations--
+block_registrations_users = { "admin", "root", "xmpp", "lunar" }
+block_registrations_matching = {
+"master$" -- matches anything ending with master: postmaster, hostmaster, webmaster, etc.
+}
+block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
 
 Include "conf.d/*.cfg.lua"
 
