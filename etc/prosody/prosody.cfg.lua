@@ -91,6 +91,9 @@ limits = {
   };
 }
 
+-- mod_mam --
+archive_expires_after = "1w"
+
 -- mod_limit_auth --
 limit_auth_period = 30
 limit_auth_max = 5
