@@ -20,5 +20,6 @@ chown -R prosody:prosody "${PROSODY}"
 chmod -R 700 "${CERTS}"
 prosodyctl reload
 
-# Make sure mod_tls gets reloaded if not by 'prosodyctl reload'
+# Make sure mod_tls and mod_http get reloaded
 { echo "module:reload('tls')"; sleep 1; } | telnet localhost 5582
+{ echo "module:reload('http')"; sleep 1; } | telnet localhost 5582
