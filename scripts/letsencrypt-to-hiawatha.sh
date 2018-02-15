@@ -1,5 +1,5 @@
 #!/bin/bash
-# Scripts that copies all new certificates over and puts them in Hiawatha format
+# Script that copies all new certificates over and puts them in Hiawatha format
 
 DIR1="xmpp.is"
 DIR2="xmpp.co"
