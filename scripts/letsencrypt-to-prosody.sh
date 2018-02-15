@@ -1,5 +1,5 @@
 #!/bin/bash
-# Scripts that copies over all new certificates to Prosody and sets correct permissions
+# Script that copies over all new certificates to Prosody and sets correct permissions
 
 DIR1="xmpp.is"
 DIR2="xmpp.co"
@@ -19,3 +19,6 @@ cp -rfL "${LE_DIR}${DIR5}/" "${CERTS}"
 chown -R prosody:prosody "${PROSODY}"
 chmod -R 700 "${CERTS}"
 prosodyctl reload
+
+# Make sure mod_tls gets reloaded if not by 'prosodyctl reload'
+{ echo "module:reload('tls')"; sleep 1; } | telnet localhost 5582
