@@ -17,7 +17,7 @@ cp -rfL "${LE_DIR}${DIR4}/" "${CERTS}"
 cp -rfL "${LE_DIR}${DIR5}/" "${CERTS}"
 
 chown -R prosody:prosody "${PROSODY}"
-chmod -R 700 "${CERTS}"
+chmod -R 600 "${CERTS}"
 prosodyctl reload
 
 # Make sure mod_tls and mod_http get reloaded
