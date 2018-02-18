@@ -1,9 +1,9 @@
 daemonize = true;
-
 use_libevent = true;
-
+interfaces = { "144.76.47.248" }
+pidfile = "/var/run/prosody/prosody.pid"
+plugin_paths = { "/var/lib/prosody/modules" }
 reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations" }
-
 modules_enabled = {
 
 	-- Enabled --
@@ -54,10 +54,6 @@ modules_disabled = {
 		"http_files"; -- Serve static files from a directory over HTTP
 		-- "offline";
 };
-
-pidfile = "/var/run/prosody/prosody.pid"
-
-plugin_paths = { "/var/lib/prosody/modules" }
 
 log = {
 	info = "/var/log/prosody/prosody.info";
