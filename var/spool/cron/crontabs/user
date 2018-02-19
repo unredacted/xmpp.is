@@ -1,0 +1,3 @@
+MAILTO=admin@lunar.systems
+
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/tor-hs-check.sh
