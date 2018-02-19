@@ -95,7 +95,7 @@ hg clone https://hg.prosody.im/prosody-modules/ /var/lib/prosody/modules
 git clone https://github.com/crypto-world/mod_email_pass_reset_english /home/user/git/mod_email_pass_reset_english
 
 # Prosody web registration theme
-git clone https://github.com/crypto-world/prosody-web-registration-theme /home/user/git/prosody-web-registration-theme
+git clone https://github.com/crypto-world/prosody_web_registration_theme /home/user/git/prosody_web_registration_theme
 
 echo
 
