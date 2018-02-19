@@ -42,5 +42,6 @@ cp /var/lib/prosody/modules/mod_email_pass_reset_english/vcard.lib.lua /var/lib/
 # Cron
 echo
 echo "Syncing crontabs........"
-crontab /home/user/git/xmpp.is/var/spool/cron/crontabs/root
+crontab -u root /home/user/git/xmpp.is/var/spool/cron/crontabs/root
+crontab -u user /home/user/git/xmpp.is/var/spool/cron/crontabs/user
 cp /home/user/git/xmpp.is/etc/cron.d/certbot /etc/cron.d/certbot
