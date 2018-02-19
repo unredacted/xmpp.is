@@ -76,21 +76,26 @@ mkdir -p /var/www/transparency.xmpp.is
 
 echo
 
+echo "Adding users"
+useradd -m -s /bin/bash user
+
+echo
+
 echo "Pulling configs and modules"
 
 echo
 
 # Prosody configs & scripts
-git clone https://github.com/crypto-world/xmpp.is /home/git/xmpp.is
+git clone https://github.com/crypto-world/xmpp.is /home/user/git/xmpp.is
 
 # Official Prosody modules
 hg clone https://hg.prosody.im/prosody-modules/ /var/lib/prosody/modules
 
 # Email password reset module
-git clone https://github.com/crypto-world/mod_email_pass_reset_english /home/git/mod_email_pass_reset_english
+git clone https://github.com/crypto-world/mod_email_pass_reset_english /home/user/git/mod_email_pass_reset_english
 
 # Prosody web registration theme
-git clone https://github.com/crypto-world/prosody-web-registration-theme /home/git/prosody-web-registration-theme
+git clone https://github.com/crypto-world/prosody-web-registration-theme /home/user/git/prosody-web-registration-theme
 
 echo
 
@@ -121,11 +126,11 @@ echo "net.ipv4.tcp_congestion_control=bbr" | tee -a /etc/sysctl.conf
 echo
 
 echo "Executing final steps"
-bash /home/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
-bash /home/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
-bash /home/git/xmpp.is/scripts/cert-fingerprint.sh
-bash /home/git/xmpp.is/scripts/sync.sh
-bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
+bash /home/user/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
+bash /home/user/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
+bash /home/user/git/xmpp.is/scripts/cert-fingerprint.sh
+bash /home/user/git/xmpp.is/scripts/sync.sh
+bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh
 
 echo
 
