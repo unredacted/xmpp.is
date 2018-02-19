@@ -4,9 +4,9 @@
 echo
 
 # Git
-cd /home/git/xmpp.is && git pull
-cd /home/git/mod_email_pass_reset_english && git pull
-cd /home/git/prosody_web_registration_theme && git pull
+cd /home/user/git/xmpp.is && git pull
+cd /home/user/git/mod_email_pass_reset_english && git pull
+cd /home/user/git/prosody_web_registration_theme && git pull
 
 # Mercurial
 cd /var/lib/prosody/modules && hg pull && hg update
@@ -15,7 +15,7 @@ echo
 
 echo "Pushing new configs and files"
 
-bash /home/git/xmpp.is/scripts/sync.sh
+bash /home/user/git/xmpp.is/scripts/sync.sh
 
 echo
 
@@ -25,7 +25,7 @@ bash /root/scripts/prosody-secrets.sh
 
 echo "Forcing permissions.........."
 
-bash /home/git/xmpp.is/scripts/force-owner-and-group.sh
+bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh
 
 echo
 
