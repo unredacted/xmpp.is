@@ -13,8 +13,8 @@ do
   iptables -A INPUT -s $IP -j DROP
 done
 
-# Sleep for 5 minutes and remove blocks
-sleep 5m; cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
+# Sleep for 280 seconds and remove blocks
+sleep 280; cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
 do
   iptables -D INPUT -s $IP -j DROP
 done
