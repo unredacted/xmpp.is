@@ -6,6 +6,9 @@ MAILTO=admin@lunar.systems
 # Update connection stats: https://transparency.xmpp.is/connection-stats.txt
 * * * * * bash /home/user/git/xmpp.is/scripts/connection-stats.sh > /dev/null 2>&1
 
+# Run anti-bruteforce script
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/anti-bruteforce.sh > /dev/null 2>&1
+
 # Force permissions
 @hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
 
