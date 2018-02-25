@@ -13,8 +13,8 @@ do
   /sbin/iptables -A INPUT -s $IP -j DROP
 done
 
-# Sleep for 280 seconds and remove blocks
-sleep 280; cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
+# Sleep for 295 seconds and remove blocks
+sleep 295; cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
 do
   /sbin/iptables -D INPUT -s $IP -j DROP
 done
