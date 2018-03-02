@@ -2,8 +2,8 @@ daemonize = true;
 use_libevent = true;
 pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/var/lib/prosody/modules" }
-interfaces = { "144.76.47.248", "127.0.0.1" }
-c2s_interfaces = { "144.76.47.248", "127.0.0.1" }
+-- interfaces = { "144.76.47.248", "127.0.0.1" }
+-- c2s_interfaces = { "144.76.47.248", "127.0.0.1" }
 c2s_ports = { "5222" }
 
 reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info" }
