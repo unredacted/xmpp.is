@@ -9,4 +9,4 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=admin@lunar.systems
 
-0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(3600))' && certbot -q renew --pre-hook "service hiawatha stop" --post-hook "/bin/bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh && service hiawatha start"
+0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(3600))' && certbot -q renew --pre-hook "service hiawatha stop" --post-hook "/bin/bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh && service hiawatha start" >> /var/log/certbot.log
