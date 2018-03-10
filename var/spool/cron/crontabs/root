@@ -1,4 +1,4 @@
-MAILTO=admin@lunar.systems
+MAILTO=cron@lunar.systems
 
 # Delete offline messages that are too large (to prevent storage DoS)
 * * * * * bash /home/user/git/xmpp.is/scripts/cleanup-prosody-offline-messages.sh > /dev/null 2>&1
