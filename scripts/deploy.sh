@@ -3,32 +3,41 @@
 
 echo
 
-echo "Installing packages I like or need :)"
-apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release mtr-tiny
+echo "Installing miscellaneous packages that I like or need :^)"
+apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release mtr-tiny ntp zip borgbackup
+
+echo
+
+echo "Installing tools for remote backups"
+apt install -y borgbackup nfs-common
+
+echo "Stopping and disabling rpcbind"
+systemctl stop rpcbind
+systemctl disable rpcbind
 
 echo
 
 echo "Adding the official Prosody repository"
-echo deb http://packages.prosody.im/debian $(lsb_release -sc) main | tee -a /etc/apt/sources.list
+echo deb https://packages.prosody.im/debian $(lsb_release -sc) main | tee -a /etc/apt/sources.list
 wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
 
 echo
 
 echo "Adding the official Tor repository"
 echo deb https://deb.torproject.org/torproject.org $(lsb_release -sc) main | tee -a /etc/apt/sources.list
-gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+gpg --keyserver pgp.mit.edu --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
 echo
 
 echo "Adding Hiawatha repository"
 echo deb https://mirror.tuxhelp.org/debian/ squeeze main | tee -a /etc/apt/sources.list
-apt-key adv --recv-keys --keyserver keys.gnupg.net 79AF54A9
+apt-key adv --recv-keys --keyserver pgp.mit.edu 79AF54A9
 
 echo
 
 echo "Adding GoAccess repository"
-echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/goaccess.list
+echo "deb https://deb.goaccess.io/ $(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/goaccess.list
 wget -O - https://deb.goaccess.io/gnugpg.key | apt-key add -
 
 echo
@@ -126,8 +135,7 @@ echo "net.ipv4.tcp_congestion_control=bbr" | tee -a /etc/sysctl.conf
 echo
 
 echo "Executing final steps"
-bash /home/user/git/xmpp.is/scripts/letsencrypt-to-hiawatha.sh
-bash /home/user/git/xmpp.is/scripts/letsencrypt-to-prosody.sh
+bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh
 bash /home/user/git/xmpp.is/scripts/cert-fingerprint.sh
 bash /home/user/git/xmpp.is/scripts/sync.sh
 bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh
