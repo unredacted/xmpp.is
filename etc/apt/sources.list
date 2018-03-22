@@ -1,0 +1,16 @@
+#------------------------------------------------------------------------------#
+#                   OFFICIAL DEBIAN REPOS                    
+#------------------------------------------------------------------------------#
+
+###### Debian Main Repos
+deb http://deb.debian.org/debian/ stable main contrib
+deb-src http://deb.debian.org/debian/ stable main contrib
+
+deb http://deb.debian.org/debian/ stable-updates main contrib
+deb-src http://deb.debian.org/debian/ stable-updates main contrib
+
+deb http://deb.debian.org/debian-security stable/updates main
+deb-src http://deb.debian.org/debian-security stable/updates main
+
+deb http://ftp.debian.org/debian stretch-backports main
+deb-src http://ftp.debian.org/debian stretch-backports main
