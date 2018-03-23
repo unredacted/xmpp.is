@@ -20,12 +20,6 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 	   key = "/etc/prosody/certs/privkey.pem";
 }
 
-        http_ports = { 5280 }
-        http_interfaces = { "*" }
-
-        https_ports = { 5281 }
-        https_interfaces = { "*" }
-
         register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
 
 	--INSERT_SECRETS--
