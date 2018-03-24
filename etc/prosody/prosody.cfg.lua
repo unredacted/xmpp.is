@@ -71,6 +71,12 @@ log = {
 	error = "/var/log/prosody/prosody.err";
 }
 
+        http_ports = { 5280 }
+        http_interfaces = { "*" }
+
+        https_ports = { 5281 }
+        https_interfaces = { "*" }
+
         ssl = {
            certificate = "/etc/prosody/certs/fullchain.pem";
            key = "/etc/prosody/certs/privkey.pem";
