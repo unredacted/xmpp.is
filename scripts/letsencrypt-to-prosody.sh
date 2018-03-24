@@ -5,8 +5,8 @@ LE_DIR="/home/user/git/dehydrated/certs/all/"
 PROSODY_CERTS="/etc/prosody/certs/"
 PROSODY="/etc/prosody/"
 
-cp "${LE_DIR}.fullchain.pem" "${PROSODY_CERTS}"
-cp "${LE_DIR}.privkey.pem" "${PROSODY_CERTS}"
+cp "${LE_DIR}fullchain.pem" "${PROSODY_CERTS}"
+cp "${LE_DIR}privkey.pem" "${PROSODY_CERTS}"
 
 chown -R prosody:prosody "${PROSODY}"
 chmod -R 700 "${CERTS}"
