@@ -18,7 +18,7 @@ rsync -av "${GIT_DIR}"/xmpp.is/etc/hiawatha/ /etc/hiawatha/
 # Dehydrated config
 echo
 echo "Syncing Dehydrated configs"
-rsync -av "${GIT_DIR}"/xmpp.is/home/dehydrated/ "${GIT_DIR}"/dehydrated/
+rsync -av "${GIT_DIR}"/xmpp.is/home/user/git/dehydrated/ "${GIT_DIR}"/dehydrated/
 
 # Tor config
 echo
