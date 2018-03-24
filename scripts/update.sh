@@ -1,31 +1,35 @@
 #!/bin/bash
 # Script that pulls the latest files from repos and applies changes
 
+GIT_DIR="/home/user/git"
+PROSODY_DATA_DIR="/var/lib/prosody"
+ROOT_SCRIPTS_DIR="/root/scripts"
+
 echo
 
 # Git
-cd /home/user/git/xmpp.is && git pull
-cd /home/user/git/mod_email_pass_reset_english && git pull
-cd /home/user/git/prosody_web_registration_theme && git pull
+cd "${GIT_DIR}"/xmpp.is && git pull
+cd "${GIT_DIR}"/mod_email_pass_reset_english && git pull
+cd "${GIT_DIR}"/prosody_web_registration_theme && git pull
 
 # Mercurial
-cd /var/lib/prosody/modules && hg pull && hg update
+cd "${PROSODY_DATA_DIR}"/modules && hg pull && hg update
 
 echo
 
 echo "Pushing new configs and files"
 
-bash /home/user/git/xmpp.is/scripts/sync.sh
+bash "${GIT_DIR}"/xmpp.is/scripts/sync.sh
 
 echo
 
 echo "Inserting Prosody secrets"
 
-bash /root/scripts/prosody-secrets.sh
+bash "${ROOT_SCRIPTS_DIR}"/prosody-secrets.sh
 
 echo "Forcing permissions"
 
-bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh
+bash "${GIT_DIR}"/xmpp.is/scripts/force-owner-and-group.sh
 
 echo
 
