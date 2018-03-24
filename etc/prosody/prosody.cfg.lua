@@ -104,9 +104,6 @@ limits = {
   };
 }
 
--- mod_mam --
-archive_expires_after = "1w"
-
 -- mod_limit_auth --
 limit_auth_period = 30
 limit_auth_max = 5
@@ -120,7 +117,7 @@ smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
 
 --mod_block_registrations--
-block_registrations_users = { "admin", "root", "xmpp", "lunar" }
+block_registrations_users = { "administrator", "admin", "hostmaster", "postmaster", "webmaster", "root", "xmpp", "lunar" }
 block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
 
 Include "conf.d/*.cfg.lua"
