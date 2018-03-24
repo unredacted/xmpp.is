@@ -1,52 +1,55 @@
 #!/bin/bash
 # Script that syncs all updated files to their corresponding directories
 
+GIT_DIR="/home/user/git"
+PROSODY_DATA_DIR="/var/lib/prosody"
+ROOT_SCRIPTS_DIR="/root/scripts"
+
 # Prosody config
 echo
 echo "Syncing Prosody configs"
-rsync -av /home/user/git/xmpp.is/etc/prosody/ /etc/prosody/
+rsync -av "${GIT_DIR}"/xmpp.is/etc/prosody/ /etc/prosody/
 
 # Hiawatha config
 echo
 echo "Syncing Hiawatha configs"
-rsync -av /home/user/git/xmpp.is/etc/hiawatha/ /etc/hiawatha/
+rsync -av "${GIT_DIR}"/xmpp.is/etc/hiawatha/ /etc/hiawatha/
 
 # Tor config
 echo
 echo "Syncing Tor configs"
-rsync -av /home/user/git/xmpp.is/etc/tor/ /etc/tor/
+rsync -av "${GIT_DIR}"/xmpp.is/etc/tor/ /etc/tor/
 
 # Apt config
 echo
 echo "Syncing Apt configs"
-rsync -av /home/user/git/xmpp.is/etc/apt/ /etc/apt/
+rsync -av "${GIT_DIR}"/xmpp.is/etc/apt/ /etc/apt/
 
 # Webroot
 echo
 echo "Syncing /var/www/"
-rsync -av /home/user/git/xmpp.is/var/www/ /var/www/
+rsync -av "${GIT_DIR}"/xmpp.is/var/www/ /var/www/
 
 # Mercurial
 echo
 echo "Syncing /etc/mercurial"
-rsync -av /home/user/git/xmpp.is/etc/mercurial/ /etc/mercurial/
+rsync -av "${GIT_DIR}"/xmpp.is/etc/mercurial/ /etc/mercurial/
 
 # Prosody Modules
 
 # prosody_web_registration_theme
 echo
 echo "Syncing prosody_web_registration_theme"
-rsync -av /home/user/git/prosody_web_registration_theme /etc/prosody/register-templates/
+rsync -av "${GIT_DIR}"/prosody_web_registration_theme /etc/prosody/register-templates/
 
 # mod_email_pass_reset_english
 echo
 echo "Syncing mod_email_pass_reset_english"
-rsync -av /home/user/git/mod_email_pass_reset_english /var/lib/prosody/modules/
-cp /var/lib/prosody/modules/mod_email_pass_reset_english/vcard.lib.lua /var/lib/prosody/modules/vcard.lib.lua
+rsync -av "${GIT_DIR}"/mod_email_pass_reset_english "${PROSODY_DATA_DIR}"/
+cp "${PROSODY_DATA_DIR}"/modules/mod_email_pass_reset_english/vcard.lib.lua "${PROSODY_DATA_DIR}"/modules/vcard.lib.lua
 
 # Cron
 echo
 echo "Syncing crontabs"
-crontab -u root /home/user/git/xmpp.is/var/spool/cron/crontabs/root
-crontab -u user /home/user/git/xmpp.is/var/spool/cron/crontabs/user
-cp /home/user/git/xmpp.is/etc/cron.d/certbot /etc/cron.d/certbot
+crontab -u root "${GIT_DIR}"/xmpp.is/var/spool/cron/crontabs/root
+crontab -u user "${GIT_DIR}"/xmpp.is/var/spool/cron/crontabs/user
