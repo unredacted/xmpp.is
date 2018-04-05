@@ -5,7 +5,7 @@
 { echo "c2s:show()"; sleep 1; } | telnet localhost 5582 | grep -a c2s_unauthed | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | grep -v '144.76.47.248' | grep -v 127.0.0.1 | awk '{print $1}' | cut -d: -f1 | sort | uniq -c | sort -n > /tmp/excess_c2s_connections.txt
 
 # Sort IP addresses and output
-cat /tmp/excess_c2s_connections.txt | awk '$1 > 20  {print}' | awk '{print $2}' > /tmp/sorted_excess_c2s_connections.txt
+cat /tmp/excess_c2s_connections.txt | awk '$1 > 10  {print}' | awk '{print $2}' > /tmp/sorted_excess_c2s_connections.txt
 
 # Drop connections from sorted IP list
 cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
