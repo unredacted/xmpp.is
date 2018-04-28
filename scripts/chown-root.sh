@@ -1,5 +1,5 @@
 #!/bin/bash
-This script chown's root on the git directory and files
+# This script chown's root on the git directory and files
 
 GIT_DIR="/home/user/git"
 
