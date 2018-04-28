@@ -9,6 +9,9 @@ MAILTO=cron@lunar.systems
 # Run anti-bruteforce script
 */5 * * * * bash /home/user/git/xmpp.is/scripts/anti-bruteforce.sh > /dev/null 2>&1
 
+# Run le-renew-hook.sh to check for dehydrated flag and renew if possible
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh > /dev/null 2>&1
+
 # Force permissions
 @hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
 
