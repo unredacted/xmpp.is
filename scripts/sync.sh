@@ -33,7 +33,7 @@ rsync -av "${GIT_DIR}"/xmpp.is/etc/apt/ /etc/apt/
 # Logrotate
 echo
 echo "Syncing logrotate configs"
-rsync -av ${GIT_DIR}"/xmpp.is/etc/logrotate.d/ /etc/logrotate.d/
+rsync -av "${GIT_DIR}"/xmpp.is/etc/logrotate.d/ /etc/logrotate.d/
 
 # Webroot
 echo
