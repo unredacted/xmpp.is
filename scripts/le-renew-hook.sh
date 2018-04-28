@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script is ran after certbot renews a certificate, links to other scripts that keep certs automagically up-to-date
+# This script is ran after dehydrated renews a certificate, links to other scripts that keep certs automagically up-to-date
 
 GIT_DIR="/home/user/git"
 
