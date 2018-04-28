@@ -5,6 +5,9 @@ GIT_DIR="/home/user/git"
 PROSODY_DATA_DIR="/var/lib/prosody"
 ROOT_SCRIPTS_DIR="/root/scripts"
 
+# Run chown-root.sh to force root ownership
+bash "${GIT_DIR}"/xmpp.is/scripts/chown-root.sh
+
 # Prosody config
 echo
 echo "Syncing Prosody configs"
