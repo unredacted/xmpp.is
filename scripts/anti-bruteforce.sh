@@ -9,12 +9,12 @@ cat /tmp/excess_c2s_connections.txt | awk '$1 > 10  {print}' | awk '{print $2}' 
 
 # Drop connections from sorted IP list
 cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
-do
-  /sbin/iptables -A INPUT -p tcp -s $IP --dport 5222 -j REJECT
-done
+  do
+    /sbin/iptables -A INPUT -p tcp -s $IP --dport 5222 -j REJECT
+  done
 
 # Sleep for 295 seconds and remove blocks
 sleep 295; cat /tmp/sorted_excess_c2s_connections.txt | awk '{gsub("IP:", "");print}' | while read IP
-do
-  /sbin/iptables -D INPUT -p tcp -s $IP --dport 5222 -j REJECT
-done
+  do
+    /sbin/iptables -D INPUT -p tcp -s $IP --dport 5222 -j REJECT
+  done
