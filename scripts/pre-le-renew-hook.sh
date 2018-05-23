@@ -3,7 +3,7 @@
 
 GIT_DIR="/home/user/git"
 
-if find "${GIT_DIR}"/dehydrated/certs/all -cmin -5 | grep ".pem"
+if find "${GIT_DIR}"/dehydrated/certs/all -cmin -10 | grep ".pem"
   
   then
 
@@ -11,7 +11,7 @@ if find "${GIT_DIR}"/dehydrated/certs/all -cmin -5 | grep ".pem"
   
   else
   
-    echo "Couldn't find any .pem files created within 5 minutes. Exiting now!"
+    echo "Couldn't find any .pem files created within 10 minutes. Exiting now!"
     exit
     
 fi
