@@ -92,15 +92,15 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 limits = {
   c2s = {
     rate = "1kb/s";
-    burst = "2s";
+    burst = "10s";
   };
   s2sin = {
     rate = "1kb/s";
-    burst = "2s";
+    burst = "10s";
   };
   s2sout = {
     rate = "1kb/s";
-    burst = "2s";
+    burst = "10s";
   };
 }
 
