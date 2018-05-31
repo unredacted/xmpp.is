@@ -1,123 +1,126 @@
 #!/bin/bash
 # Deploys XMPP.is on a new server
 
-echo
+GIT_DIR="/home/user/git"
+PROSODY_DATA_DIR="/var/lib/prosody"
+
+read -p "Have you copied over dehydrated.default.sh and other secrets? (Y/N) " REPLY
+if [ "${REPLY,,}" == "y" ]; then
+  echo "Continuing!"
+else
+  echo "Exiting now!"
+exit
+fi
+
+echo "================================"
 
 echo "Installing miscellaneous packages that I like or need :^)"
-apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release mtr-tiny ntp zip borgbackup
+apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release mtr-tiny ntp zip
 
-echo
+echo "================================"
 
 echo "Installing tools for remote backups"
 apt install -y borgbackup nfs-common
+
+echo "================================"
 
 echo "Stopping and disabling rpcbind"
 systemctl stop rpcbind
 systemctl disable rpcbind
 
-echo
+echo "================================"
 
-echo "Adding the official Prosody repository"
-echo deb https://packages.prosody.im/debian $(lsb_release -sc) main | tee -a /etc/apt/sources.list
+echo "Adding Prosody Repository Key"
 wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
 
-echo
+echo "================================"
 
-echo "Adding the official Tor repository"
-echo deb https://deb.torproject.org/torproject.org $(lsb_release -sc) main | tee -a /etc/apt/sources.list
+echo "Adding Tor Repository Key"
 gpg --keyserver pgp.mit.edu --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
-echo
+echo "================================"
 
-echo "Adding Hiawatha repository"
-echo deb https://mirror.tuxhelp.org/debian/ squeeze main | tee -a /etc/apt/sources.list
+echo "Adding Hiawatha Repository Key"
 apt-key adv --recv-keys --keyserver pgp.mit.edu 79AF54A9
 
-echo
+echo "================================"
 
-echo "Adding GoAccess repository"
-echo "deb https://deb.goaccess.io/ $(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/goaccess.list
+echo "Adding GoAccess Repository Key"
 wget -O - https://deb.goaccess.io/gnugpg.key | apt-key add -
 
-echo
+echo "================================"
 
 echo "Running apt update"
 apt update
 
-echo
+echo "================================"
 
 echo "Installing Prosody"
 apt install -y prosody lua-zlib lua-bitop lua-event lua-socket lua-sec
 
-echo
+echo "================================"
 
 echo "Installing Tor"
 apt install -y tor deb.torproject.org-keyring
 
-echo
+echo "================================"
 
 echo "Installing Hiawatha"
 apt install -y hiawatha
 
-echo
+echo "================================"
 
 echo "Installing GoAccess"
 apt install -y goaccess
 
-echo
-
-echo "Installing Certbot"
-apt install -y certbot
-
-echo
+echo "================================"
 
 echo "Installing dependencies for config & module pulling"
 apt install -y git mercurial
 
-echo
+echo "================================"
 
 echo "Making directories"
 mkdir -p /etc/prosody/certs
 mkdir -p /etc/hiawatha/ssl
-mkdir -p /var/www/xmpp.is
-mkdir -p /var/www/transparency.xmpp.is
 
-echo
+echo "================================"
 
 echo "Adding users"
 useradd -m -s /bin/bash user
 
-echo
+echo "================================"
 
 echo "Pulling configs and modules"
 
-echo
+echo "================================"
 
 # Prosody configs & scripts
-git clone https://github.com/crypto-world/xmpp.is /home/user/git/xmpp.is
+git clone https://github.com/crypto-world/xmpp.is "${GIT_DIR}"/xmpp.is
 
 # Official Prosody modules
-hg clone https://hg.prosody.im/prosody-modules/ /var/lib/prosody/modules
+hg clone https://hg.prosody.im/prosody-modules/ "${PROSODY_DATA_DIR}"/modules
 
 # Email password reset module
-git clone https://github.com/crypto-world/mod_email_pass_reset_english /home/user/git/mod_email_pass_reset_english
+git clone https://github.com/crypto-world/mod_email_pass_reset_english "${GIT_DIR}"/mod_email_pass_reset_english
 
 # Prosody web registration theme
-git clone https://github.com/crypto-world/prosody_web_registration_theme /home/user/git/prosody_web_registration_theme
+git clone https://github.com/crypto-world/prosody_web_registration_theme "${GIT_DIR}"/prosody_web_registration_theme
 
-echo
+echo "================================"
 
-echo "Issuing initial SSL/TLS certificates"
-service hiawatha stop
-# certbot certonly --standalone --rsa-key-size 2048 -d test.xmpp.is
-certbot certonly --standalone --rsa-key-size 4096 -d xmpp.is -d www.xmpp.is -d http.xmpp.is -d upload.xmpp.is -d muc.xmpp.is -d transparency.xmpp.is -d stats.xmpp.is
-certbot certonly --standalone --rsa-key-size 4096 -d xmpp.co -d www.xmpp.co -d http.xmpp.co -d upload.xmpp.co -d muc.xmpp.co
-certbot certonly --standalone --rsa-key-size 4096 -d xmpp.cx -d www.xmpp.is -d http.xmpp.cx -d upload.xmpp.cx -d muc.xmpp.cx
-certbot certonly --standalone --rsa-key-size 4096 -d xmpp.xyz -d www.xmpp.xyz -d http.xmpp.xyz -d upload.xmpp.xyz -d muc.xmpp.xyz
-certbot certonly --standalone --rsa-key-size 4096 -d xmpp.fi -d www.xmpp.fi -d http.xmpp.fi -d upload.xmpp.fi -d muc.xmpp.fi
+read -p "Would you like to issue certificates with dehydrated? (Y/N) " REPLY
+if [ "${REPLY,,}" == "y" ]; then
+  echo "Issuing initial SSL/TLS certificates"
+  bash "${GIT_DIR}"/dehydrated/dehydrated --register --accept-terms --hook /home/user/git/dehydrated/dehydrated.default.sh
+  bash "${GIT_DIR}"/dehydrated/dehydrated --cron --alias all --hook "${GIT_DIR}"/dehydrated/dehydrated.default.sh; bash "${GIT_DIR}"/xmpp.is/scripts/pre-le-renew-hook.sh
+  bash "${GIT_DIR}"/xmpp.is/scripts/letsencrypt-renew-hook.sh
+else
+  echo "Continuing!"
+fi
 
-echo
+echo "================================"
 
 echo "Applying open file limits"
 echo "prosody hard nofile 999999" | tee -a /etc/security/limits.conf
@@ -126,27 +129,27 @@ echo "DefaultLimitNOFILE=999999" | tee -a /etc/systemd/system.conf
 echo "fs.file-max = 999999" | tee -a /etc/sysctl.conf
 echo "MAXFDS=999999" | tee -a /etc/default/prosody
 
-echo
+echo "================================"
 
 echo "Setting up TCP BBR"
 echo "net.core.default_qdisc=fq" | tee -a /etc/sysctl.conf
 echo "net.ipv4.tcp_congestion_control=bbr" | tee -a /etc/sysctl.conf
 
-echo
+echo "================================"
 
 echo "Executing final steps"
-bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh
-bash /home/user/git/xmpp.is/scripts/cert-fingerprint.sh
-bash /home/user/git/xmpp.is/scripts/sync.sh
-bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh
+bash "${GIT_DIR}"/xmpp.is/scripts/le-renew-hook.sh
+bash "${GIT_DIR}"/xmpp.is/scripts/cert-fingerprint.sh
+bash "${GIT_DIR}"/xmpp.is/scripts/sync.sh
+bash "${GIT_DIR}"/xmpp.is/scripts/force-owner-and-group.sh
 
-echo
+echo "================================"
 
 echo "Restarting services"
 service prosody restart
 service hiawatha start
 service tor restart
 
-echo
+echo "================================"
 
 echo "Deploy finished, server must be rebooted now"
