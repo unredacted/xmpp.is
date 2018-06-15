@@ -2,6 +2,7 @@
 # This script is ran after dehydrated renews a certificate, links to other scripts that keep certs automagically up-to-date
 
 GIT_DIR="/home/user/git"
+echo `date`
 
 if grep "1" /tmp/dehydrated-flag
 
