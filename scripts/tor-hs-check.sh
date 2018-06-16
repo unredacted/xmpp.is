@@ -14,3 +14,7 @@ if torsocks curl --connect-timeout 30 6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2r
   else
     echo "The Tor HSv3 6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion:5222 is unreachable!" | mail -s "Tor HSv3 Down" cron@lunar.systems
 fi
+
+if sed -n "/^$(date --date='5 minutes ago' '+%b %_d %H')/,\$p" /var/log/tor/notice.log | grep "No more HSDir available to query"; then
+  echo "1" > /tmp/tor-restart-flag
+fi
