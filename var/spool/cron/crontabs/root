@@ -12,6 +12,9 @@ MAILTO=cron@lunar.systems
 # Run le-renew-hook.sh to check for dehydrated flag and renew if possible
 */5 * * * * bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh > /dev/null 2>&1
 
+# Run tor-service-actions.sh to perform start/stop/restart actions
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/tor-service-actions.sh > /dev/null 2>&1
+
 # Force permissions
 @hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
 
