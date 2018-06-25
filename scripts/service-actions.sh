@@ -1,8 +1,9 @@
 #!/bin/bash
-# Script that checks the flag set by tor-hs-check.sh
+# Script that checks flags for service actions
 
 TOR_RESTART_FLAG="/tmp/flags/tor-restart"
 
+# Tor service actions
 if grep "1" "${TOR_RESTART_FLAG}"; then
   service tor restart
   echo "Tor has been restarted, setting flag back to 0!"
