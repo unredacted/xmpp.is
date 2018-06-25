@@ -16,5 +16,5 @@ if torsocks curl --max-time 30 6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl
 fi
 
 if sed -n "/^$(date --date='5 minutes ago' '+%b %_d %H')/,\$p" /var/log/tor/notice.log | grep "No more HSDir available to query"; then
-  echo "1" > /tmp/tor-restart-flag
+  echo "1" > /tmp/flags/tor-restart
 fi
