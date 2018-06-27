@@ -4,7 +4,7 @@
 TMP_OUTPUT="/tmp/connection-stats.txt"
 OUTPUT="/var/www/transparency.xmpp.is/connection-stats.txt"
 
-# Sleep between random amount of time between 1 - 30 seconds
+# Sleep random amount of time between 1 - 30 seconds
 sleep $[ ( $RANDOM % 30 )  + 1 ]s
 
 # Telnet in and grep for needed line
