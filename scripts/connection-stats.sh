@@ -20,4 +20,4 @@ Currently serving:' "${TMP_OUTPUT}"
 touch -m -d '1 Jan 1984 12:00' "${TMP_OUTPUT}"
 
 # Copy temp output to actual file
-cp "${TMP_OUTPUT}" "${OUTPUT}"
+mv "${TMP_OUTPUT}" "${OUTPUT}"
