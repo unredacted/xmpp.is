@@ -4,6 +4,9 @@
 TMP_OUTPUT="/tmp/connection-stats.txt"
 OUTPUT="/var/www/transparency.xmpp.is/connection-stats.txt"
 
+# Sleep between random amount of time between 1 - 30 seconds
+sleep $[ ( $RANDOM % 30 )  + 1 ]s
+
 # Telnet in and grep for needed line
 { echo "c2s:show()"; sleep 1; } | telnet localhost 5582 | grep -a "Total:" > "${TMP_OUTPUT}"
 
