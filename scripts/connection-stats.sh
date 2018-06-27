@@ -16,5 +16,8 @@ sed -i 's/clients/C2S connections/g' "${TMP_OUTPUT}"
 sed -i '/connections/i \
 Currently serving:' "${TMP_OUTPUT}"
 
+# Change modification time
+touch -m -d '1 Jan 1984 12:00' "${TMP_OUTPUT}"
+
 # Copy temp output to actual file
 cp "${TMP_OUTPUT}" "${OUTPUT}"
