@@ -4,7 +4,6 @@
 ANTI_BRUTEFORCE_FLAG="/tmp/flags/anti-bruteforce"
 SORTED_EXCESS_CONNECTIONS="/tmp/sorted_excess_c2s_connections.txt"
 EXCESS_CONNECTIONS="/tmp/excess_c2s_connections.txt"
-"${EXCESS_CONNECTIONS}"
 
 # Check the flag to see if we should run
 if grep "1" "${ANTI_BRUTEFORCE_FLAG}"; then
