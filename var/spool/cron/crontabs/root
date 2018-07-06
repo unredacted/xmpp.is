@@ -9,8 +9,8 @@ MAILTO=cron@lunar.systems
 # Run anti-bruteforce script
 */5 * * * * bash /home/user/git/xmpp.is/scripts/anti-bruteforce.sh > /dev/null 2>&1
 
-# Run le-renew-hook.sh to check for dehydrated flag and renew if possible
-*/5 * * * * bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh > /dev/null 2>&1
+# Run le-renew-hook.sh to check for dehydrated flag and push new certs if possible
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh >> /home/user/git/dehydrated/renew-cert-push.log 2>&1
 
 # Run service-actions.sh to perform start/stop/restart actions
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh > /dev/null 2>&1
