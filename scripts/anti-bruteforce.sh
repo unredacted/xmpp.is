@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script prevents massive bruteforce attacks against accounts
 
-ANTI_BRUTEFORCE_FLAG="/tmp/flags/anti-bruteforce"
+ANTI_BRUTEFORCE_FLAG="/home/user/flags/anti-bruteforce"
 SORTED_EXCESS_CONNECTIONS="/tmp/sorted_excess_c2s_connections.txt"
 EXCESS_CONNECTIONS="/tmp/excess_c2s_connections.txt"
 
