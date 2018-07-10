@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script that checks flags for service actions
 
-TOR_RESTART_FLAG="/tmp/flags/tor-restart"
+TOR_RESTART_FLAG="/home/user/flags/tor-restart"
 
 # Tor service actions
 if grep "1" "${TOR_RESTART_FLAG}"; then
