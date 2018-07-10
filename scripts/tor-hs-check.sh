@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script to check in the Tor Hidden Services are reachable
 
-TOR_RESTART_FLAG="/tmp/flags/tor-restart"
+TOR_RESTART_FLAG="/home/user/flags/tor-restart"
 
 if torsocks curl --max-time 30 y2qmqomqpszzryei.onion:5222/ | grep "xml" | grep "stream" > /dev/null
   then
