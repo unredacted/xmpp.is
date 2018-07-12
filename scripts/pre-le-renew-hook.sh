@@ -4,7 +4,7 @@
 GIT_DIR="/home/user/git"
 DEHYDRATED_RENEW_FLAG="/home/user/flags/dehydrated-renew"
 
-if find "${GIT_DIR}"/dehydrated/certs/all -cmin -30 | grep ".pem"; then
+if find "${GIT_DIR}"/dehydrated/certs/all -mmin -30 | grep ".pem"; then
   echo "Setting flag to 1!"
   echo `date`
   echo "1" > "${DEHYDRATED_RENEW_FLAG}"
