@@ -16,6 +16,9 @@ MAILTO=cron@lunar.systems
 # Run service-actions.sh to perform start/stop/restart actions
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh > /dev/null 2>&1
 
+# Script to check if Tor HS v2/v3 is reachable by parsing the logs
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/tor-hs-check.sh --check-logs
+
 # Force permissions
 @hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
 
