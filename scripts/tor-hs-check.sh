@@ -6,11 +6,11 @@ HSV3="6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion"
 HSV2="y2qmqomqpszzryei.onion"
 
 function check_logs {
-echo "Parsing logs now!" > /dev/null 2>&1
+echo "Parsing logs now!"
 if sed -n "/^$(date --date='5 minutes ago' '+%b %_d %H')/,\$p" /var/log/tor/notice.log | grep "No more HSDir available to query"; then
   echo "1" > "${TOR_RESTART_FLAG}"
 fi
-echo "Done parsing logs!" > /dev/null 2>&1
+echo "Done parsing logs!"
 }
 
 function curl_test {
