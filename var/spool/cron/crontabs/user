@@ -1,6 +1,6 @@
 MAILTO=cron@lunar.systems
 
-# Script to check if Tor HS v2/v3 is reachable
+# Script to check if Tor HS v2/v3 is reachable using curl
 */5 * * * * bash /home/user/git/xmpp.is/scripts/tor-hs-check.sh --curl
 
 # Renew certificate -- https://transparency.xmpp.is/fingerprints.txt
