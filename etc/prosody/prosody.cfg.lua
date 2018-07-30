@@ -69,6 +69,7 @@ log = {
 	info = "/var/log/prosody/prosody.info";
 	warn = "/var/log/prosody/prosody.warn";
 	error = "/var/log/prosody/prosody.err";
+	debug = "/var/log/prosody/prosody.debug";
 }
 
         http_ports = { 5280 }
