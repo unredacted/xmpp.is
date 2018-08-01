@@ -44,6 +44,7 @@ modules_enabled = {
 		"cloud_notify";
 		"block_registrations";
 		"server_contact_info";
+		"log_slow_events";
 };
 	
 modules_disabled = {
@@ -64,6 +65,8 @@ contact_info = {
   feedback = { "https://xmpp.is/contact/" };
   support = { "https://xmpp.is/contact/" };
 };
+
+log_slow_events_threshold = 0.5
 
 log = {
 	info = "/var/log/prosody/prosody.info";
