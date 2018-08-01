@@ -4,7 +4,7 @@ pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 
-reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info" }
+reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info", "log_slow_events" }
 
 modules_enabled = {
 
@@ -66,7 +66,7 @@ contact_info = {
   support = { "https://xmpp.is/contact/" };
 };
 
-log_slow_events_threshold = 0.5
+log_slow_events_threshold = 0.1
 
 log = {
 	info = "/var/log/prosody/prosody.info";
