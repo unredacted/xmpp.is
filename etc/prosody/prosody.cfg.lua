@@ -8,90 +8,92 @@ reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "l
 
 modules_enabled = {
 
-	-- Enabled --
+	-- Enabled Modules --
 
-		"roster"; -- Allow users to have a roster. Recommended ;)
-		"saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
-		"tls"; -- Add support for secure TLS on c2s/s2s connections
-		"dialback"; -- s2s dialback support
-		"disco"; -- Service discovery
-		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
-		"private"; -- Private XML storage (for room bookmarks, etc.)
-		"vcard"; -- Allow users to set vCards
-		"version"; -- Replies to server version requests
-		"uptime"; -- Report how long server has been running
-		"time"; -- Let others know the time here on this server
-		"ping"; -- Replies to XMPP pings with pongs
-		"pep"; -- Enables users to publish their mood, activity, playing music and more
-		"register"; -- Allow users to register on this server using a client and change passwords
-		"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
-		"announce"; -- Send announcement to all online users
-		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-                "admin_telnet"; -- Opens telnet console interface on localhost port 5582
-		"welcome"; -- Welcome users who register accounts
-		"blocklist"; -- New module replacing mod_privacy
-		"carbons"; -- Officially included in Prosody now
+	"roster"; -- Allow users to have a roster. Recommended ;)
+	"saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
+	"tls"; -- Add support for secure TLS on c2s/s2s connections
+	"dialback"; -- s2s dialback support
+	"disco"; -- Service discovery
+	"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
+	"private"; -- Private XML storage (for room bookmarks, etc.)
+	"vcard"; -- Allow users to set vCards
+	"version"; -- Replies to server version requests
+	"uptime"; -- Report how long server has been running
+	"time"; -- Let others know the time here on this server
+	"ping"; -- Replies to XMPP pings with pongs
+	"pep"; -- Enables users to publish their mood, activity, playing music and more
+	"register"; -- Allow users to register on this server using a client and change passwords
+	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
+	"announce"; -- Send announcement to all online users
+	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+        "admin_telnet"; -- Opens telnet console interface on localhost port 5582
+	"welcome"; -- Welcome users who register accounts
+	"blocklist"; -- New module replacing mod_privacy
+	"carbons"; -- Officially included in Prosody now
 
 	-- Downloaded Enabled Modules --
 
-		"reload_modules";		
-		"limit_auth";
-		"smacks";
-		"csi";
-		"filter_chatstates";
-		"limits";
-		"default_vcard";
-		"cloud_notify";
-		"block_registrations";
-		"server_contact_info";
-		"log_slow_events";
+	"reload_modules";		
+	"limit_auth";
+	"smacks";
+	"csi";
+	"filter_chatstates";
+	"limits";
+	"default_vcard";
+	"cloud_notify";
+	"block_registrations";
+	"server_contact_info";
+	"log_slow_events";
 };
 	
 modules_disabled = {
 	
-	-- Disabled --
+	-- Disabled Modules --
 
 		"groups"; -- Shared roster support
 		"watchregistrations"; -- Alert admins of registrations
 		"motd"; -- Send a message to users when they log in
 		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		"http_files"; -- Serve static files from a directory over HTTP
-		-- "offline";
+		-- "offline"; -- Offline messages
 };
 
-contact_info = {
-  abuse = { "https://xmpp.is/contact/" };
-  admin = { "https://xmpp.is/contact/" };
-  feedback = { "https://xmpp.is/contact/" };
-  support = { "https://xmpp.is/contact/" };
-};
+-- mod_welcome --
 
-log_slow_events_threshold = 0.5
+welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
-log = {
+-- mod_server_contact_info --
+
+	contact_info = {
+	abuse = { "https://xmpp.is/contact/" };
+	admin = { "https://xmpp.is/contact/" };
+	feedback = { "https://xmpp.is/contact/" };
+	support = { "https://xmpp.is/contact/" };
+	};
+
+-- Log Config --
+
+	log = {
 	info = "/var/log/prosody/prosody.info";
 	warn = "/var/log/prosody/prosody.warn";
 	error = "/var/log/prosody/prosody.err";
 	debug = "/var/log/prosody/prosody.debug";
-}
+	}
 
-        http_ports = { 5280 }
-        http_interfaces = { "*" }
+-- mod_tls --
 
-        https_ports = { 5281 }
-        https_interfaces = { "*" }
+	ssl = {
+	certificate = "/etc/prosody/certs/fullchain.pem";
+	key = "/etc/prosody/certs/privkey.pem";
+	}
 
-        ssl = {
-           certificate = "/etc/prosody/certs/fullchain.pem";
-           key = "/etc/prosody/certs/privkey.pem";
-}
+	https_ssl = {
+	certificate = "/etc/prosody/certs/fullchain.pem";
+	key = "/etc/prosody/certs/privkey.pem";
+	}
 
-        https_ssl = {
-           certificate = "/etc/prosody/certs/fullchain.pem";
-           key = "/etc/prosody/certs/privkey.pem";
-}
-
-welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
+-- mod_limits --
 
 limits = {
   c2s = {
@@ -107,6 +109,17 @@ limits = {
     burst = "10s";
   };
 }
+
+-- mod_http --
+
+http_ports = { 5280 }
+http_interfaces = { "*" }
+
+https_ports = { 5281 }
+https_interfaces = { "*" }
+
+-- mod_log_slow_events --
+log_slow_events_threshold = 0.5
 
 -- mod_limit_auth --
 limit_auth_period = 30

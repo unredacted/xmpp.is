@@ -14,9 +14,9 @@ reload_modules = { "tls", "onions" };
         storage = "internal"
 
 	ssl = {
-	   certificate = "/etc/prosody/certs/y2qmqomqpszzryei.onion/cert.pem";
-	   key = "/etc/prosody/certs/y2qmqomqpszzryei.onion/key.pem";
-};
+	certificate = "/etc/prosody/certs/y2qmqomqpszzryei.onion/cert.pem";
+	key = "/etc/prosody/certs/y2qmqomqpszzryei.onion/key.pem";
+	};
         
   	onions_tor_all =  true 
   	onions_only =  false
@@ -60,6 +60,6 @@ reload_modules = { "tls", "onions" };
 	["prosody.xmpp.is"] = "y2qmqomqpszzryei.onion";
 	["xndr.de"] = "trcubpttd6zkc3tf.onion";
 	["jabber.cat"] = "sybzodlxacch7st7.onion";
-};
+	};
 
 --INSERT_SECRETS--
