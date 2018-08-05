@@ -15,14 +15,17 @@ echo Certificate fingerprints since `date` | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo | tee -a "${TEMP_OUTPUT_FILE}"
 
+# Output SHA1 & SHA256 hashes for *.xmpp.* wildcard
 echo "XMPP.* Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${LE_DIR}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
 echo | tee -a "${TEMP_OUTPUT_FILE}"
 
+# Output SHA1 & SHA256 hashes for hidden service certificate
 echo "y2qmqomqpszzryei.onion Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 
+# Copy temp file to actual file
 cp "${TEMP_OUTPUT_FILE}" "${OUTPUT_FILE}"

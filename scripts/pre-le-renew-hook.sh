@@ -4,6 +4,7 @@
 GIT_DIR="/home/user/git"
 DEHYDRATED_RENEW_FLAG="/home/user/flags/dehydrated-renew"
 
+# Find .pem files that have been modified within 30 minutes, if yes, set flag
 if find "${GIT_DIR}"/dehydrated/certs/all -mmin -30 | grep ".pem"; then
   echo "Setting flag to 1!"
   echo `date`

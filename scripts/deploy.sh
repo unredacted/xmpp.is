@@ -15,7 +15,7 @@ fi
 echo "================================"
 
 echo "Installing miscellaneous packages that I like or need :^)"
-apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release mtr-tiny ntp zip
+apt install -y htop dstat nload iftop iotop nmap haveged rsync dirmngr apt-utils apt-transport-https dialog ca-certificates wget curl nano lsb-release mtr-tiny ntp zip screen cpulimit
 
 echo "================================"
 
@@ -113,7 +113,7 @@ echo "================================"
 read -p "Would you like to issue certificates with dehydrated? (Y/N) " REPLY
 if [ "${REPLY,,}" == "y" ]; then
   echo "Issuing initial SSL/TLS certificates"
-  bash "${GIT_DIR}"/dehydrated/dehydrated --register --accept-terms --hook /home/user/git/dehydrated/dehydrated.default.sh
+  bash "${GIT_DIR}"/dehydrated/dehydrated --register --accept-terms --hook "${GIT_DIR}"/dehydrated/dehydrated.default.sh
   bash "${GIT_DIR}"/dehydrated/dehydrated --cron --alias all --hook "${GIT_DIR}"/dehydrated/dehydrated.default.sh; bash "${GIT_DIR}"/xmpp.is/scripts/pre-le-renew-hook.sh
   bash "${GIT_DIR}"/xmpp.is/scripts/letsencrypt-renew-hook.sh
 else

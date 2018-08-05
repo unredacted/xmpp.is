@@ -3,6 +3,7 @@
 
 PROSODY_DATA_DIR="/var/lib/prosody"
 
+# Find and delete messages over 1MB
 find "${PROSODY_DATA_DIR}"/xmpp%2eis/offline -name "*.list" -size +1M -delete
 find "${PROSODY_DATA_DIR}"/xmpp%2eco/offline -name "*.list" -size +1M -delete
 find "${PROSODY_DATA_DIR}"/xmpp%2ecx/offline -name "*.list" -size +1M -delete

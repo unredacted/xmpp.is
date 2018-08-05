@@ -5,6 +5,7 @@ GIT_DIR="/home/user/git"
 DEHYDRATED_RENEW_FLAG="/home/user/flags/dehydrated-renew"
 echo `date`
 
+# Check for dehydrated flag and run scripts if needed
 if grep "1" "${DEHYDRATED_RENEW_FLAG}"
 
   then
