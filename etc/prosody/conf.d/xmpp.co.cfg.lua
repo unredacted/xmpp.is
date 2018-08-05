@@ -13,7 +13,7 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 	s2s_secure_auth = true
 
 	authentication = "internal_hashed"
-        storage = "internal"
+	storage = "internal"
 
 	ssl = {
 	   certificate = "/etc/prosody/certs/fullchain.pem";
