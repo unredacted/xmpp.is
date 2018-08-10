@@ -5,7 +5,7 @@
         delaycompress
         create 640 prosody adm
         postrotate
-                service prosody reload > /dev/null
+        service prosody reload > /dev/null
         endscript
         sharedscripts
         missingok
