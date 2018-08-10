@@ -1,4 +1,4 @@
-/var/log/prosody/prosody.log /var/log/prosody/prosody.info /var/log/prosody/prosody.warn /var/log/prosody/prosody.err {
+/var/log/prosody/prosody.log /var/log/prosody/prosody.info /var/log/prosody/prosody.warn /var/log/prosody/prosody.err /var/log/prosody/prosody.debug {
         daily
         rotate 14
         compress
