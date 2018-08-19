@@ -78,7 +78,7 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 	info = "/var/log/prosody/prosody.info";
 	warn = "/var/log/prosody/prosody.warn";
 	error = "/var/log/prosody/prosody.err";
-	debug = "/var/log/prosody/prosody.debug";
+	debug = "/dev/null";
 	}
 
 -- mod_tls --
