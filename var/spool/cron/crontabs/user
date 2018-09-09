@@ -4,4 +4,4 @@ MAILTO=cron@lunar.systems
 */5 * * * * bash /home/user/git/xmpp.is/scripts/tor-hs-check.sh --curl
 
 # Renew certificate -- https://transparency.xmpp.is/fingerprints.txt
-@daily echo `date`; /home/user/git/dehydrated/dehydrated --cron --alias all --hook /home/user/git/dehydrated/dehydrated.default.sh; bash /home/user/git/xmpp.is/scripts/pre-le-renew-hook.sh >> /home/user/git/dehydrated/renew.log
+@daily echo `date`; /home/user/git/dehydrated/dehydrated --cron --alias all --hook /home/user/git/dehydrated/dehydrated.default.sh >> /home/user/git/dehydrated/renew.log; bash /home/user/git/xmpp.is/scripts/pre-le-renew-hook.sh >> /home/user/git/dehydrated/renew.log
