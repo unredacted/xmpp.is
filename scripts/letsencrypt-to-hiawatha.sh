@@ -6,5 +6,6 @@ HIAWATHA_CERTS="/etc/hiawatha/ssl"
 
 cat "${LE_DIR}"/privkey.pem "${LE_DIR}"/fullchain.pem > "${HIAWATHA_CERTS}"/hiawatha.pem
 
-# Restart Hiawatha
+# Restart Hiawatha & check status
 service hiawatha restart
+service hiawatha status
