@@ -8,4 +8,5 @@ cat "${LE_DIR}"/privkey.pem "${LE_DIR}"/fullchain.pem > "${HIAWATHA_CERTS}"/hiaw
 
 # Restart Hiawatha & check status
 service hiawatha restart
+sleep 5
 service hiawatha status
