@@ -13,8 +13,8 @@ MAILTO=cron@lunar.systems
 # Run le-renew-hook.sh to check for dehydrated flag and push new certs if possible
 */5 * * * * bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh >> /home/user/git/dehydrated/renew-cert-push.log 2>&1
 
-# Run service-actions.sh to perform start/stop/restart actions
-*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh > /dev/null 2>&1
+# Run service-actions.sh --tor-restart to check if Tor needs to be restarted
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh --tor-restart > /dev/null 2>&1
 
 # Script to check if Tor HS v2/v3 is reachable by parsing the logs
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --tor-check-logs > /dev/null 2>&1
