@@ -31,6 +31,12 @@ echo "Done parsing logs!"
 
 # Performs a curl test on the hidden service
 function tor_curl_test {
+# Check if curl is already running a test
+if ps aux | grep -v grep | grep curl | grep ".onion"; then
+  echo "curl is running, exiting now"
+  exit
+fi
+
 echo "Checking HSv2"
 if torsocks curl --max-time 30 "${HSV2}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
   then
