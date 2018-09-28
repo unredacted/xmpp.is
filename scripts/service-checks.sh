@@ -14,10 +14,10 @@ LOG_ATTRIBUTE_HSDIR1="No more HSDir available to query"
 
 # Check NFS mount
 function nfs_check_mount {
-if mount | grep "${NFS_MOUNT}" > /dev/null; then
-  echo "The mount point shows up!" > /dev/null
+if mount | grep "${NFS_MOUNT}" | grep "(rw," > /dev/null; then
+  echo "The "${NFS_MOUNT}" mount point shows up, and is mounted as rw!"
 else
-  echo "The mount point does not show up on "${HOSTNAME}"" | mail -s "NFS Mount Issue" "${EMAIL}"
+  echo "There is an issue with the "${NFS_MOUNT}" NFS mount on "${HOSTNAME}"" | mail -s "NFS Mount Issue" "${EMAIL}"
 fi
 }
 
@@ -25,14 +25,14 @@ fi
 function tor_check_logs {
 echo "Parsing logs now!"
 if sed -n "/^$(date --date='5 minutes ago' '+%b %_d %H')/,\$p" "${TOR_NOTICE_LOG}" | grep "${HSV2}" | grep "${LOG_ATTRIBUTE_HSDIR1}"; then
-  echo "The '"${LOG_ATTRIBUTE_HSDIR1}"' attribute was found in the log for "${HSV2}""
+  echo "The '"${LOG_ATTRIBUTE_HSDIR1}"' attribute was found in the log for "${HSV2}"" | mail -s "Bad Tor log attribute found" "${EMAIL}"
   echo ""${HSV2}" is having issues, setting flag to 1"
   echo "1" > "${TOR_RESTART_FLAG}"
 else
   echo "The '"${LOG_ATTRIBUTE_HSDIR1}"' attribute was not found in the log for "${HSV2}""
 fi
 if sed -n "/^$(date --date='5 minutes ago' '+%b %_d %H')/,\$p" "${TOR_NOTICE_LOG}" | grep "${HSV3}" | grep "${LOG_ATTRIBUTE_HSDIR1}"; then
-  echo "The '"${LOG_ATTRIBUTE_HSDIR1}"' attribute was found in the log for "${HSV3}""
+  echo "The '"${LOG_ATTRIBUTE_HSDIR1}"' attribute was found in the log for "${HSV3}"" | mail -s "Bad Tor log attribute found" "${EMAIL}"
   echo ""${HSV3}" is having issues, setting flag to 1"
   echo "1" > "${TOR_RESTART_FLAG}"
 else
@@ -52,7 +52,7 @@ fi
 echo "Checking HSv2"
 if torsocks curl --connect-timeout 30 --max-time 30 "${HSV2}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
   then
-    echo "The Tor HSv2 "${HSV2}":5222 was reachable!" > /dev/null 2>&1
+    echo "The Tor HSv2 "${HSV2}":5222 was reachable!"
   else
     echo "The Tor HSv2 "${HSV2}":5222 is unreachable!" | mail -s "Tor HSv2 Down" "${EMAIL}"
 fi
@@ -60,7 +60,7 @@ fi
 echo "Checking HSv3"
 if torsocks curl --connect-timeout 30 --max-time 30 "${HSV3}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
   then
-    echo "The Tor HSv3 "${HSV3}":5222 is reachable!" > /dev/null 2>&1
+    echo "The Tor HSv3 "${HSV3}":5222 is reachable!"
   else
     echo "The Tor HSv3 "${HSV3}":5222 is unreachable!" | mail -s "Tor HSv3 Down" "${EMAIL}"
 fi
