@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to check in the Tor Hidden Services are reachable
+# Script to check various services
 EMAIL="cron@lunar.systems"
 
 # NFS variables
