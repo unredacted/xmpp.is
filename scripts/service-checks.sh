@@ -50,7 +50,7 @@ if ps aux | grep -v grep | grep curl | grep ".onion"; then
 fi
 
 echo "Checking HSv2"
-if torsocks curl --connect-timeout 30 --max-time 30 "${HSV2}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
+if torsocks curl --connect-timeout 45 --max-time 45 "${HSV2}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
   then
     echo "The Tor HSv2 "${HSV2}":5222 was reachable!"
   else
@@ -58,7 +58,7 @@ if torsocks curl --connect-timeout 30 --max-time 30 "${HSV2}":5222/ | grep "xml"
 fi
 
 echo "Checking HSv3"
-if torsocks curl --connect-timeout 30 --max-time 30 "${HSV3}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
+if torsocks curl --connect-timeout 45 --max-time 45 "${HSV3}":5222/ | grep "xml" | grep "stream" > /dev/null 2>&1
   then
     echo "The Tor HSv3 "${HSV3}":5222 is reachable!"
   else
