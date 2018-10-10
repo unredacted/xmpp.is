@@ -1,7 +1,7 @@
 DataDirectory /var/lib/tor
 Log notice file /var/log/tor/notice.log
 SafeLogging 0
-EntryNodes {de}
+#EntryNodes {de}
 
 HiddenServiceDir /var/lib/tor/prosody_hidden_service/
 HiddenServicePort 5222 127.0.0.1:5222
