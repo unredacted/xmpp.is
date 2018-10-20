@@ -3,8 +3,9 @@ use_libevent = true;
 pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
+legacy_ssl_ports = { "5223" }
 
-reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info", "log_slow_events" }
+reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info", "log_slow_events", "omemo_all_access" }
 
 modules_enabled = {
 
@@ -45,6 +46,7 @@ modules_enabled = {
 	"block_registrations";
 	"server_contact_info";
 	"log_slow_events";
+	"omemo_all_access";
 };
 	
 modules_disabled = {
