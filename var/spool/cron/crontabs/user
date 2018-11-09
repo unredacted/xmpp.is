@@ -1,3 +1,4 @@
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 MAILTO=cron@lunar.systems
 
 # Script to check if Tor HS v2/v3 is reachable using curl
