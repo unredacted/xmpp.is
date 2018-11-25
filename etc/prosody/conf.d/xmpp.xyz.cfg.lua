@@ -32,3 +32,6 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 	Component "muc.xmpp.xyz" "muc"
 	name = "XMPP.xyz MUC"
 	restrict_room_creation = "local"
+        modules_enabled = {
+        "vcard_muc", "mam_muc"
+        }
