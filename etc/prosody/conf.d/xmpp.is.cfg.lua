@@ -1,7 +1,7 @@
 VirtualHost "xmpp.is"
 http_host = "http.xmpp.is"
-modules_enabled = { "onions", "http", "register_web", "email_pass_reset_english" };
-reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_english", "http_upload" };
+modules_enabled = { "onions", "http", "register_web" };
+reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 
         enabled = true
 
@@ -32,6 +32,4 @@ reload_modules = { "tls", "onions", "http", "register_web", "email_pass_reset_en
 	Component "muc.xmpp.is" "muc"
 	name = "XMPP.is MUC"
 	restrict_room_creation = "local"
-	modules_enabled = {
-  	"vcard_muc", "mam_muc"
-	}
+        modules_enabled = { "vcard_muc", "muc_mam" };

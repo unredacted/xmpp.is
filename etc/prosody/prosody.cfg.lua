@@ -5,6 +5,11 @@ plugin_paths = { "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 legacy_ssl_ports = { "5223" }
 
+default_storage = "internal"
+	storage = {
+	archive = "memory"
+	}
+
 reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info", "log_slow_events", "omemo_all_access" }
 
 modules_enabled = {
@@ -18,12 +23,13 @@ modules_enabled = {
 	"disco"; -- Service discovery
 	"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 	"private"; -- Private XML storage (for room bookmarks, etc.)
-	"vcard"; -- Allow users to set vCards
+	"vcard4"; -- Add support for the new vcard format
+	"vcard_legacy"; -- Support old vcard format for legacy clients
 	"version"; -- Replies to server version requests
 	"uptime"; -- Report how long server has been running
 	"time"; -- Let others know the time here on this server
 	"ping"; -- Replies to XMPP pings with pongs
-	"pep"; -- Enables users to publish their mood, activity, playing music and more
+	"pep_simple"; -- Enables users to publish their mood, activity, playing music and more
 	"register"; -- Allow users to register on this server using a client and change passwords
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
@@ -33,12 +39,10 @@ modules_enabled = {
 	"blocklist"; -- New module replacing mod_privacy
 	"carbons"; -- Officially included in Prosody now
 
-	-- Downloaded Enabled Modules --
+	--- Downloaded Enabled Modules ---
 
 	"reload_modules";		
 	"limit_auth";
-	"smacks";
-	"csi";
 	"filter_chatstates";
 	"limits";
 	"default_vcard";
@@ -47,6 +51,13 @@ modules_enabled = {
 	"server_contact_info";
 	"log_slow_events";
 	"omemo_all_access";
+	"mam";
+
+	-- Optimzation --
+
+	"smacks";
+	"csi";
+	"csi_battery_saver";
 };
 	
 modules_disabled = {
@@ -57,7 +68,7 @@ modules_disabled = {
 		"watchregistrations"; -- Alert admins of registrations
 		"motd"; -- Send a message to users when they log in
 		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
-		"http_files"; -- Serve static files from a directory over HTTP
+		-- "http_files"; -- Serve static files from a directory over HTTP
 		-- "offline"; -- Offline messages
 };
 
@@ -126,6 +137,9 @@ log_slow_events_threshold = 0.5
 -- mod_limit_auth --
 limit_auth_period = 30
 limit_auth_max = 5
+
+-- mod_mam --
+archive_expires_after = "1d"
 
 -- mod_smacks --
 smacks_hibernation_time = 300
