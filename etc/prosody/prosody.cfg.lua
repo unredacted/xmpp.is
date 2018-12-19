@@ -42,22 +42,24 @@ modules_enabled = {
 	--- Downloaded Enabled Modules ---
 
 	"reload_modules";		
-	"limit_auth";
-	"filter_chatstates";
-	"limits";
 	"default_vcard";
 	"cloud_notify";
-	"block_registrations";
 	"server_contact_info";
-	"log_slow_events";
+
+	-- Security --
 	"omemo_all_access";
-	"mam";
+	"filter_chatstates";
+	"block_registrations";
+	"limits";
+	"limit_auth";
 
 	-- Optimzation --
 
 	"smacks";
 	"csi";
 	"csi_battery_saver";
+	"log_slow_events";
+	"mam";
 };
 	
 modules_disabled = {
@@ -139,7 +141,10 @@ limit_auth_period = 30
 limit_auth_max = 5
 
 -- mod_mam --
+default_archive_policy = true
 archive_expires_after = "1d"
+max_archive_query_results = 20;
+mam_smart_enable = true
 
 -- mod_smacks --
 smacks_hibernation_time = 300
