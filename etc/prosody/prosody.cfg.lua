@@ -159,7 +159,7 @@ limit_auth_max = 5
 
 -- mod_mam --
 default_archive_policy = true
-archive_expires_after = "1d"
+archive_expires_after = 60 * 60
 max_archive_query_results = 20;
 mam_smart_enable = true
 
