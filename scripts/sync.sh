@@ -55,12 +55,6 @@ echo
 echo "Syncing prosody_web_registration_theme"
 rsync -av "${GIT_DIR}"/prosody_web_registration_theme /etc/prosody/register-templates/
 
-# mod_email_pass_reset_english
-echo
-echo "Syncing mod_email_pass_reset_english"
-rsync -av "${GIT_DIR}"/mod_email_pass_reset_english "${PROSODY_DATA_DIR}"/
-cp "${PROSODY_DATA_DIR}"/modules/mod_email_pass_reset_english/vcard.lib.lua "${PROSODY_DATA_DIR}"/modules/vcard.lib.lua
-
 # Cron
 echo
 echo "Syncing crontabs"

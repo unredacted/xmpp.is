@@ -9,7 +9,6 @@ echo
 
 # Git
 cd "${GIT_DIR}"/xmpp.is && git pull
-cd "${GIT_DIR}"/mod_email_pass_reset_english && git pull
 cd "${GIT_DIR}"/prosody_web_registration_theme && git pull
 
 # Mercurial
