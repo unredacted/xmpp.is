@@ -151,7 +151,7 @@ https_ports = { 5281 }
 https_interfaces = { "*" }
 
 -- mod_log_slow_events --
-log_slow_events_threshold = 0.5
+log_slow_events_threshold = 1
 
 -- mod_limit_auth --
 limit_auth_period = 30

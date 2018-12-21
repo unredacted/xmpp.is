@@ -1,5 +1,5 @@
 VirtualHost "y2qmqomqpszzryei.onion"
-modules_enabled =  { "onions" };
+modules_enabled =  { "onions", "reload_modules" };
 reload_modules = { "tls", "onions" };
 
 	enabled = true
