@@ -33,3 +33,5 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 	name = "XMPP.is MUC"
 	restrict_room_creation = "local"
         modules_enabled = { "vcard_muc", "muc_mam" };
+
+	Component "envoy.xmpp.is" "proxy65"

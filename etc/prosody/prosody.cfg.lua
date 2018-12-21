@@ -4,17 +4,26 @@ pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 legacy_ssl_ports = { "5223" }
-
 default_storage = "internal"
+
 	storage = {
+
+	-- mod_mam --
 	archive = "memory"
+
 	}
 
-reload_modules = { "tls", "limit_auth", "smacks", "csi", "filter_chatstates", "limits", "default_vcard", "cloud_notify", "block_registrations", "server_contact_info", "log_slow_events", "omemo_all_access" }
+	-- mod_reload_modules --
+	
+	reload_modules = {
 
-modules_enabled = {
+	"tls";
 
-	-- Enabled Modules --
+	}
+
+	modules_enabled = {
+
+	-- Core Enabled Modules --
 
 	"roster"; -- Allow users to have a roster. Recommended ;)
 	"saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
@@ -38,8 +47,11 @@ modules_enabled = {
 	"welcome"; -- Welcome users who register accounts
 	"blocklist"; -- New module replacing mod_privacy
 	"carbons"; -- Officially included in Prosody now
+	"proxy65"; -- Proxy for clients behind NAT or firewalls
 
-	--- Downloaded Enabled Modules ---
+	--- Downloaded & Enabled Modules ---
+
+	-- Misc --
 
 	"reload_modules";		
 	"default_vcard";
@@ -47,6 +59,7 @@ modules_enabled = {
 	"server_contact_info";
 
 	-- Security --
+
 	"omemo_all_access";
 	"filter_chatstates";
 	"block_registrations";
@@ -60,25 +73,25 @@ modules_enabled = {
 	"csi_battery_saver";
 	"log_slow_events";
 	"mam";
-};
+	};
 	
-modules_disabled = {
+	modules_disabled = {
 	
 	-- Disabled Modules --
 
-		"groups"; -- Shared roster support
-		"watchregistrations"; -- Alert admins of registrations
-		"motd"; -- Send a message to users when they log in
-		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
-		-- "http_files"; -- Serve static files from a directory over HTTP
-		-- "offline"; -- Offline messages
-};
+	"groups"; -- Shared roster support
+	"watchregistrations"; -- Alert admins of registrations
+	"motd"; -- Send a message to users when they log in
+	"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
+	-- "http_files"; -- Serve static files from a directory over HTTP
+	-- "offline"; -- Offline messages
+	};
 
 -- mod_welcome --
 
 welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
--- mod_server_contact_info --
+	-- mod_server_contact_info --
 
 	contact_info = {
 	abuse = { "https://xmpp.is/contact/" };
@@ -87,7 +100,7 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 	support = { "https://xmpp.is/contact/" };
 	};
 
--- Log Config --
+	-- Log Config --
 
 	log = {
 	info = "/var/log/prosody/prosody.info";
@@ -96,7 +109,7 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 	debug = "/dev/null";
 	}
 
--- mod_tls --
+	-- mod_tls --
 
 	ssl = {
 	certificate = "/etc/prosody/certs/fullchain.pem";
@@ -108,22 +121,26 @@ welcome_message = "Welcome to $host, make sure you browse around the site for mo
 	key = "/etc/prosody/certs/privkey.pem";
 	}
 
--- mod_limits --
+	-- mod_limits --
 
-limits = {
-  c2s = {
-    rate = "1kb/s";
-    burst = "10s";
-  };
-  s2sin = {
-    rate = "1kb/s";
-    burst = "10s";
-  };
-  s2sout = {
-    rate = "1kb/s";
-    burst = "10s";
-  };
-}
+	limits = {
+
+	c2s = {
+	rate = "1kb/s";
+	burst = "10s";
+	};
+
+	s2sin = {
+	rate = "1kb/s";
+	burst = "10s";
+	};
+
+	s2sout = {
+	rate = "1kb/s";
+	burst = "10s";
+	};
+
+	}
 
 -- mod_http --
 
@@ -154,7 +171,7 @@ smacks_max_ack_delay = 60
 smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
 
---mod_block_registrations--
+-- mod_block_registrations --
 block_registrations_users = { "administrator", "admin", "hostmaster", "postmaster", "webmaster", "root", "xmpp", "lunar" }
 block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
 
