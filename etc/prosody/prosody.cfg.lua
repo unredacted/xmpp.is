@@ -38,7 +38,7 @@ default_storage = "internal"
 	"uptime"; -- Report how long server has been running
 	"time"; -- Let others know the time here on this server
 	"ping"; -- Replies to XMPP pings with pongs
-	"pep_simple"; -- Enables users to publish their mood, activity, playing music and more
+	"pep"; -- Enables users to publish their mood, activity, playing music and more
 	"register"; -- Allow users to register on this server using a client and change passwords
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
@@ -60,7 +60,6 @@ default_storage = "internal"
 
 	-- Security --
 
-	"omemo_all_access";
 	"filter_chatstates";
 	"block_registrations";
 	"limits";
