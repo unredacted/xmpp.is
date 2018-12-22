@@ -12,12 +12,9 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 	c2s_require_encryption = true
 	s2s_secure_auth = true
 
-	authentication = "internal_hashed"
-	storage = "internal"
-
 	ssl = {
-	   certificate = "/etc/prosody/certs/fullchain.pem";
-	   key = "/etc/prosody/certs/privkey.pem";
+	certificate = "/etc/prosody/certs/fullchain.pem";
+	key = "/etc/prosody/certs/privkey.pem";
 	}
 
         register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"

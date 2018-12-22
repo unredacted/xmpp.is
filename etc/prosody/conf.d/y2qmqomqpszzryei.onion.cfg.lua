@@ -10,9 +10,6 @@ reload_modules = { "tls", "onions" };
         c2s_require_encryption = true
 	s2s_secure_auth = false
 
-	authentication = "internal_hashed"
-        storage = "internal"
-
 	ssl = {
 	certificate = "/etc/prosody/certs/y2qmqomqpszzryei.onion/cert.pem";
 	key = "/etc/prosody/certs/y2qmqomqpszzryei.onion/key.pem";

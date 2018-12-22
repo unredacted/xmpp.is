@@ -5,6 +5,7 @@ plugin_paths = { "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 legacy_ssl_ports = { "5223" }
 default_storage = "internal"
+authentication = "internal_hashed"
 
 	storage = {
 
