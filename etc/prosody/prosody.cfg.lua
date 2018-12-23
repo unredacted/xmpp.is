@@ -10,8 +10,8 @@ authentication = "internal_hashed"
 	storage = {
 
 	-- mod_mam --
-	archive = "memory"
-	archive2 = "memory"
+	archive = "memory";
+	archive2 = "memory";
 
 	}
 
