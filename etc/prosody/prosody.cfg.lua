@@ -11,6 +11,7 @@ authentication = "internal_hashed"
 
 	-- mod_mam --
 	archive = "memory"
+	archive2 = "memory"
 
 	}
 
