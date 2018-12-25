@@ -50,6 +50,7 @@ authentication = "internal_hashed"
 	"blocklist"; -- New module replacing mod_privacy
 	"carbons"; -- Officially included in Prosody now
 	"proxy65"; -- Proxy for clients behind NAT or firewalls
+	"watchregistrations"; -- Alert admins of registrations
 
 	--- Downloaded & Enabled Modules ---
 
@@ -81,16 +82,21 @@ authentication = "internal_hashed"
 	-- Disabled Modules --
 
 	"groups"; -- Shared roster support
-	"watchregistrations"; -- Alert admins of registrations
+	-- "watchregistrations"; -- Alert admins of registrations
 	"motd"; -- Send a message to users when they log in
 	"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 	-- "http_files"; -- Serve static files from a directory over HTTP
 	-- "offline"; -- Offline messages
 	};
 
--- mod_welcome --
+	-- mod_welcome --
 
-welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
+	welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
+
+	-- mod_watchregistrations --
+	
+	registration_watchers = { "admin@xmpp.is" } -- mod_watchregistrations will use this list of users instead of the admin list
+	registration_notification = "User $username just registered on $host"
 
 	-- mod_server_contact_info --
 

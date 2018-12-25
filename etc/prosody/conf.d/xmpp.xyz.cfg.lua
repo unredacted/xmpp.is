@@ -10,6 +10,7 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 	welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
 	c2s_require_encryption = true
+	s2s_require_encryption = true
 	s2s_secure_auth = true
 
 	ssl = {
@@ -29,6 +30,9 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 	Component "muc.xmpp.xyz" "muc"
 	name = "XMPP.xyz MUC"
 	restrict_room_creation = "local"
-        modules_enabled = { "vcard_muc", "muc_mam" };
+        modules_enabled = { "vcard_muc", "muc_mam", "muc_limits" };
+	muc_event_rate = 1
+	muc_burst_factor = 6
+	muc_max_nick_length = 20
 
 	Component "envoy.xmpp.xyz" "proxy65"
