@@ -20,7 +20,7 @@ MAILTO=cron@lunar.systems
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --tor-check-logs > /dev/null 2>&1
 
 # Check NFS mount
-*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --nfs-check-mount > /dev/null 2>&1
+#*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --nfs-check-mount > /dev/null 2>&1
 
 # Force permissions
 @hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
