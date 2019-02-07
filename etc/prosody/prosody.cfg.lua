@@ -60,6 +60,7 @@ authentication = "internal_hashed"
 	"default_vcard";
 	"cloud_notify";
 	"server_contact_info";
+	"lastlog";
 
 	-- Security --
 
