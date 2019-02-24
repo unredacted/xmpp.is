@@ -167,7 +167,7 @@ limit_auth_max = 5
 
 -- mod_mam --
 default_archive_policy = false
-archive_cleanup_interval = 1 * 60 * 60
+archive_cleanup_interval = 60 * 2
 archive_expires_after = "1d"
 max_archive_query_results = 20;
 mam_smart_enable = true
