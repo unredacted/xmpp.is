@@ -61,6 +61,7 @@ authentication = "internal_hashed"
 	"cloud_notify";
 	"server_contact_info";
 	"lastlog";
+	"bookmarks";
 
 	-- Security --
 
