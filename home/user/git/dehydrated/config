@@ -95,7 +95,7 @@ PRIVATE_KEY_ROLLOVER="no"
 KEY_ALGO=rsa
 
 # E-mail to use during the registration (default: <unset>)
-CONTACT_EMAIL=admin@lunar.systems
+CONTACT_EMAIL=alerts@lunar.systems
 
 # Lockfile location, to prevent concurrent access (default: $BASEDIR/lock)
 LOCKFILE="${BASEDIR}/lock"

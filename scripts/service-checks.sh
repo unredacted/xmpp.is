@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to check various services
-EMAIL="cron@lunar.systems"
+EMAIL="alerts@lunar.systems"
 
 # NFS variables
 NFS_MOUNT="/nfs"

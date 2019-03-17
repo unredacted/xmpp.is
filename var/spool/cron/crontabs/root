@@ -1,5 +1,5 @@
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-MAILTO=cron@lunar.systems
+MAILTO=alerts@lunar.systems
 
 # Delete offline messages that are too large (to prevent storage DoS)
 * * * * * bash /home/user/git/xmpp.is/scripts/cleanup-prosody-offline-messages.sh > /dev/null 2>&1

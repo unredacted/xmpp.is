@@ -1,8 +1,8 @@
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-MAILTO=cron@lunar.systems
+MAILTO=alerts@lunar.systems
 
 # Script to check if Tor HS v2/v3 is reachable using curl
-*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --tor-curl-test > /dev/null 2>&1
+#*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --tor-curl-test > /dev/null 2>&1
 
 # Renew certificate -- https://transparency.xmpp.is/fingerprints.txt
 @daily echo `date`; /home/user/git/dehydrated/dehydrated --cron --alias all --hook /home/user/git/dehydrated/dehydrated.default.sh >> /home/user/git/dehydrated/renew.log; bash /home/user/git/xmpp.is/scripts/pre-le-renew-hook.sh >> /home/user/git/dehydrated/renew.log
