@@ -12,6 +12,9 @@ HSV3="6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion"
 HSV2="y2qmqomqpszzryei.onion"
 LOG_ATTRIBUTE_HSDIR1="No more HSDir available to query"
 
+# Prosody variables
+PROSODY_RESTART_FLAG="/home/user/flags/prosody-restart"
+
 # Check NFS mount
 function nfs_check_mount {
 if mount | grep "${NFS_MOUNT}" | grep "(rw," > /dev/null; then
@@ -66,6 +69,16 @@ if torsocks curl --connect-timeout 45 --max-time 45 "${HSV3}":5222/ | grep "xml"
 fi
 }
 
+function prosody_check {
+if ps aux | grep -v grep | grep prosody; then
+  echo "Prosody is currently running, exiting script now!"
+  exit
+else
+  echo "Prosody doesn't seem to be running, setting flag!"
+  echo "1" > "${PROSODY_RESTART_FLAG}"
+fi
+}
+
 # Magic code for flags
 while [ ! $# -eq 0 ]
 do
@@ -81,6 +94,10 @@ case "$1" in
 
   --tor-check-logs)
   tor_check_logs
+  ;;
+
+  --prosody-check)
+  prosody_check
   ;;
 
   *)

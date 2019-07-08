@@ -19,8 +19,11 @@ MAILTO=alerts@lunar.systems
 # Script to check if Tor HS v2/v3 is reachable by parsing the logs
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --tor-check-logs > /dev/null 2>&1
 
-# Check NFS mount
-#*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --nfs-check-mount > /dev/null 2>&1
+# Run service-checks.sh --prosody-check to check if Prosody is running
+* * * * * bash /home/user/git/xmpp.is/scripts/service-checks.sh --prosody-check > /dev/null 2>&1
+
+# Run service-actions.sh --prosody-restart to check if Prosody needs to be started
+*/5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh --prosody-restart > /dev/null 2>&1
 
 # Force permissions
 @hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
@@ -32,4 +35,4 @@ MAILTO=alerts@lunar.systems
 @hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html > /dev/null 2>&1
 
 # Hourly Borg Backup
-30 * * * * bash /root/scripts/borgbackup.sh >> /var/log/borg.log 2>&1
+#30 * * * * bash /root/scripts/borgbackup.sh >> /var/log/borg.log 2>&1
