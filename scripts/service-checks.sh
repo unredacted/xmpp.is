@@ -70,7 +70,7 @@ fi
 }
 
 function prosody_check {
-if ps aux | grep -v grep | grep prosody; then
+if ps aux | grep -v grep | grep lua | grep prosody; then
   echo "Prosody is currently running, exiting script now!"
   exit
 else
