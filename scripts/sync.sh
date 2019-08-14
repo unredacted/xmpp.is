@@ -38,6 +38,11 @@ echo
 echo "Syncing logrotate configs"
 rsync -av "${GIT_DIR}"/xmpp.is/etc/logrotate.d/ /etc/logrotate.d/
 
+# OpenSSL
+echo
+echo "Syncing OpenSSL configs"
+rsync -av "${GIT_DIR}"/xmpp.is/etc/ssl/ /etc/ssl/
+
 # Webroot
 echo
 echo "Syncing /var/www/"
