@@ -1,1 +1,1 @@
-deb https://packages.prosody.im/debian stretch main
+deb https://packages.prosody.im/debian buster main

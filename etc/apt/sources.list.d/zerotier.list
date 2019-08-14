@@ -1,1 +1,1 @@
-deb https://download.zerotier.com/debian/stretch stretch main
+deb https://download.zerotier.com/debian/buster buster main

@@ -1,16 +1,16 @@
-#------------------------------------------------------------------------------#
-#                   OFFICIAL DEBIAN REPOS                    
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------
+# OFFICIAL DEBIAN REPOS
+# ------------------------------------------------------------------------------
 
 ###### Debian Main Repos
-deb https://deb.debian.org/debian/ stable main contrib
-deb-src https://deb.debian.org/debian/ stable main contrib
+deb https://deb.debian.org/debian/ buster main contrib non-free
+deb-src https://deb.debian.org/debian/ buster main contrib non-free
 
-deb https://deb.debian.org/debian/ stable-updates main contrib
-deb-src https://deb.debian.org/debian/ stable-updates main contrib
+deb https://deb.debian.org/debian/ buster-updates main contrib non-free
+deb-src https://deb.debian.org/debian/ buster-updates main contrib non-free
 
-deb https://deb.debian.org/debian-security stable/updates main
-deb-src https://deb.debian.org/debian-security stable/updates main
+deb https://deb.debian.org/debian-security buster/updates main non-free
+deb-src https://deb.debian.org/debian-security buster/updates main non-free
 
-deb https://deb.debian.org/debian stretch-backports main
-deb-src https://deb.debian.org/debian stretch-backports main
+deb https://deb.debian.org/debian buster-backports main contrib non-free
+deb-src https://deb.debian.org/debian buster-backports main contrib non-free
