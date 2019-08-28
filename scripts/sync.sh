@@ -60,6 +60,11 @@ echo
 echo "Syncing prosody_web_registration_theme"
 rsync -av "${GIT_DIR}"/prosody_web_registration_theme /etc/prosody/register-templates/
 
+# mod_register_web
+echo
+echo "Syncing mod_register_web"
+rsync -av "${GIT_DIR}"/mod_register_web/ /var/lib/prosody/modules/mod_register_web/
+
 # Cron
 echo
 echo "Syncing crontabs"
