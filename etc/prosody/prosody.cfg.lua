@@ -16,7 +16,7 @@ authentication = "internal_hashed"
 	}
 
 	-- mod_reload_modules --
-	
+
 	reload_modules = {
 
 	"tls";
@@ -56,7 +56,7 @@ authentication = "internal_hashed"
 
 	-- Misc --
 
-	"reload_modules";		
+	"reload_modules";
 	"default_vcard";
 	"cloud_notify";
 	"server_contact_info";
@@ -78,9 +78,9 @@ authentication = "internal_hashed"
 	"log_slow_events";
 	"mam";
 	};
-	
+
 	modules_disabled = {
-	
+
 	-- Disabled Modules --
 
 	"groups"; -- Shared roster support
@@ -96,7 +96,7 @@ authentication = "internal_hashed"
 	welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
 
 	-- mod_watchregistrations --
-	
+
 	registration_watchers = { "admin@xmpp.is" } -- mod_watchregistrations will use this list of users instead of the admin list
 	registration_notification = "User $username just registered on $host"
 
@@ -169,7 +169,7 @@ limit_auth_max = 5
 -- mod_mam --
 default_archive_policy = false
 archive_cleanup_interval = 60 * 2
-archive_expires_after = "1d"
+archive_expires_after = "7d"
 max_archive_query_results = 20;
 mam_smart_enable = true
 
