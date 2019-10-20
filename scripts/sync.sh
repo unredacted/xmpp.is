@@ -13,6 +13,11 @@ echo
 echo "Syncing Prosody configs"
 rsync -av "${GIT_DIR}"/xmpp.is/etc/prosody/ /etc/prosody/
 
+# Core Prosody files
+echo
+echo "Syncing core Prosody files"
+rsync -av "${GIT_DIR}"/xmpp.is/usr/lib/prosody/ /usr/lib/prosody/
+
 # Hiawatha config
 echo
 echo "Syncing Hiawatha configs"
