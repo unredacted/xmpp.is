@@ -1,6 +1,5 @@
 daemonize = true;
-use_libevent = true;
-pidfile = "/var/run/prosody/prosody.pid"
+network_backend = "epoll"
 plugin_paths = { "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 legacy_ssl_ports = { "5223" }
@@ -135,18 +134,18 @@ authentication = "internal_hashed"
 	limits = {
 
 	c2s = {
-	rate = "5kb/s";
-	burst = "10s";
+	rate = "10kb/s";
+	burst = "3s";
 	};
 
 	s2sin = {
-	rate = "5kb/s";
-	burst = "10s";
+	rate = "10kb/s";
+	burst = "3s";
 	};
 
 	s2sout = {
-	rate = "5kb/s";
-	burst = "10s";
+	rate = "10kb/s";
+	burst = "3s";
 	};
 
 	}
