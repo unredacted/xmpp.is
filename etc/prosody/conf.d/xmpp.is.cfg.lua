@@ -3,7 +3,7 @@ http_host = "http.xmpp.is"
 modules_enabled = { "onions", "http", "register_web", "reload_modules" };
 reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 
-        enabled = true
+  enabled = true
 
 	allow_registration = false;
 	min_seconds_between_registrations = 300
@@ -18,7 +18,7 @@ reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 	key = "/etc/prosody/certs/privkey.pem";
 	}
 
-        register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
+  register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
 
 	--INSERT_SECRETS--
 
