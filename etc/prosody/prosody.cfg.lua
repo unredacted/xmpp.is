@@ -135,17 +135,17 @@ authentication = "internal_hashed"
 
 	c2s = {
 	rate = "10kb/s";
-	burst = "3s";
+	burst = "5s";
 	};
 
 	s2sin = {
 	rate = "10kb/s";
-	burst = "3s";
+	burst = "5s";
 	};
 
 	s2sout = {
 	rate = "10kb/s";
-	burst = "3s";
+	burst = "5s";
 	};
 
 	}
