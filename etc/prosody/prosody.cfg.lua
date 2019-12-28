@@ -1,5 +1,6 @@
 daemonize = true;
 network_backend = "epoll"
+pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 legacy_ssl_ports = { "5223" }
