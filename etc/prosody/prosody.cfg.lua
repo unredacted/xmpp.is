@@ -130,6 +130,11 @@ authentication = "internal_hashed"
 	key = "/etc/prosody/certs/privkey.pem";
 	}
 
+	legacy_ssl_ssl = {
+	certificate = "/etc/prosody/certs/fullchain.pem";
+	key = "/etc/prosody/certs/privkey.pem";
+	}
+
 	-- mod_limits --
 
 	limits = {
