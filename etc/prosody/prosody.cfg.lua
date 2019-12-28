@@ -1,6 +1,6 @@
 daemonize = true;
 network_backend = "epoll"
-plugin_paths = { "/var/lib/prosody/modules" }
+plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 legacy_ssl_ports = { "5223" }
 default_storage = "internal"
@@ -44,7 +44,7 @@ authentication = "internal_hashed"
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-        "admin_telnet"; -- Opens telnet console interface on localhost port 5582
+  "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 	"welcome"; -- Welcome users who register accounts
 	"blocklist"; -- New module replacing mod_privacy
 	"carbons"; -- Officially included in Prosody now
@@ -167,9 +167,10 @@ limit_auth_max = 5
 
 -- mod_mam --
 default_archive_policy = false
-archive_cleanup_interval = 60 * 2
-archive_expires_after = "7d"
-max_archive_query_results = 20;
+archive_expires_after = "1w"
+archive_cleanup_interval = 4*60*60
+max_archive_query_results = 50
+archive_store = archive2
 mam_smart_enable = true
 
 -- mod_smacks --
