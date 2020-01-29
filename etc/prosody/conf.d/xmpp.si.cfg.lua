@@ -1,5 +1,7 @@
 VirtualHost "xmpp.si"
 http_host = "http.xmpp.si"
+http_external_url = "https://http.xmpp.si/"
+trusted_proxies = { "127.0.0.1" };
 modules_enabled = { "onions", "http", "register_web", "reload_modules" };
 reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
 

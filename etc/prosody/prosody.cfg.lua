@@ -158,11 +158,13 @@ authentication = "internal_hashed"
 
 -- mod_http --
 
+http_default_host = "http.xmpp.is"
+
 http_ports = { 5280 }
-http_interfaces = { "*" }
+http_interfaces = { "*", "::" }
 
 https_ports = { 5281 }
-https_interfaces = { "*" }
+https_interfaces = { "*", "::" }
 
 -- mod_log_slow_events --
 log_slow_events_threshold = 1
