@@ -159,6 +159,7 @@ authentication = "internal_hashed"
 -- mod_http --
 
 http_default_host = "http.xmpp.is"
+trusted_proxies = { "127.0.0.1" }
 
 http_ports = { 5280 }
 http_interfaces = { "*", "::" }
