@@ -1,6 +1,6 @@
 VirtualHost "y2qmqomqpszzryei.onion"
-http_host = "y2qmqomqpszzryei.onion"
-http_external_url = "http://y2qmqomqpszzryei.onion/"
+http_host = "http.y2qmqomqpszzryei.onion"
+http_external_url = "http://http.y2qmqomqpszzryei.onion/"
 trusted_proxies = { "127.0.0.1" };
 modules_enabled = { "onions", "http", "reload_modules" };
 reload_modules = { "tls", "onions", "http", "http_upload" };
@@ -64,7 +64,7 @@ onions_map = {
 
 --INSERT_SECRETS--
 
-Component "y2qmqomqpszzryei.onion" "http_upload"
+Component "http.y2qmqomqpszzryei.onion" "http_upload"
 http_upload_expire_after = 60 * 60 * 24 * 7
 http_upload_file_size_limit = 10000000
 http_upload_quota = 1000000000
