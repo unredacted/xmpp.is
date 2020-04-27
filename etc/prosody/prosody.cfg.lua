@@ -197,7 +197,7 @@ block_registrations_users = { "administrator", "admin", "hostmaster", "postmaste
 block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
 
 -- mod_turncredentials --
-turncredentials_host = turn.xmpp.is
+turncredentials_host = "turn.xmpp.is"
 -- turncredentials_secret inserted with prosody-secrets.sh script --
 
 Include "conf.d/*.cfg.lua"

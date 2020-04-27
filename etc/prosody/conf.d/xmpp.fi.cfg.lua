@@ -2,8 +2,8 @@ VirtualHost "xmpp.fi"
 http_host = "http.xmpp.fi"
 http_external_url = "https://http.xmpp.fi/"
 trusted_proxies = { "127.0.0.1" };
-modules_enabled = { "onions", "http", "register_web", "reload_modules" };
-reload_modules = { "tls", "onions", "http", "register_web", "http_upload" };
+modules_enabled = { "onions", "http", "register_web", "reload_modules", "turncredentials" };
+reload_modules = { "tls", "onions", "http", "register_web", "http_upload", "turncredentials" };
 
 enabled = true
 
@@ -22,7 +22,7 @@ ssl = {
 
 register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
 
-turncredentials_host = turn.xmpp.fi
+turncredentials_host = "turn.xmpp.fi"
 
 --INSERT_SECRETS--
 
