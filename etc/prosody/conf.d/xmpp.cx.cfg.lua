@@ -22,6 +22,8 @@ ssl = {
 
 register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"
 
+turncredentials_host = turn.xmpp.cx
+
 --INSERT_SECRETS--
 
 Component "http.xmpp.cx" "http_upload"

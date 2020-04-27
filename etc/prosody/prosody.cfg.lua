@@ -198,7 +198,7 @@ block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII cha
 
 -- mod_turncredentials --
 turncredentials_host = turn.xmpp.is
--- turncredentials_secret inserted with secrets script --
+-- turncredentials_secret inserted with prosody-secrets.sh script --
 
 Include "conf.d/*.cfg.lua"
 
