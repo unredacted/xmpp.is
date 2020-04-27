@@ -62,6 +62,7 @@ authentication = "internal_hashed"
 	"server_contact_info";
 	"lastlog";
 	"bookmarks";
+	"turncredentials";
 
 	-- Security --
 
@@ -194,6 +195,10 @@ smacks_max_old_sessions = 10
 -- mod_block_registrations --
 block_registrations_users = { "administrator", "admin", "hostmaster", "postmaster", "webmaster", "root", "xmpp", "lunar" }
 block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
+
+-- mod_turncredentials --
+turncredentials_host = turn.xmpp.is
+-- turncredentials_secret inserted with secrets script --
 
 Include "conf.d/*.cfg.lua"
 
