@@ -34,7 +34,7 @@ http_upload_quota = 1000000000
 Component "muc.xmpp.cx" "muc"
 name = "XMPP.cx MUC"
 restrict_room_creation = "local"
-modules_enabled = { "vcard_muc", "muc_mam", "muc_limits" };
+modules_enabled = { "vcard_muc", "muc_mam", "muc_limits", "muc_block_pm" };
 muc_event_rate = 1
 muc_burst_factor = 6
 muc_max_nick_length = 20
