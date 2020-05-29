@@ -32,7 +32,7 @@ MAILTO=alerts@lunar.systems
 @hourly find /var/lib/prosody/http_upload/ -mindepth 1 -mtime +14 -delete > /dev/null 2>&1
 
 # Hourly GoAccess stats update
-@hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html > /dev/null 2>&1
+#@hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html > /dev/null 2>&1
 
 # Hourly Borg Backup
 #30 * * * * bash /root/scripts/borgbackup.sh >> /var/log/borg.log 2>&1
