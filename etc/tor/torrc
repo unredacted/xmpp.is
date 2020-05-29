@@ -1,7 +1,6 @@
 DataDirectory /var/lib/tor
 Log notice file /var/log/tor/notice.log
 SafeLogging 0
-#EntryNodes {de}
 
 # Tor HSv2 proxy
 HiddenServiceDir /var/lib/tor/prosody_hidden_service/
