@@ -169,6 +169,9 @@ http_interfaces = { "*", "::" }
 https_ports = { 5281 }
 https_interfaces = { "*", "::" }
 
+-- mod_bosh --
+consider_bosh_secure = true
+
 -- mod_log_slow_events --
 log_slow_events_threshold = 1
 
