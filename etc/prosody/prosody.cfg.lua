@@ -70,7 +70,7 @@ authentication = "internal_hashed"
 	"block_registrations";
 	"limits";
 	"limit_auth";
-	"firewall"
+	"firewall";
 
 	-- Optimzation --
 
