@@ -70,6 +70,7 @@ authentication = "internal_hashed"
 	"block_registrations";
 	"limits";
 	"limit_auth";
+	"firewall"
 
 	-- Optimzation --
 
@@ -134,6 +135,11 @@ authentication = "internal_hashed"
 	legacy_ssl_ssl = {
 	certificate = "/etc/prosody/certs/fullchain.pem";
 	key = "/etc/prosody/certs/privkey.pem";
+	}
+
+	-- mod_firewall --
+	firewall_scripts = {
+	"module:scripts/spam-blocking.pfw"; -- Base anti-spam ruleset
 	}
 
 	-- mod_limits --
