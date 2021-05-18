@@ -15,5 +15,5 @@ chmod -R 700 "${PROSODY_CERTS}"
 /bin/systemctl restart prosody
 
 # Make sure mod_tls and mod_http get reloaded
-{ echo "module:reload('tls')"; sleep 5; } | telnet localhost 5582
-{ echo "module:reload('http')"; sleep 5; } | telnet localhost 5582
+#{ echo "module:reload('tls')"; sleep 5; } | telnet localhost 5582
+#{ echo "module:reload('http')"; sleep 5; } | telnet localhost 5582
