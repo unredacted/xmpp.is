@@ -12,7 +12,7 @@ cp "${LE_DIR}"/privkey.pem "${PROSODY_CERTS}"
 # Permissions force and service reload
 chown -R prosody:prosody "${PROSODY}"
 chmod -R 700 "${PROSODY_CERTS}"
-service prosody reload
+/bin/systemctl restart prosody
 
 # Make sure mod_tls and mod_http get reloaded
 { echo "module:reload('tls')"; sleep 5; } | telnet localhost 5582
