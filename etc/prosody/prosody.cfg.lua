@@ -63,6 +63,7 @@ authentication = "internal_hashed"
 	"lastlog";
 	"bookmarks";
 	"turncredentials";
+	"prometheus";
 
 	-- Security --
 
@@ -208,6 +209,10 @@ block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII cha
 -- mod_turncredentials --
 turncredentials_host = "turn.xmpp.is"
 -- turncredentials_secret inserted with prosody-secrets.sh script --
+
+-- mod_prometheus --
+statistics = "internal"
+statistics_interval = manual
 
 Include "conf.d/*.cfg.lua"
 
