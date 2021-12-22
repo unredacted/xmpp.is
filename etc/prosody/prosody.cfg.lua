@@ -45,7 +45,7 @@ authentication = "internal_hashed"
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-  "admin_telnet"; -- Opens telnet console interface on localhost port 5582
+	"admin_telnet"; -- Opens telnet console interface on localhost port 5582
 	"welcome"; -- Welcome users who register accounts
 	"blocklist"; -- New module replacing mod_privacy
 	"carbons"; -- Officially included in Prosody now
@@ -195,10 +195,11 @@ archive_store = archive2
 mam_smart_enable = true
 
 -- mod_smacks --
-smacks_hibernation_time = 300
+smacks_hibernation_time = 60
 smacks_enabled_s2s = false
+smacks_s2s_resend = false
 smacks_max_unacked_stanzas = 0
-smacks_max_ack_delay = 60
+smacks_max_ack_delay = 30
 smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
 
