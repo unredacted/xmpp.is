@@ -75,7 +75,7 @@ authentication = "internal_hashed"
 
 	-- Optimzation --
 
-	"smacks";
+	--"smacks";
 	"csi";
 	"csi_battery_saver";
 	"log_slow_events";
