@@ -82,6 +82,7 @@ authentication = "internal_hashed"
 	"mam";
 	"presence_cache";
 	"presence_dedup";
+	"throttle_presence";
 	};
 
 	modules_disabled = {
