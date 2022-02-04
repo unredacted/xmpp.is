@@ -150,18 +150,18 @@ authentication = "internal_hashed"
 	limits = {
 
 	c2s = {
-	rate = "10kb/s";
-	burst = "5s";
+	rate = "100kb/s";
+	burst = "30s";
 	};
 
 	s2sin = {
-	rate = "10kb/s";
-	burst = "5s";
+	rate = "100kb/s";
+	burst = "30s";
 	};
 
 	s2sout = {
-	rate = "10kb/s";
-	burst = "5s";
+	rate = "100kb/s";
+	burst = "30s";
 	};
 
 	}
