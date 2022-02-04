@@ -76,10 +76,12 @@ authentication = "internal_hashed"
 	-- Optimzation --
 
 	--"smacks";
-	--"csi";
-	--"csi_battery_saver";
+	"csi";
+	"csi_battery_saver";
 	"log_slow_events";
 	"mam";
+	"presence_cache";
+	"presence_dedup";
 	};
 
 	modules_disabled = {
