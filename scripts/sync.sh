@@ -18,11 +18,6 @@ rsync -av "${GIT_DIR}"/xmpp.is/etc/prosody/ /etc/prosody/
 #echo "Syncing core Prosody files"
 #rsync -av "${GIT_DIR}"/xmpp.is/usr/lib/prosody/ /usr/lib/prosody/
 
-# Hiawatha config
-echo
-echo "Syncing Hiawatha configs"
-rsync -av "${GIT_DIR}"/xmpp.is/etc/hiawatha/ /etc/hiawatha/
-
 # Dehydrated config
 echo
 echo "Syncing Dehydrated configs"
