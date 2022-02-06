@@ -206,6 +206,11 @@ smacks_max_ack_delay = 30
 smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
 
+-- mod_pep --
+pep_max_items = 32
+pep_service_cache_size = 10000
+pep_info_cache_size = 10000
+
 -- mod_block_registrations --
 block_registrations_users = { "administrator", "admin", "hostmaster", "postmaster", "webmaster", "root", "xmpp", "lunar" }
 block_registrations_require = "^[a-zA-Z0-9_.-]+$" -- Allow only simple ASCII characters in usernames
