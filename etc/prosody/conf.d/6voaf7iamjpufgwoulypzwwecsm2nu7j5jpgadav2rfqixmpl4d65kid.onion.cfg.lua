@@ -21,46 +21,31 @@ ssl = {
 onions_tor_all =  true
 onions_only =  false
 
--- Imported from https://github.com/nickcalyx/xmpp-onion-map --
+-- Imported from https://github.com/nyxnor/xmpp-onion-map/blob/master/v3-onions-map.lua
 onions_map = {
-  ["adb-centralen.se"] = "qai7jjjnhbrdiexf.onion";
-  ["anonymitaet-im-inter.net"] = "rwf5skuv5vqzcdit.onion";
-  ["autistici.org"] = "wi7qkxyrdpu5cmvr.onion";
-  ["jabber.calyxinstitute.org"] = "ijeeynrc6x2uy5ob.onion";
-  ["jabber.ccc.de"] = "okj7xc6j2szr2y75.onion";
-  ["cloak.dk"] = "m2dsl4banuimpm6c.onion";
-  ["jabber.cryptoparty.is"] = "cryjabkbdljzohnp.onion";
-  ["daemons.cf"] = "daemon4jidu2oig6.onion";
-  ["dukgo.com"] = "wlcpmruglhxp6quz.onion";
-  ["evil.im"] = "evilxro6nvjuvxqo.onion";
-  ["xmpp.evil.im"] = "evilxro6nvjuvxqo.onion";
-  ["inventati.org"] = "wi7qkxyrdpu5cmvr.onion";
-  ["jabber.ipredator.se"] = "3iffdebkzzkpgipa.onion";
-  ["jabber-germany.de"] = "dbbrphko5tqcpar3.onion";
-  ["joelpurra.se"] = "37x6i3wgr2jyublb.onion";
-  ["kode.im"] = "ihkw7qy3tok45dun.onion";
-  ["im.koderoot.net"] = "ihkw7qy3tok45dun.onion";
-  ["jabber.lqdn.fr"] = "jabber63t4r2qi57.onion";
-  ["nordberg.se"] = "qai7jjjnhbrdiexf.onion";
-  ["jabber.otr.im"] = "5rgdtlawqkcplz75.onion";
-  ["otromundo.cf"] = "arauemwe2utqqzye.onion";
-  ["patchcord.be"] = "xsydhi3dnbjuatpz.onion";
-  ["riseup.net"] = "4cjw6cwpeaeppfqz.onion";
-  ["xmpp.riseup.net"] = "4cjw6cwpeaeppfqz.onion";
-  ["rows.io"] = "yz6yiv2hxyagvwy6.onion";
-  ["xmpp.rows.io"] = "yz6yiv2hxyagvwy6.onion";
-  ["securejabber.me"] = "giyvshdnojeivkom.onion";
-  ["so36.net"] = "s4fgy24e2b5weqdb.onion";
-  ["jabber.so36.net"] = "s4fgy24e2b5weqdb.onion";
-  ["jabber.systemli.org"] = "x5tno6mwkncu5m3h.onion";
-  ["taolo.ga"] = "l3ybpw4vs6ie5rv2.onion";
-  ["tchncs.de"] = "duvfmyqmdlyvc3mi.onion";
-  ["trashserver.net"] = "m4c722bvc2r7brnn.onion";
-  ["wtfismyip.com"] = "ofkztxcohimx34la.onion";
-  ["prosody.xmpp.is"] = "y2qmqomqpszzryei.onion";
-  ["xndr.de"] = "trcubpttd6zkc3tf.onion";
-  ["jabber.cat"] = "sybzodlxacch7st7.onion";
-};
+	["5222.de"] = "fzdx522fvinbaqgwxdet45wryluchpplrkkzkry33um5tufkjd3wdaqd.onion";
+	["anrc.mooo.com"] = "6w5iasklrbr2kw53zqrsjktgjapvjebxodoki3gjnmvb4dvcbmz7n3qd.onion";
+	["cock.li"] = { host = "xdkriz6cn2avvcr2vks5lvvtmfojz2ohjzj4fhyuka55mvljeso2ztqd.onion", port = "5222" };
+	["creep.im"] = "creep7nonbdm4nad2qbmri7z32ajg2l4vcwvzpxnty6wupvc5vfreoad.onion";
+	["dismail.de"] = "4colmnerbjz3xtsjmqogehtpbt5upjzef57huilibbq3wfgpsylub7yd.onion";
+	["e2e.ee"] = { host = "e2eee76htm7znipwviwbjzdy7spoeje2gzcn23jyl77pplvhfa7lfyqd.onion", port = "5222" };
+	["jabber.cat"] = "x76it4hax7s6s6j64ta6iiolar6o6hwlwoeyoqmkjcdgjza6gqqj5gyd.onion";
+	["jabber.de"] = "uoj2xiqxk25p36wbpufiyuhluvxakhpqum7frembhoiuq7a5735ay3qd.onion";
+	["jabber.hot-chilli.net"] = "chillingguw3yu2rmrkqsog4554egiry6fmy264l5wblyadds3c2lnyd.onion";
+	["jabber.otr.im"] = "ynnuxkbbiy5gicdydekpihmpbqd4frruax2mqhpc35xqjxp5ayvrjuqd.onion";
+	["jabber.so36.net"] = "yxkc2uu3rlwzzhxf2thtnzd7obsdd76vtv7n34zwald76g5ogbvjbbqd.onion";
+	["jabber.systemli.org"] = "razpihro3mgydaiykvxwa44l57opvktqeqfrsg3vvwtmvr2srbkcihyd.onion";
+	["jabber.systemausfall.org"] = "jaswtrycaot3jzkr7znje4ebazzvbxtzkyyox67frgvgemwfbzzi6uqd.onion";
+	["jabjab.de"] = "jabjabdea2eewo3gzfurscj2sjqgddptwumlxi3wur57rzf5itje2rid";
+	["systemausfall.org"] = "jaswtrycaot3jzkr7znje4ebazzvbxtzkyyox67frgvgemwfbzzi6uqd.onion";
+	["krautspace.de"] = "jeirlvruhz22jqduzixi6li4xyoweytqglwjons4mbuif76fgslg5uad.onion";
+	["jabber.nr18.space"] = "szd7r26dbcrrrn4jthercrdypxfdmzzrysusyjohn4mpv2zbwcgmeqqd.onion";
+	["talk36.net"] = "yxkc2uu3rlwzzhxf2thtnzd7obsdd76vtv7n34zwald76g5ogbvjbbqd.onion";
+	["wiuwiu.de"] = "qawb5xl3mxiixobjsw2d45dffngyyacp4yd3wjpmhdrazwvt4ytxvayd.onion";
+	["xmpp.is"] = "6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion";
+	["xmpp.riseup.net"] = "jukrlvyhgguiedqswc5lehrag2fjunfktouuhi4wozxhb6heyzvshuyd.onion";
+	["xmpp.trashserver.net"] = "xiynxwxxpw7olq76uhrbvx2ts3i7jagqnqix7arfbknmleuoiwsmt5yd.onion";
+}
 
 --INSERT_SECRETS--
 
