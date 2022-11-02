@@ -1,4 +1,3 @@
-daemonize = false;
 network_backend = "epoll"
 pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
