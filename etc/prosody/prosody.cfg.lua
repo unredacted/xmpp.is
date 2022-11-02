@@ -75,7 +75,7 @@ authentication = "internal_hashed"
 
 	-- Optimzation --
 
-	--"smacks";
+	"smacks";
 	"csi";
 	"csi_battery_saver";
 	"log_slow_events";
@@ -174,7 +174,7 @@ http_default_host = "http.xmpp.is"
 --trusted_proxies = { "127.0.0.1" }
 
 http_ports = { 5280 }
-http_interfaces = { "*", "::" }
+http_interfaces = { "0.0.0.0", "::" }
 
 https_ports = { 5281 }
 https_interfaces = { "*", "::" }
