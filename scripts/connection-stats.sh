@@ -8,11 +8,11 @@ OUTPUT="/var/www/transparency.xmpp.is/connection-stats.txt"
 sleep $[ ( $RANDOM % 30 )  + 1 ]s
 
 # Telnet in and grep for needed line
-{ echo "c2s:show()"; sleep 1; } | telnet localhost 5582 | grep -a "Total:" > "${TMP_OUTPUT}"
+{ echo "c2s:show()"; sleep 1; } | telnet localhost 5582 | grep -a "OK:" > "${TMP_OUTPUT}"
 
 # Cleanup and format
-sed -i 's/| OK: Total: //g' "${TMP_OUTPUT}"
-sed -i 's/clients/C2S connections/g' "${TMP_OUTPUT}"
+sed -i 's/| OK: //g' "${TMP_OUTPUT}"
+sed -i 's/c2s sessions shown/C2S connections/g' "${TMP_OUTPUT}"
 sed -i '/connections/i \
 Currently serving:' "${TMP_OUTPUT}"
 
