@@ -65,6 +65,11 @@ echo
 echo "Syncing mod_register_web"
 rsync -av "${GIT_DIR}"/mod_register_web/ /var/lib/prosody/modules/mod_register_web/
 
+# mod_web_password_reset
+echo
+echo "Syncing mod_web_password_reset"
+rsync -av "${GIT_DIR}"/mod_web_password_reset/ /var/lib/prosody/modules/mod_web_password_reset/
+
 # Cron
 echo
 echo "Syncing crontabs"
