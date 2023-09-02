@@ -63,6 +63,7 @@ authentication = "internal_hashed"
 	"bookmarks";
 	"turncredentials";
 	"prometheus";
+	"password_reset";
 
 	-- Security --
 
