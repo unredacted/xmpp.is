@@ -65,7 +65,6 @@ authentication = "internal_hashed"
 	"prometheus";
 	"password_reset";
 	"web_password_reset";
-	"email";
 
 	-- Security --
 
