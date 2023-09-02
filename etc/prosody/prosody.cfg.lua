@@ -64,6 +64,7 @@ authentication = "internal_hashed"
 	"turncredentials";
 	"prometheus";
 	"password_reset";
+	"web_password_reset";
 
 	-- Security --
 
