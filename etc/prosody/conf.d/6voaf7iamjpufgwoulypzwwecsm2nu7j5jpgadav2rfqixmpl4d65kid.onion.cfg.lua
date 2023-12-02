@@ -66,5 +66,5 @@ onions_map = {
 
 Component "http.6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion" "http_upload"
 http_upload_expire_after = 60 * 60 * 24 * 7
-http_upload_file_size_limit = 10000000
+http_upload_file_size_limit = 100000000
 http_upload_quota = 1000000000
