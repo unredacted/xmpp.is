@@ -192,7 +192,7 @@ limit_auth_max = 5
 
 -- mod_mam --
 default_archive_policy = false
-archive_expires_after = "1w"
+archive_expires_after = "30d"
 archive_cleanup_interval = 4*60*60
 max_archive_query_results = 50
 archive_store = archive2
