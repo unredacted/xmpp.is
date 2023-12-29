@@ -8,10 +8,10 @@ ROOT_SCRIPTS_DIR="/root/scripts"
 # Run chown-root.sh to force root ownership
 bash "${GIT_DIR}"/xmpp.is/scripts/chown-root.sh
 
-# Sync some scripts to /root/scripts
+# Sync some scripts to /etc/letsencrypt/renewal-hooks
 echo
-echo "Syncing some scripts to /root/scripts"
-rsync -av "${GIT_DIR}"/xmpp.is/scripts/cert-fingerprint.sh /root/scripts/
+echo "Syncing some scripts to /etc/letsencrypt/renewal-hooks/post"
+rsync -av "${GIT_DIR}"/xmpp.is/scripts/cert-fingerprint.sh /etc/letsencrypt/renewal-hooks/post/
 
 # Prosody config
 echo
