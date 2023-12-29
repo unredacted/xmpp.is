@@ -128,18 +128,18 @@ authentication = "internal_hashed"
 	-- mod_tls --
 
 	ssl = {
-	certificate = "/etc/prosody/certs/fullchain.pem";
-	key = "/etc/prosody/certs/privkey.pem";
+		certificate = "/etc/prosody/certs/xmpp.is.crt";
+		key = "/etc/prosody/certs/xmpp.is.key";
 	}
 
 	https_ssl = {
-	certificate = "/etc/prosody/certs/fullchain.pem";
-	key = "/etc/prosody/certs/privkey.pem";
+		certificate = "/etc/prosody/certs/xmpp.is.crt";
+		key = "/etc/prosody/certs/xmpp.is.key";
 	}
 
 	legacy_ssl_ssl = {
-	certificate = "/etc/prosody/certs/fullchain.pem";
-	key = "/etc/prosody/certs/privkey.pem";
+		certificate = "/etc/prosody/certs/xmpp.is.crt";
+		key = "/etc/prosody/certs/xmpp.is.key";
 	}
 
 	-- mod_firewall --

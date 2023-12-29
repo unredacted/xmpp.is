@@ -16,8 +16,8 @@ s2s_require_encryption = true
 s2s_secure_auth = true
 
 ssl = {
-  certificate = "/etc/prosody/certs/fullchain.pem";
-  key = "/etc/prosody/certs/privkey.pem";
+  certificate = "/etc/prosody/certs/xmpp.is.crt";
+  key = "/etc/prosody/certs/xmpp.is.key";
 }
 
 register_web_template = "/etc/prosody/register-templates/prosody_web_registration_theme"

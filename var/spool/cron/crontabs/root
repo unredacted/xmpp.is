@@ -10,9 +10,6 @@ MAILTO=alerts@lunar.systems
 # Run anti-bruteforce script
 */5 * * * * bash /home/user/git/xmpp.is/scripts/anti-bruteforce.sh > /dev/null 2>&1
 
-# Run le-renew-hook.sh to check for dehydrated flag and push new certs if possible
-*/5 * * * * bash /home/user/git/xmpp.is/scripts/le-renew-hook.sh >> /home/user/git/dehydrated/renew-cert-push.log 2>&1
-
 # Run service-actions.sh --tor-restart to check if Tor needs to be restarted
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh --tor-restart > /dev/null 2>&1
 
@@ -26,16 +23,7 @@ MAILTO=alerts@lunar.systems
 */5 * * * * bash /home/user/git/xmpp.is/scripts/service-actions.sh --prosody-restart > /dev/null 2>&1
 
 # Force permissions
-@hourly bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
+@daily bash /home/user/git/xmpp.is/scripts/force-owner-and-group.sh > /dev/null 2>&1
 
 # Cleanup mod_http_upload files that didn't delete for some reason
-@hourly find /var/lib/prosody/http_upload/ -mindepth 1 -mtime +30 -delete > /dev/null 2>&1
-
-# Hourly GoAccess stats update
-#@hourly /usr/bin/goaccess /var/log/hiawatha/xmpp.is-access.log -o /var/www/stats.xmpp.is/index.html > /dev/null 2>&1
-
-# Hourly Borg Backup
-#30 * * * * bash /root/scripts/borgbackup.sh >> /var/log/borg.log 2>&1
-
-# Hourly reload of nginx to prevent certificate issues
-@hourly /bin/systemctl reload nginx
+@daily find /var/lib/prosody/http_upload/ -mindepth 1 -mtime +60 -delete > /dev/null 2>&1

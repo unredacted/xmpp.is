@@ -1,1 +1,0 @@
-xmpp.is *.xmpp.is xmpp.co *.xmpp.co xmpp.cx *.xmpp.cx xmpp.xyz *.xmpp.xyz xmpp.fi *.xmpp.fi xmpp.si *.xmpp.si xmpp.chat *.xmpp.chat > all

@@ -8,6 +8,11 @@ ROOT_SCRIPTS_DIR="/root/scripts"
 # Run chown-root.sh to force root ownership
 bash "${GIT_DIR}"/xmpp.is/scripts/chown-root.sh
 
+# Sync some scripts to /root/scripts
+echo
+echo "Syncing some scripts to /root/scripts"
+rsync -av "${GIT_DIR}"/xmpp.is/scripts/cert-fingerprint.sh /root/scripts/
+
 # Prosody config
 echo
 echo "Syncing Prosody configs"
@@ -17,11 +22,6 @@ rsync -av "${GIT_DIR}"/xmpp.is/etc/prosody/ /etc/prosody/
 #echo
 #echo "Syncing core Prosody files"
 #rsync -av "${GIT_DIR}"/xmpp.is/usr/lib/prosody/ /usr/lib/prosody/
-
-# Dehydrated config
-echo
-echo "Syncing Dehydrated configs"
-rsync -av "${GIT_DIR}"/xmpp.is/home/user/git/dehydrated/ "${GIT_DIR}"/dehydrated/
 
 # Tor config
 echo
