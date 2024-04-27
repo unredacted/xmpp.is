@@ -20,6 +20,7 @@ echo | tee -a "${TEMP_OUTPUT_FILE}"
 echo "XMPP.* Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}"/xmpp.is.crt -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}"/xmpp.is.crt -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
+printf "SHA256 Raw Fingerprint=%s\n" "$(openssl x509 -in "${PROSODY_DIR}"/xmpp.is.crt -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -sha256 | awk '{print $2}')" >> "${TEMP_OUTPUT_FILE}"
 
 echo | tee -a "${TEMP_OUTPUT_FILE}"
 
@@ -27,12 +28,14 @@ echo | tee -a "${TEMP_OUTPUT_FILE}"
 echo "y2qmqomqpszzryei.onion Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
+printf "SHA256 Raw Fingerprint=%s\n" "$(openssl x509 -in "${PROSODY_DIR}/${HS1}"/cert.pem -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -sha256 | awk '{print $2}')" >> "${TEMP_OUTPUT_FILE}"
 
 echo | tee -a "${TEMP_OUTPUT_FILE}"
 
 echo "6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion Fingerprints" | tee -a "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS2}"/cert.pem -noout -sha1 -fingerprint >> "${TEMP_OUTPUT_FILE}"
 openssl x509 -in "${PROSODY_DIR}/${HS2}"/cert.pem -noout -sha256 -fingerprint >> "${TEMP_OUTPUT_FILE}"
+printf "SHA256 Raw Fingerprint=%s\n" "$(openssl x509 -in "${PROSODY_DIR}/${HS2}"/cert.pem -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -sha256 | awk '{print $2}')" >> "${TEMP_OUTPUT_FILE}"
 
 # Copy temp file to actual file
 cp "${TEMP_OUTPUT_FILE}" "${OUTPUT_FILE}"
