@@ -113,7 +113,7 @@ authentication = "internal_hashed"
 	abuse = { "https://xmpp.is/contact/" };
 	admin = { "https://xmpp.is/contact/" };
 	feedback = { "https://xmpp.is/contact/" };
-	support = { "https://xmpp.is/contact/" };
+	support = { "mailto:support@xmpp.is" };
 	};
 
 	-- Log Config --
@@ -152,17 +152,17 @@ authentication = "internal_hashed"
 	limits = {
 
 	c2s = {
-	rate = "100kb/s";
+	rate = "1000kb/s";
 	burst = "30s";
 	};
 
 	s2sin = {
-	rate = "100kb/s";
+	rate = "1000kb/s";
 	burst = "30s";
 	};
 
 	s2sout = {
-	rate = "100kb/s";
+	rate = "1000kb/s";
 	burst = "30s";
 	};
 

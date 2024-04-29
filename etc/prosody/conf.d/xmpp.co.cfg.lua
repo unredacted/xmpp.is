@@ -29,6 +29,7 @@ turncredentials_host = "turn.xmpp.co"
 Component "http.xmpp.co" "http_upload"
 http_upload_expire_after = 60 * 60 * 24 * 7
 http_upload_file_size_limit = 100000000
+http_max_content_size = 100000000
 http_upload_quota = 1000000000
 
 Component "muc.xmpp.co" "muc"
