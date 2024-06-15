@@ -11,6 +11,7 @@ echo
 cd "${GIT_DIR}"/xmpp.is && git pull
 cd "${GIT_DIR}"/mod_register_web && git pull
 cd "${GIT_DIR}"/prosody_web_registration_theme && git pull
+cd "${GIT_DIR}"/mod_web_account_delete && git pull
 
 # Mercurial
 cd "${PROSODY_DATA_DIR}"/modules && hg pull && hg update
