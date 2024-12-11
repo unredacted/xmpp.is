@@ -3,7 +3,7 @@ http_host = "http.xmpp.fi"
 http_external_url = "https://http.xmpp.fi/"
 trusted_proxies = { "127.0.0.1" };
 modules_enabled = { "onions", "http", "register_web", "reload_modules", "turncredentials" };
-reload_modules = { "tls", "onions", "http", "register_web", "http_upload", "turncredentials" };
+reload_modules = { "tls", "onions", "http", "register_web", "http_file_share", "turncredentials" };
 
 enabled = true
 
@@ -26,11 +26,9 @@ turncredentials_host = "turn.xmpp.fi"
 
 --INSERT_SECRETS--
 
-Component "http.xmpp.fi" "http_upload"
-http_upload_expire_after = 60 * 60 * 24 * 7
-http_upload_file_size_limit = 100000000
-http_max_content_size = 100000000
-http_upload_quota = 1000000000
+Component "http.xmpp.fi" "http_file_share"
+http_file_share_expires_after = 60 * 60 * 24 * 7
+http_file_share_size_limit = 100*1024*1024
 
 Component "muc.xmpp.fi" "muc"
 name = "XMPP.fi MUC"

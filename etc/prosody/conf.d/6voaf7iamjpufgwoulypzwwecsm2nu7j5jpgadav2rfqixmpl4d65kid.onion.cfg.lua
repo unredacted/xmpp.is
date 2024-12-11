@@ -3,7 +3,7 @@ http_host = "http.6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion
 http_external_url = "http://http.6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion/"
 trusted_proxies = { "127.0.0.1" };
 modules_enabled = { "onions", "http", "reload_modules" };
-reload_modules = { "tls", "onions", "http", "http_upload" };
+reload_modules = { "tls", "onions", "http", "http_file_share" };
 
 enabled = true
 
@@ -49,8 +49,6 @@ onions_map = {
 
 --INSERT_SECRETS--
 
-Component "http.6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion" "http_upload"
-http_upload_expire_after = 60 * 60 * 24 * 7
-http_upload_file_size_limit = 100000000
-http_max_content_size = 100000000
-http_upload_quota = 1000000000
+Component "http.6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion" "http_file_share"
+http_file_share_expires_after = 60 * 60 * 24 * 7
+http_file_share_size_limit = 100*1024*1024
