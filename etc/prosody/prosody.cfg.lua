@@ -75,7 +75,7 @@ authentication = "internal_hashed"
 	"limit_auth";
 	"firewall";
 	"sasl_ssdp";
-	"sasl2";
+	-- "sasl2"; - disable until supported in Prosody 0.12
 
 	-- Optimzation --
 
