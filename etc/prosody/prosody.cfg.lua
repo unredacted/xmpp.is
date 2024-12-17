@@ -74,6 +74,8 @@ authentication = "internal_hashed"
 	"limits";
 	"limit_auth";
 	"firewall";
+	"sasl_ssdp";
+	"sasl2";
 
 	-- Optimzation --
 
