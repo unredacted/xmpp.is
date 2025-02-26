@@ -2,8 +2,8 @@ VirtualHost "xmpp.si"
 http_host = "http.xmpp.si"
 http_external_url = "https://http.xmpp.si/"
 trusted_proxies = { "127.0.0.1" };
-modules_enabled = { "onions", "http", "register_web", "reload_modules", "turncredentials" };
-reload_modules = { "tls", "onions", "http", "register_web", "http_file_share", "turncredentials" };
+modules_enabled = { "onions", "http", "register_web", "reload_modules", "turncredentials", "sasl_ssdp" };
+reload_modules = { "tls", "onions", "http", "register_web", "http_file_share", "turncredentials", "sasl_ssdp" };
 
 enabled = true
 
@@ -33,7 +33,7 @@ http_file_share_size_limit = 100*1024*1024
 Component "muc.xmpp.si" "muc"
 name = "XMPP.xyz MUC"
 restrict_room_creation = "local"
-modules_enabled = { "vcard_muc", "muc_mam", "muc_limits", "muc_block_pm" };
+modules_enabled = { "vcard_muc", "muc_mam", "muc_limits", "muc_block_pm", "muc_moderation", "muc_restrict_media" };
 muc_event_rate = 1
 muc_burst_factor = 6
 muc_max_nick_length = 20
