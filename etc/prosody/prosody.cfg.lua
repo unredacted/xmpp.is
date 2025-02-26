@@ -28,6 +28,7 @@ authentication = "internal_hashed"
 
 	"roster"; -- Allow users to have a roster. Recommended ;)
 	"saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
+	"sasl2"; -- Support for SASL2 https://modules.prosody.im/mod_sasl2.html
 	"tls"; -- Add support for secure TLS on c2s/s2s connections
 	"dialback"; -- s2s dialback support
 	"disco"; -- Service discovery
