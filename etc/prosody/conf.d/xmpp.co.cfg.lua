@@ -2,14 +2,15 @@ VirtualHost "xmpp.co"
 http_host = "http.xmpp.co"
 http_external_url = "https://http.xmpp.co/"
 trusted_proxies = { "127.0.0.1" };
-modules_enabled = { "onions", "http", "register_web", "reload_modules", "turncredentials", "sasl_ssdp" };
-reload_modules = { "tls", "onions", "http", "register_web", "http_file_share", "turncredentials", "sasl_ssdp" };
+modules_enabled = { "onions", "http", "register_web", "reload_modules", "turncredentials", "sasl_ssdp", "register_oob_url" };
+reload_modules = { "tls", "onions", "http", "register_web", "http_file_share", "turncredentials", "sasl_ssdp", "register_oob_url" };
 
 enabled = true
 
 allow_registration = false;
+register_oob_url = "https://xmpp.is/account/register/"
 min_seconds_between_registrations = 300
-welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
+welcome_message = "Welcome to $host, as a 501c3 non-profit organization we need your help to keep our services running! Consider making a donation of any amount at https://unredacted.org/donate/"
 
 c2s_require_encryption = true
 s2s_require_encryption = true
