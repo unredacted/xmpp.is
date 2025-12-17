@@ -199,7 +199,7 @@ default_archive_policy = false
 archive_expires_after = "90d"
 archive_cleanup_interval = 4*60*60
 max_archive_query_results = 50
-archive_store = archive2
+archive_store = "archive2"
 mam_smart_enable = true
 
 -- mod_smacks --
