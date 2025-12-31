@@ -2,9 +2,14 @@ network_backend = "epoll"
 pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
-legacy_ssl_ports = { "5223" }
+c2s_direct_tls_ports = { "5223" }
 default_storage = "internal"
 authentication = "internal_hashed"
+
+-- Global S2S security settings (moved from vhosts)
+s2s_secure_auth = true
+s2s_require_encryption = true
+trusted_proxies = { "127.0.0.1" }
 
 	storage = {
 
@@ -32,7 +37,6 @@ authentication = "internal_hashed"
 	"tls"; -- Add support for secure TLS on c2s/s2s connections
 	"dialback"; -- s2s dialback support
 	"disco"; -- Service discovery
-	"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 	"private"; -- Private XML storage (for room bookmarks, etc.)
 	"vcard4"; -- Add support for the new vcard format
 	"vcard_legacy"; -- Support old vcard format for legacy clients
@@ -45,11 +49,10 @@ authentication = "internal_hashed"
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-	"admin_telnet"; -- Opens telnet console interface on localhost port 5582
+	"admin_shell"; -- Opens a Prosody shell (prosodyctl shell)
 	"welcome"; -- Welcome users who register accounts
 	"blocklist"; -- New module replacing mod_privacy
 	"carbons"; -- Officially included in Prosody now
-	"proxy65"; -- Proxy for clients behind NAT or firewalls
 	"watchregistrations"; -- Alert admins of registrations
 
 	--- Downloaded & Enabled Modules ---
@@ -95,11 +98,8 @@ authentication = "internal_hashed"
 	-- Disabled Modules --
 
 	"groups"; -- Shared roster support
-	-- "watchregistrations"; -- Alert admins of registrations
 	"motd"; -- Send a message to users when they log in
 	"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
-	-- "http_files"; -- Serve static files from a directory over HTTP
-	-- "offline"; -- Offline messages
 	};
 
 	-- mod_welcome --
@@ -141,20 +141,20 @@ authentication = "internal_hashed"
 		key = "/etc/prosody/certs/xmpp.is.key";
 	}
 
-	legacy_ssl_ssl = {
+	c2s_direct_tls_ssl = {
 		certificate = "/etc/prosody/certs/xmpp.is.crt";
 		key = "/etc/prosody/certs/xmpp.is.key";
 	}
 
 	-- mod_firewall --
-    firewall_scripts = {
-        "/etc/prosody/firewall/admin-whitelist.pfw";
-        "module:scripts/spam-blocking.pfw";
-        "module:scripts/spam-blocklists.pfw";
-    }
+	firewall_scripts = {
+		"/etc/prosody/firewall/admin-whitelist.pfw";
+		"module:scripts/spam-blocking.pfw";
+		"module:scripts/spam-blocklists.pfw";
+	}
 
-    -- mod_anti_spam --
-    anti_spam_services = { "xmppbl.org" }
+	-- mod_anti_spam --
+	anti_spam_services = { "xmppbl.org" }
 
 	-- mod_limits --
 
@@ -180,8 +180,6 @@ authentication = "internal_hashed"
 -- mod_http --
 
 http_default_host = "http.xmpp.is"
---http_external_url = "https://http.xmpp.is/"
---trusted_proxies = { "127.0.0.1" }
 
 http_ports = { 5280 }
 http_interfaces = { "0.0.0.0", "::" }
@@ -202,7 +200,6 @@ limit_auth_max = 5
 -- mod_mam --
 default_archive_policy = false
 archive_expires_after = "90d"
-archive_cleanup_interval = 4*60*60
 max_archive_query_results = 50
 archive_store = "archive2"
 mam_smart_enable = true
