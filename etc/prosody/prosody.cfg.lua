@@ -80,7 +80,7 @@ trusted_proxies = { "127.0.0.1" }
 	"limit_auth";
 	"firewall";
 	"sasl_ssdp";
-	"anti_spam";
+	--"anti_spam"; # Doesn't seem to work with Prosody 0.13.0
 
 	-- Optimzation --
 
@@ -155,7 +155,7 @@ trusted_proxies = { "127.0.0.1" }
 	}
 
 	-- mod_anti_spam --
-	anti_spam_services = { "xmppbl.org" }
+	--anti_spam_services = { "xmppbl.org" } # Doesn't seem to work with Prosody 0.13.0
 
 	-- mod_limits --
 
