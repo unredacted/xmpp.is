@@ -49,6 +49,7 @@ trusted_proxies = { "127.0.0.1" }
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+    "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 	"admin_shell"; -- Opens a Prosody shell (prosodyctl shell)
 	"welcome"; -- Welcome users who register accounts
 	"blocklist"; -- New module replacing mod_privacy
