@@ -202,10 +202,10 @@ archive_store = "archive2"
 mam_smart_enable = true
 
 -- mod_smacks --
-smacks_hibernation_time = 60
+smacks_hibernation_time = 600
 smacks_enabled_s2s = false
 smacks_s2s_resend = false
-smacks_max_unacked_stanzas = 0
+smacks_max_unacked_stanzas = 5
 smacks_max_ack_delay = 30
 smacks_max_hibernated_sessions = 10
 smacks_max_old_sessions = 10
