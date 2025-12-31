@@ -63,7 +63,7 @@ onions_map = {
 Component "muc.6voaf7iamjpufgwoulypzwwecsm2nu7j5jpgadav2rfqixmpl4d65kid.onion" "muc"
 name = "XMPP.is Tor HSv3 MUC"
 restrict_room_creation = "local"
-modules_enabled = { "onions", "vcard_muc", "muc_mam", "muc_limits", "muc_block_pm", "muc_moderation", "muc_restrict_media" };
+modules_enabled = { "onions", "muc_mam", "muc_limits", "muc_block_pm", "muc_moderation", "muc_restrict_media" };
 muc_event_rate = 1
 muc_burst_factor = 6
 muc_max_nick_length = 20
