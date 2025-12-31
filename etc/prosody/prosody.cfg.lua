@@ -76,6 +76,7 @@ authentication = "internal_hashed"
 	"limit_auth";
 	"firewall";
 	"sasl_ssdp";
+	"anti_spam";
 
 	-- Optimzation --
 
@@ -146,16 +147,21 @@ authentication = "internal_hashed"
 	}
 
 	-- mod_firewall --
-	firewall_scripts = {
-	"module:scripts/spam-blocking.pfw"; -- Base anti-spam ruleset
-	}
+    firewall_scripts = {
+        "/etc/prosody/firewall/admin-whitelist.pfw";
+        "module:scripts/spam-blocking.pfw";
+        "module:scripts/spam-blocklists.pfw";
+    }
+
+    -- mod_anti_spam --
+    anti_spam_services = { "xmppbl.org" }
 
 	-- mod_limits --
 
 	limits = {
 
 	c2s = {
-	rate = "1000kb/s";
+	rate = "500kb/s";
 	burst = "30s";
 	};
 
