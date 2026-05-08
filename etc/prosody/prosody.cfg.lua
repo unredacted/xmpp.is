@@ -3,7 +3,7 @@ pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 c2s_direct_tls_ports = { "5223" }
-default_storage = "internal"
+default_storage = "sql"
 authentication = "internal_hashed"
 
 -- Global S2S security settings (moved from vhosts)
@@ -11,12 +11,13 @@ s2s_secure_auth = true
 s2s_require_encryption = true
 trusted_proxies = { "127.0.0.1" }
 
-	storage = {
-
-	-- mod_mam --
-	archive = "internal";
-	archive2 = "internal";
-
+	-- mod_storage_sql --
+	sql = {
+		driver = "PostgreSQL";
+		database = "prosody";
+		username = "prosody";
+		host = "127.0.0.1";
+		--INSERT_DB_PASSWORD--
 	}
 
 	-- mod_reload_modules --
@@ -216,8 +217,8 @@ smacks_max_old_sessions = 10
 
 -- mod_pep --
 pep_max_items = 32
-pep_service_cache_size = 10000
-pep_info_cache_size = 10000
+pep_service_cache_size = 1000
+pep_info_cache_size = 1000
 
 -- mod_block_registrations --
 block_registrations_users = { "administrator", "admin", "hostmaster", "postmaster", "webmaster", "root", "xmpp", "lunar" }
