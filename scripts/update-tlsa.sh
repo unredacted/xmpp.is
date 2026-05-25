@@ -16,7 +16,7 @@ CF_ZONE_ID="b41331eb15ef71702fee8e7c795950b1"
 DOMAIN="xmpp.is"
 
 # Record names
-RECORD_NAMES=("_5222._tcp.prosody" "_5223._tcp.prosody" "_5269._tcp.prosody")
+RECORD_NAMES=("_5222._tcp.prosody" "_5223._tcp.prosody" "_5269._tcp.prosody" "_5270._tcp.prosody")
 
 # TLSA record type
 TLSA_RECORD_TYPE="TLSA"

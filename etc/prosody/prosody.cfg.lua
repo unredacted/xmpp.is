@@ -3,6 +3,8 @@ pidfile = "/var/run/prosody/prosody.pid"
 plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 c2s_direct_tls_ports = { "5223" }
+s2s_ports = { "5269" }
+s2s_direct_tls_ports = { "5270" }
 default_storage = "sql"
 authentication = "internal_hashed"
 
@@ -144,6 +146,11 @@ trusted_proxies = { "127.0.0.1" }
 	}
 
 	c2s_direct_tls_ssl = {
+		certificate = "/etc/prosody/certs/xmpp.is.crt";
+		key = "/etc/prosody/certs/xmpp.is.key";
+	}
+
+	s2s_direct_tls_ssl = {
 		certificate = "/etc/prosody/certs/xmpp.is.crt";
 		key = "/etc/prosody/certs/xmpp.is.key";
 	}
