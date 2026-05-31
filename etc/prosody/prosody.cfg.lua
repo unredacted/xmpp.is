@@ -51,6 +51,7 @@ trusted_proxies = { "127.0.0.1" }
 	"register"; -- Allow users to register on this server using a client and change passwords
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
+	"motd"; -- Message of the day: shown to users on login (fundraiser notice)
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
     "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 	"admin_shell"; -- Opens a Prosody shell (prosodyctl shell)
@@ -102,13 +103,24 @@ trusted_proxies = { "127.0.0.1" }
 	-- Disabled Modules --
 
 	"groups"; -- Shared roster support
-	"motd"; -- Send a message to users when they log in
 	"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 	};
 
 	-- mod_welcome --
 
 	welcome_message = "Welcome to $host, make sure you browse around the site for more details about us! https://xmpp.is/"
+
+	-- mod_motd --
+	-- TEMPORARY fundraiser notice for the Tor internet freedom funding round
+	-- (ends 2026-06-19). Remove this block AND re-disable mod_motd
+	-- (move "motd" back into modules_disabled) once the round closes.
+	-- motd_jid is intentionally left unset so each VirtualHost sends from its own domain.
+	motd_text = [[
+XMPP.is is run by Unredacted, a nonprofit. Donations keep this server, our Tor relays, bridges, and proxies online, and we need them to keep operating.
+
+The Tor Project is running a matching round for internet freedom until June 19, so even a small donation has extra impact right now. Please give what you can: https://internetfreedom.torproject.org/projects/unredacted/
+
+Questions, or want to meet the community? Join the lounge at lounge@muc.xmpp.is. We're on other platforms too: https://unredacted.org/contact/]]
 
 	-- mod_watchregistrations --
 
