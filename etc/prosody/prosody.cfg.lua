@@ -51,7 +51,7 @@ trusted_proxies = { "127.0.0.1" }
 	"register"; -- Allow users to register on this server using a client and change passwords
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"announce"; -- Send announcement to all online users
-	"motd"; -- Message of the day: shown to users on login (fundraiser notice)
+	--"motd"; -- Message of the day: shown to users on login (fundraiser notice)
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
     "admin_telnet"; -- Opens telnet console interface on localhost port 5582
 	"admin_shell"; -- Opens a Prosody shell (prosodyctl shell)
