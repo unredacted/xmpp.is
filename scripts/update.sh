@@ -28,9 +28,9 @@ echo "Inserting Prosody secrets"
 
 bash "${ROOT_SCRIPTS_DIR}"/prosody-secrets.sh
 
-echo "Forcing permissions"
+#echo "Forcing permissions"
 
-bash "${GIT_DIR}"/xmpp.is/scripts/force-owner-and-group.sh
+#bash "${GIT_DIR}"/xmpp.is/scripts/force-owner-and-group.sh
 
 echo
 
