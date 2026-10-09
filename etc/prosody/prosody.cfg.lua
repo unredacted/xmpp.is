@@ -1,6 +1,8 @@
 network_backend = "epoll"
 pidfile = "/var/run/prosody/prosody.pid"
-plugin_paths = { "/usr/lib/prosody/modules", "/var/lib/prosody/modules" }
+-- /etc/prosody/modules holds patched copies of community modules (synced from this repo),
+-- it must come before the prosody-modules checkout in /var/lib/prosody/modules
+plugin_paths = { "/usr/lib/prosody/modules", "/etc/prosody/modules", "/var/lib/prosody/modules" }
 c2s_ports = { "5222" }
 c2s_direct_tls_ports = { "5223" }
 s2s_ports = { "5269" }
@@ -78,7 +80,6 @@ trusted_proxies = { "127.0.0.1" }
 
 	-- Security --
 
-	"filter_chatstates";
 	"block_registrations";
 	"limits";
 	"limit_auth";
@@ -91,12 +92,11 @@ trusted_proxies = { "127.0.0.1" }
 
 	"smacks";
 	"csi";
-	"csi_battery_saver";
+	"csi_simple"; -- Replaces csi_battery_saver, throttle_presence & filter_chatstates, which don't support being combined
 	"log_slow_events";
 	"mam";
 	"presence_cache";
 	"presence_dedup";
-	"throttle_presence";
 	};
 
 	modules_disabled = {
@@ -214,6 +214,18 @@ consider_bosh_secure = true
 
 -- mod_log_slow_events --
 log_slow_events_threshold = 1
+
+-- Lua garbage collector --
+-- Prosody is single-threaded and every GC cycle ends with a 3-4 second pause on our ~800 MiB
+-- Lua heap. With the default threshold (105) a new cycle starts after only 5% heap growth,
+-- which meant a full-server freeze every 9-25 seconds depending on load. 150 waits for 50%
+-- growth instead (about 10x fewer cycles) at the cost of a larger peak heap (~1.2 GiB).
+-- Only applied on restart, not on reload.
+gc = {
+	mode = "incremental";
+	threshold = 150;
+	speed = 500;
+}
 
 -- mod_limit_auth --
 limit_auth_period = 30

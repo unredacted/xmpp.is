@@ -3,11 +3,10 @@
         rotate 14
         compress
         delaycompress
-        create 640 prosody adm
-        postrotate
-        service prosody reload > /dev/null
-        endscript
-        sharedscripts
+        # Don't signal Prosody after rotating: SIGHUP (service prosody reload) is a full
+        # config reload, which froze the whole server for 6-10 seconds every night.
+        # Prosody opens its logs in append mode, so truncating in place is safe.
+        copytruncate
         missingok
         notifempty
 }
