@@ -43,31 +43,47 @@ start = time.time()
 stall = None
 minutes = {}
 total_stalled = 0.0
+
+
+def record_stall(end, cpu_ticks, note=""):
+    global total_stalled
+    duration = end - stall["start"]
+    if duration < MIN_STALL:
+        return
+    cpu = (cpu_ticks - stall["cpu"]) / TICKS
+    states = ", ".join(f"{k} {v}" for k, v in sorted(stall["states"].items(), key=lambda kv: -kv[1]))
+    print(f"stall at {clock(stall['start'])}: {duration:5.2f}s blocked, {cpu:5.2f}s CPU  [samples: {states}]{note}")
+    minute = minutes.setdefault(datetime.datetime.fromtimestamp(stall["start"]).strftime("%H:%M"), [0, 0.0])
+    minute[0] += 1
+    minute[1] += duration
+    total_stalled += duration
+
+
 print(f"Sampling Prosody (pid {PID}) for {DURATION:.0f}s")
+cpu_ticks = 0
 while time.time() - start < DURATION:
     now = time.time()
     try:
         state, cpu_ticks = sample()
     except (FileNotFoundError, ProcessLookupError):
+        if stall:
+            record_stall(now, cpu_ticks, "  (Prosody exited while blocked)")
+            stall = None
         print("Prosody exited")
         break
-    minute = minutes.setdefault(datetime.datetime.fromtimestamp(now).strftime("%H:%M"), [0, 0.0])
+    minutes.setdefault(datetime.datetime.fromtimestamp(now).strftime("%H:%M"), [0, 0.0])
     if state == "idle":
         if stall:
-            duration = now - stall["start"]
-            if duration >= MIN_STALL:
-                cpu = (cpu_ticks - stall["cpu"]) / TICKS
-                states = ", ".join(f"{k} {v}" for k, v in sorted(stall["states"].items(), key=lambda kv: -kv[1]))
-                print(f"stall at {clock(stall['start'])}: {duration:5.2f}s blocked, {cpu:5.2f}s CPU  [samples: {states}]")
-                minute[0] += 1
-                minute[1] += duration
-                total_stalled += duration
+            record_stall(now, cpu_ticks)
             stall = None
     else:
         if not stall:
             stall = {"start": now, "cpu": cpu_ticks, "states": {}}
         stall["states"][state] = stall["states"].get(state, 0) + 1
     time.sleep(max(0, INTERVAL - (time.time() - now)))
+
+if stall:  # still blocked when sampling ended
+    record_stall(time.time(), cpu_ticks, "  (still blocked when sampling ended)")
 
 elapsed = time.time() - start
 print("\nPer minute:")

@@ -6,17 +6,26 @@
 --   mod_s2s.lua:204: attempt to call a nil value (method 'push')
 --   mod_s2s.lua:376: attempt to call a nil value (field 'count')
 -- and the queued stanzas to .onion servers are lost. This copy creates the sendq as a
--- util.queue and bounces it the same way mod_s2s does. It is loaded instead of the
--- prosody-modules checkout because /etc/prosody/modules comes first in plugin_paths.
--- Drop it once upstream mod_onions is fixed.
+-- util.queue and bounces it the same way mod_s2s does.
+--
+-- It also fixes the SOCKS5 phase, before mod_s2s takes over the connection: failures
+-- (proxy errors, Tor closing the connection, no answer within s2s_timeout) now destroy the
+-- session and bounce its queue instead of leaving it wedged in s2sout, the status checks
+-- actually work, partial reads are no longer replayed, and finished connections are
+-- removed from the session map.
+--
+-- It is loaded instead of the prosody-modules checkout because /etc/prosody/modules comes
+-- first in plugin_paths. Drop it once upstream mod_onions is fixed.
 
 local prosody = prosody;
 local core_process_stanza = prosody.core_process_stanza;
 
 local addclient = require "net.server".addclient;
 local s2s_new_outgoing = require "core.s2smanager".new_outgoing;
+local s2s_destroy_session = require "core.s2smanager".destroy_session;
 local initialize_filters = require "util.filters".initialize;
 local st = require "util.stanza";
+local errors = require "util.error";
 local new_queue = require "util.queue".new;
 
 local portmanager = require "core.portmanager";
@@ -40,12 +49,22 @@ local forbid_else = module:get_option_boolean("onions_only", false);
 local torify_all = module:get_option_boolean("onions_tor_all", false);
 local onions_map = module:get_option("onions_map", {});
 local sendq_size = module:get_option_number("s2s_send_queue_size", 1024*32);
+local connect_timeout = module:get_option_period("s2s_timeout", 90);
 
 local sessions = module:shared("sessions");
 
 -- The socks5listener handles connection while still connecting to the proxy,
 -- then it hands them over to the normal listener (in mod_s2s)
 local socks5listener = { default_port = proxy_port, default_mode = "*a", default_interface = "*" };
+
+-- The connection through the proxy failed before mod_s2s took over: destroy the session,
+-- which removes it from s2sout and bounces its queued stanzas, so the next stanza retries
+local function socks5_failed(conn, session, reason)
+	module:log("debug", "SOCKS5 connection to %s failed: %s", tostring(session.socks5_to), reason);
+	sessions[conn] = nil;
+	s2s_destroy_session(session, reason);
+	conn:close();
+end
 
 local function socks5_connect_sent(conn, data)
 
@@ -58,9 +77,8 @@ local function socks5_connect_sent(conn, data)
 
 	local request_status = byte(data, 2);
 
-	if not request_status == 0x00 then
-		module:log("debug", "Failed to connect to the SOCKS5 proxy. :(");
-		session:close(false);
+	if request_status ~= 0x00 then
+		socks5_failed(conn, session, ("Tor could not connect to %s (SOCKS5 status 0x%02x)"):format(tostring(session.socks5_to), request_status));
 		return;
 	end
 
@@ -81,8 +99,7 @@ local function socks5_connect_sent(conn, data)
 		module:log("debug", "Should connect to: %s:%d", ip, port);
 
 		if not (ip == "0.0.0.0" and port == 0) then
-			module:log("debug", "The SOCKS5 proxy tells us to connect to a different IP, don't know how. :(");
-			session:close(false);
+			socks5_failed(conn, session, "The SOCKS5 proxy tells us to connect to a different IP, don't know how");
 			return;
 		end
 
@@ -93,6 +110,7 @@ local function socks5_connect_sent(conn, data)
 
 		session.socks5_handler = nil;
 		session.socks5_buffer = nil;
+		sessions[conn] = nil; -- mod_s2s tracks the connection from here on
 
 		local w, log = conn.send, session.log;
 
@@ -125,6 +143,8 @@ local function socks5_connect_sent(conn, data)
 		listener.register_outgoing(conn, session);
 
 		listener.onconnect(conn);
+	else
+		socks5_failed(conn, session, ("Unsupported SOCKS5 address type 0x%02x"):format(response));
 	end
 end
 
@@ -143,9 +163,8 @@ local function socks5_handshake_sent(conn, data)
 	module:log("debug", "SOCKS version: "..byte(data, 1));
 	module:log("debug", "Response: "..request_status);
 
-	if not request_status == 0x00 then
-		module:log("debug", "Failed to connect to the SOCKS5 proxy. :( It seems to require authentication.");
-		session:close(false);
+	if request_status ~= 0x00 then
+		socks5_failed(conn, session, "The SOCKS5 proxy seems to require authentication");
 		return;
 	end
 
@@ -161,10 +180,13 @@ end
 function socks5listener.onconnect(conn)
 	module:log("debug", "Connected to SOCKS5 proxy, sending SOCKS5 handshake.");
 
+	local session = sessions[conn];
+	if not session then return; end
+
 	-- Socks version 5, 1 method, no auth
 	conn:write(c(5) .. c(1) .. c(0));
 
-	sessions[conn].socks5_handler = socks5_handshake_sent;
+	session.socks5_handler = socks5_handshake_sent;
 end
 
 function socks5listener.register_outgoing(conn, session)
@@ -173,14 +195,22 @@ function socks5listener.register_outgoing(conn, session)
 end
 
 function socks5listener.ondisconnect(conn, err)
-	sessions[conn]  = nil;
+	local session = sessions[conn];
+	sessions[conn] = nil;
+	if session then
+		-- Tor closed the connection before mod_s2s took over
+		s2s_destroy_session(session, "Connection through Tor failed: "..tostring(err or "closed"));
+	end
 end
 
 function socks5listener.onincoming(conn, data)
 	local session = sessions[conn];
+	if not session then return; end
 
+	-- Prepend a partial reply from a previous read; handlers store it again if still incomplete
 	if session.socks5_buffer then
 		data = session.socks5_buffer .. data;
+		session.socks5_buffer = nil;
 	end
 
 	if session.socks5_handler then
@@ -196,11 +226,22 @@ local function connect_socks5(host_session, connect_host, connect_port)
 	host_session.socks5_to = connect_host;
 	host_session.socks5_port = connect_port;
 
-	local conn = addclient(proxy_ip, proxy_port, socks5listener, "*a");
+	local conn, err = addclient(proxy_ip, proxy_port, socks5listener, "*a");
+	if not conn then
+		s2s_destroy_session(host_session, "Could not connect to the Tor SOCKS5 proxy: "..tostring(err));
+		return;
+	end
 
 	socks5listener.register_outgoing(conn, host_session);
 
 	host_session.conn = conn;
+
+	-- mod_s2s only starts its own connect timeout once it takes over the connection
+	module:add_timer(connect_timeout, function ()
+		if sessions[conn] == host_session then
+			socks5_failed(conn, host_session, "Timed out connecting through Tor");
+		end
+	end);
 end
 
 local bouncy_stanzas = { message = true, presence = true, iq = true };
@@ -218,11 +259,21 @@ local function bounce_sendq(session, reason)
 			(session.log or log)("error", "Attempting to close the dummy origin of s2s error replies, please report this! Traceback: %s", debug.traceback());
 		end;
 	};
-	-- mod_s2s passes either a string or a util.error object
-	local reason_text = type(reason) == "string" and reason or type(reason) == "table" and reason.text or nil;
+	-- Same error conditions as mod_s2s's bounce_sendq
+	local error_type = "cancel";
+	local condition = "remote-server-not-found";
+	local reason_text;
+	if session.had_stream then -- set when a stream is opened by the remote
+		error_type, condition = "wait", "remote-server-timeout";
+	end
+	if errors.is_error(reason) then
+		error_type, condition, reason_text = reason.type, reason.condition, reason.text;
+	elseif type(reason) == "string" then
+		reason_text = reason;
+	end
 	for stanza in sendq:consume() do
 		if not stanza.attr.xmlns and bouncy_stanzas[stanza.name] and stanza.attr.type ~= "error" and stanza.attr.type ~= "result" then
-			local reply = st.error_reply(stanza, "cancel", "remote-server-not-found",
+			local reply = st.error_reply(stanza, error_type, condition,
 				reason_text and ("Server-to-server connection failed: "..reason_text) or nil);
 			core_process_stanza(dummy, reply);
 		end

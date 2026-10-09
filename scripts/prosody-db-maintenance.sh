@@ -34,10 +34,17 @@ function psql_prosody {
   runuser -u postgres -- psql -X -q -v ON_ERROR_STOP=1 -d "${DB}" "$@"
 }
 
+# Stop at the first failed step, so a partial run is never reported as success.
+# Deletes are committed per batch, re-running after a failure just continues.
+function fail {
+  echo "Failed: $1, stopping" >&2
+  exit 1
+}
+
 for STORE in "${STORES[@]}"; do
   echo "== Store '${STORE}', rows older than ${RETENTION_DAYS} days"
   if [ "${DELETE}" -eq 0 ]; then
-    psql_prosody -v store="${STORE}" -v days="${RETENTION_DAYS}" <<'EOF'
+    psql_prosody -v store="${STORE}" -v days="${RETENTION_DAYS}" <<'EOF' || fail "dry run of store '${STORE}'"
 SELECT count(*) AS rows_to_delete,
        to_timestamp(min("when"))::date AS oldest,
        to_timestamp(max("when"))::date AS newest
@@ -47,7 +54,7 @@ EOF
     continue
   fi
 
-  psql_prosody -v store="${STORE}" -v days="${RETENTION_DAYS}" -v batch="${BATCH_SIZE}" -v pause="${PAUSE_SECONDS}" <<'EOF'
+  psql_prosody -v store="${STORE}" -v days="${RETENTION_DAYS}" -v batch="${BATCH_SIZE}" -v pause="${PAUSE_SECONDS}" <<'EOF' || fail "deleting from store '${STORE}'"
 -- Find the rows once (single sequential scan), then delete them by primary key in batches
 CREATE TEMP TABLE doomed AS
   SELECT sort_id FROM prosodyarchive
@@ -83,5 +90,5 @@ done
 
 if [ "${DELETE}" -eq 1 ]; then
   echo "== Vacuuming prosodyarchive (makes the freed space reusable, does not lock the table)"
-  psql_prosody -c "VACUUM (ANALYZE) prosodyarchive;"
+  psql_prosody -c "VACUUM (ANALYZE) prosodyarchive;" || fail "vacuum"
 fi
