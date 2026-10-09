@@ -8,10 +8,16 @@ ROOT_SCRIPTS_DIR="/root/scripts"
 echo
 
 # Git
-cd "${GIT_DIR}"/xmpp.is && git pull
-cd "${GIT_DIR}"/mod_register_web && git pull
-cd "${GIT_DIR}"/prosody_web_registration_theme && git pull
-cd "${GIT_DIR}"/mod_web_account_delete && git pull
+# mod_web_password_reset and mod_web_account_delete are local copies rather than git
+# checkouts (they have no upstream repo), so only pull the directories that are checkouts
+for REPO in xmpp.is mod_register_web prosody_web_registration_theme mod_web_password_reset mod_web_account_delete; do
+  if [ -d "${GIT_DIR}/${REPO}/.git" ]; then
+    echo "Pulling ${REPO}"
+    git -C "${GIT_DIR}/${REPO}" pull
+  else
+    echo "Skipping ${REPO}: not a git checkout"
+  fi
+done
 
 # Mercurial
 cd "${PROSODY_DATA_DIR}"/modules && hg pull && hg update

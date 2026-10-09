@@ -43,11 +43,6 @@ echo
 echo "Syncing logrotate configs"
 rsync -av "${GIT_DIR}"/xmpp.is/etc/logrotate.d/ /etc/logrotate.d/
 
-# OpenSSL
-echo
-echo "Syncing OpenSSL configs"
-rsync -av "${GIT_DIR}"/xmpp.is/etc/ssl/ /etc/ssl/
-
 # Webroot
 echo
 echo "Syncing /var/www/"
@@ -59,26 +54,30 @@ echo "Syncing /etc/mercurial"
 rsync -av "${GIT_DIR}"/xmpp.is/etc/mercurial/ /etc/mercurial/
 
 # Prosody Modules
+# Our own modules go into /etc/prosody/modules, which comes before the prosody-modules hg
+# checkout in plugin_paths. Syncing them into the checkout itself modified files that hg
+# tracks (so `hg update` could merge upstream changes into them) and copied .git along.
+CUSTOM_MODULES_DIR="/etc/prosody/modules"
 
 # prosody_web_registration_theme
 echo
 echo "Syncing prosody_web_registration_theme"
-rsync -av "${GIT_DIR}"/prosody_web_registration_theme /etc/prosody/register-templates/
+rsync -av --exclude .git "${GIT_DIR}"/prosody_web_registration_theme /etc/prosody/register-templates/
 
 # mod_register_web
 echo
 echo "Syncing mod_register_web"
-rsync -av "${GIT_DIR}"/mod_register_web/ /var/lib/prosody/modules/mod_register_web/
+rsync -av --exclude .git "${GIT_DIR}"/mod_register_web/ "${CUSTOM_MODULES_DIR}"/mod_register_web/
 
 # mod_web_password_reset
 echo
 echo "Syncing mod_web_password_reset"
-rsync -av "${GIT_DIR}"/mod_web_password_reset/ /var/lib/prosody/modules/mod_web_password_reset/
+rsync -av --exclude .git "${GIT_DIR}"/mod_web_password_reset/ "${CUSTOM_MODULES_DIR}"/mod_web_password_reset/
 
 # mod_web_account_delete
 echo
 echo "Syncing mod_web_account_delete"
-rsync -av "${GIT_DIR}"/mod_web_account_delete/ /var/lib/prosody/modules/mod_web_account_delete/
+rsync -av --exclude .git "${GIT_DIR}"/mod_web_account_delete/ "${CUSTOM_MODULES_DIR}"/mod_web_account_delete/
 
 # Cron
 echo
