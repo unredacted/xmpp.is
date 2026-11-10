@@ -199,6 +199,14 @@ Questions, or want to meet the community? Join the lounge at lounge@muc.xmpp.is.
 
 	}
 
+-- Stanza size limits --
+-- Raised from Prosody's defaults (256 KiB c2s, 512 KiB s2s) so post-quantum
+-- OMEMO bundles fit: a urn:monocles:omemo-pq:1 bundle with 100 ML-KEM-1024
+-- prekeys is ~232 KB in a single PEP publish, and going over the limit
+-- closes the client's stream.
+c2s_stanza_size_limit = 512 * 1024
+s2s_stanza_size_limit = 1024 * 1024
+
 -- mod_http --
 
 http_default_host = "http.xmpp.is"
